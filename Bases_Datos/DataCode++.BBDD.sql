@@ -97,6 +97,58 @@ VALUES (18, 'Grimnir', 'Semiorco', 02, 'Paladin', 05);
 
 -- Game Master
 INSERT INTO GameMaster (id_gameMaster, alias, id_miembro)
-VALUES (66, 'Capitan Raul' , 04);
-INSERT INTO GameMaster (id_gameMaster, alias, id_miembro)
 VALUES (99, 'Sara Durmiente', 06);
+
+-- INSERCION VALORES 
+-- Partida 
+
+-- Partidas
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (01, 'La búsqueda del anillo', '2024-04-01', 1, 'Tierra Media', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (02, 'Galaxia en guerra', '2024-04-02', 1, 'Galaxia', 'No', 3, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (03, 'Las sombras de la montaña', '2024-04-03', 1, 'Montañas', 'No', 5, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (04, 'La magia perdida', '2024-04-04', 1, 'Bosque encantado', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (05, 'El rescate de la princesa', '2024-04-05', 1, 'Castillo', 'No', 3, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (06, 'Intriga en la corte', '2024-04-06', 1, 'Palacio real', 'No', 5, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (07, 'La ciudad maldita', '2024-04-07', 1, 'Ciudad abandonada', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (08, 'El laberinto de la muerte', '2024-04-08', 1, 'Laberinto', 'No', 6, 99);
+
+-- INSERCION DE VALORES 
+-- Juega
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (21, 01, 'Líder, habilidoso en combate');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (11, 02, 'Experto en hechizos y magia');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (20, 03, 'Experto arquero, valiente');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (12, 04, 'Hábil piloto y contrabandista');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (10, 05, 'Portador del anillo, valiente');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (16, 06, 'Hábil ladrón, conoce secretos');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (13, 07, 'Amigo leal, valiente');
+
+INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
+VALUES (18, 08, 'Poderoso guerrero, resistente');
