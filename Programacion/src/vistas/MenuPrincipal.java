@@ -93,6 +93,9 @@ public class MenuPrincipal extends JFrame {
 
 		// Hacemos visible la ventana para que se ejecute.
 		setVisible(true);
+		
+		
+		// DEBEMOS PONER IMAGEN
 	}
 
 	public void hacerVisible() {
