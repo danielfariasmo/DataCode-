@@ -92,57 +92,57 @@ public class Crear_Partida extends JFrame {
 
         // Etiquetas para introducir la información
         JLabel labelIdentificador = new JLabel("Identificador único:");
-        labelIdentificador.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelIdentificador.setFont(new Font("Verdana", Font.BOLD, 20));
         labelIdentificador.setForeground(Color.WHITE);
         labelIdentificador.setBounds(50, 35, 400, 30);
         getContentPane().add(labelIdentificador);
 
         JLabel labelNombrePartida = new JLabel("Nombre de la partida:");
-        labelNombrePartida.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelNombrePartida.setFont(new Font("Verdana", Font.BOLD, 20));
         labelNombrePartida.setForeground(Color.WHITE);
         labelNombrePartida.setBounds(50, 91, 400, 30);
         getContentPane().add(labelNombrePartida);
 
         JLabel labelIdGameMaster = new JLabel("ID Game Master:");
-        labelIdGameMaster.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelIdGameMaster.setFont(new Font("Verdana", Font.BOLD, 20));
         labelIdGameMaster.setForeground(Color.WHITE);
         labelIdGameMaster.setBounds(50, 143, 400, 30);
         getContentPane().add(labelIdGameMaster);
 
         JLabel labelAmbientacion = new JLabel("Ambientación:");
-        labelAmbientacion.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelAmbientacion.setFont(new Font("Verdana", Font.BOLD, 20));
         labelAmbientacion.setForeground(Color.WHITE);
         labelAmbientacion.setBounds(50, 199, 400, 30);
         getContentPane().add(labelAmbientacion);
 
         JLabel labelPersonajes = new JLabel("Personajes que participan:");
-        labelPersonajes.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelPersonajes.setFont(new Font("Verdana", Font.BOLD, 20));
         labelPersonajes.setForeground(Color.WHITE);
         labelPersonajes.setBounds(50, 255, 400, 30);
         getContentPane().add(labelPersonajes);
 
         JLabel labelDiaHora = new JLabel("Día y hora de la semana:");
-        labelDiaHora.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelDiaHora.setFont(new Font("Verdana", Font.BOLD, 20));
         labelDiaHora.setForeground(Color.WHITE);
         labelDiaHora.setBounds(50, 304, 400, 30);
         getContentPane().add(labelDiaHora);
 
         JLabel labelDuracionSesion = new JLabel("Duración de la sesión (horas):");
-        labelDuracionSesion.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelDuracionSesion.setFont(new Font("Verdana", Font.BOLD, 20));
         labelDuracionSesion.setForeground(Color.WHITE);
         labelDuracionSesion.setBounds(50, 350, 400, 30);
         getContentPane().add(labelDuracionSesion);
 
         JLabel labelNumeroSesion = new JLabel("Número de la sesión:");
-        labelNumeroSesion.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelNumeroSesion.setFont(new Font("Verdana", Font.BOLD, 20));
         labelNumeroSesion.setForeground(Color.WHITE);
         labelNumeroSesion.setBounds(50, 402, 400, 30);
         getContentPane().add(labelNumeroSesion);
 
         JLabel labelEstado = new JLabel("¿Está en curso o terminada? (Si/No):");
-        labelEstado.setFont(new Font("Verdana", Font.PLAIN, 20));
+        labelEstado.setFont(new Font("Verdana", Font.BOLD, 20));
         labelEstado.setForeground(Color.WHITE);
-        labelEstado.setBounds(50, 454, 400, 30);
+        labelEstado.setBounds(50, 454, 434, 30);
         getContentPane().add(labelEstado);
 
         // Campos de texto para introducir la información

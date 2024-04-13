@@ -147,7 +147,7 @@ public class Consultar_Partida extends JFrame {
 		// Imagen de Slogan
 		JLabel labelSlogan = new JLabel("");
 		panelContenedor.add(labelSlogan);
-		labelSlogan.setIcon(new ImageIcon("C:\\Users\\danie\\Desktop\\DataCode++\\Programacion\\img\\SloganDC1.png"));
+		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
 
 		// Tamaño y posición de la ventana.
 		setSize(1050, 650);
