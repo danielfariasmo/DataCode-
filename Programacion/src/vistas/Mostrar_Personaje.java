@@ -58,7 +58,7 @@ public class Mostrar_Personaje extends JFrame {
 		botonConsultar.setBackground(new Color(135, 206, 235));
 		botonConsultar.setForeground(new Color(37, 34, 81));
 		botonConsultar.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonConsultar.setBounds(457, 391, 155, 37);
+		botonConsultar.setBounds(457, 391, 175, 37);
 		getContentPane().add(botonConsultar);
 		
 		JButton botonEliminar = new JButton("Eliminar");

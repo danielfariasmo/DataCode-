@@ -142,7 +142,7 @@ public class Crear_Partida extends JFrame {
         JLabel labelEstado = new JLabel("¿Está en curso o terminada? (Si/No):");
         labelEstado.setFont(new Font("Verdana", Font.BOLD, 20));
         labelEstado.setForeground(Color.WHITE);
-        labelEstado.setBounds(50, 454, 400, 30);
+        labelEstado.setBounds(50, 454, 434, 30);
         getContentPane().add(labelEstado);
 
         // Campos de texto para introducir la información

@@ -1,12 +1,6 @@
 package vistas;
 
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -159,5 +153,14 @@ public class Login extends JFrame {
 		setVisible(true);
 	}
 	
+	// Main de prueba.
+		public static void main(String[] args) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					new Login();
+				}
+			});
+		}
 	
 }
