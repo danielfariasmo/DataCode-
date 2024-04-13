@@ -100,6 +100,8 @@ public class Crear_Partida extends JFrame {
 
 		// Hacemos visible la ventana para que se ejecute.
 		setVisible(true);
+		
+		System.out.println("Nacho");
 	}
 
 	// Main de prueba.
