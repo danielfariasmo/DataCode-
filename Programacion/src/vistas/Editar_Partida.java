@@ -232,7 +232,7 @@ public class Editar_Partida extends JFrame {
 		// Hacemos visible la ventana para que se ejecute.
 		setVisible(true);
 
-		System.out.println("daniel f");
+		
 	}
 
 	// Main de prueba.
