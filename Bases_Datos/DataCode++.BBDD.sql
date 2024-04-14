@@ -19,7 +19,7 @@ CREATE TABLE Miembro (
 
 -- GAMEMASTER
 CREATE TABLE GameMaster (
-	id_gameMaster INT, 
+	id_gameMaster INT auto_increment, 
     alias TEXT,
     id_miembro INT, 
     PRIMARY KEY (id_gameMaster),
