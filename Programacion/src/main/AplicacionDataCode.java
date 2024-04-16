@@ -9,7 +9,7 @@ import vistas.MenuPrincipal;
 /**
  * 
  */
-public class Aplicacion {
+public class AplicacionDataCode {
 
 	/**
 	 * @author Daniel F.
@@ -21,13 +21,14 @@ public class Aplicacion {
 
 			public void run() {
 				// AQUI DENTRO es donde vamos a ejecutar nuestra ventana
-				
-				Login inicioSesion = new Login ();
-				inicioSesion.hacerVisible();
-				
-				MenuPrincipal  menuPrincipal= new MenuPrincipal ();
-				menuPrincipal.hacerVisible();
-				
+
+				Login inicioSesion = new Login();
+				inicioSesion.setVisible(true);
+
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				inicioSesion.setVisible(false);
+				menuPrincipal.setVisible(true);
+
 			}
 		}
 
