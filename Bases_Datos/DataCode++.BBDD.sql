@@ -56,7 +56,13 @@ CREATE TABLE Partida (
 CREATE TABLE Juega (
 	id_personaje INT,
     id_partida INT,
-    caracteristicas_personaje TEXT,
+    descripcion TEXT,
+    fuerza INT,
+    destreza INT,
+    constitucion INT,
+    inteligencia INT,
+    sabiduria INT,
+    carisma INT,
 	PRIMARY KEY (id_personaje, id_partida),
     FOREIGN KEY (id_personaje) REFERENCES Personaje (id_personaje),
     FOREIGN KEY (id_partida) REFERENCES Partida (id_partida)
@@ -129,26 +135,26 @@ VALUES (08, 'El laberinto de la muerte', '2024-04-08', 1, 'Laberinto', 'No', 6, 
 
 -- INSERCION DE VALORES 
 -- Juega
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (21, 01, 'Líder, habilidoso en combate');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (21, 01, 'Líder, habilidoso en combate', 80, 59, 72, 18, 20, 40);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (11, 02, 'Experto en hechizos y magia');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (11, 02, 'Experto en hechizos y magia', 40, 84, 45, 69, 80, 55);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (20, 03, 'Experto arquero, valiente');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (20, 03, 'Experto arquero, valiente', 60, 87, 36, 70, 53, 33);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (12, 04, 'Hábil piloto y contrabandista');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (12, 04, 'Hábil piloto y contrabandista', 59, 86, 44, 52, 40, 72);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (10, 05, 'Portador del anillo, valiente');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (10, 05, 'Portador del anillo, valiente', 68, 50, 20, 66, 59, 38);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (16, 06, 'Hábil ladrón, conoce secretos');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (16, 06, 'Hábil ladrón, conoce secretos', 42, 90, 43, 79, 60, 12);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (13, 07, 'Amigo leal, valiente');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (13, 07, 'Amigo leal, valiente', 44, 50, 62, 49, 66, 89);
 
-INSERT INTO Juega (id_personaje, id_partida, caracteristicas_personaje)
-VALUES (18, 08, 'Poderoso guerrero, resistente');
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (18, 08, 'Poderoso guerrero, resistente', 88, 71, 68, 11, 38, 50);
