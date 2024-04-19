@@ -5,17 +5,14 @@ package vistas;
 
 import javax.swing.*;
 import javax.swing.table.*;
-
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.Color;
 
-/**
- * 
- */
-public class Consultar_Partida extends JFrame {
+public class Consultar_Partida extends JPanel {
 	/**
-	 * 
+	 * @author Daniel F.
+	 * @author Ignacio M.
+	 * @author Daniel G.
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable tablePartida;
@@ -24,85 +21,15 @@ public class Consultar_Partida extends JFrame {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
-		setTitle("DataCode++ (Consultar Partida)");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img/DC.Icon2.png"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(37, 34, 81));
-		getContentPane().setLayout(null);
-
-		/*
-		 * Menu.
-		 */
-		JMenuBar barraMenu = new JMenuBar();
-		barraMenu.setFont(new Font("Verdana", Font.PLAIN, 30));
-		barraMenu.setBackground(new Color(135, 206, 235));
-
-		// Opcion Personaje.
-		JMenu personajes = new JMenu("Personajes");
-		personajes.setForeground(new Color(37, 34, 81));
-		personajes.setFont(new Font("Verdana", Font.BOLD, 25));
-		JMenuItem nuevoPersonaje = new JMenuItem("Nuevo Personaje");
-		nuevoPersonaje.setForeground(new Color(37, 34, 81));
-		nuevoPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-		JMenuItem mostrarPersonajes = new JMenuItem("Mostrar Personajes");
-		mostrarPersonajes.setForeground(new Color(37, 34, 81));
-		mostrarPersonajes.setFont(new Font("Verdana", Font.PLAIN, 25));
-		JMenuItem modificarPersonaje = new JMenuItem("Modificar Personaje");
-		modificarPersonaje.setForeground(new Color(37, 34, 81));
-		modificarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-		personajes.add(nuevoPersonaje);
-		personajes.add(new JSeparator());
-		personajes.add(mostrarPersonajes);
-		personajes.add(new JSeparator());
-		personajes.add(modificarPersonaje);
-
-		// Opcion Partidas.
-		JMenu partidas = new JMenu("Partidas");
-		partidas.setForeground(new Color(37, 34, 81));
-		partidas.setFont(new Font("Verdana", Font.BOLD, 25));
-		JMenuItem crearPartida = new JMenuItem("Crear Partida");
-		crearPartida.setForeground(new Color(37, 34, 81));
-		crearPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		JMenuItem consultarPartida = new JMenuItem("Consultar Partida");
-		consultarPartida.setForeground(new Color(37, 34, 81));
-		consultarPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		JMenuItem editarPartida = new JMenuItem("Editar Partida");
-		editarPartida.setForeground(new Color(37, 34, 81));
-		editarPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		partidas.add(crearPartida);
-		partidas.add(new JSeparator());
-		partidas.add(consultarPartida);
-		partidas.add(new JSeparator());
-		partidas.add(editarPartida);
-
-		// Opcion Miembros.
-		JMenu miembros = new JMenu("Miembros");
-		miembros.setForeground(new Color(37, 34, 81));
-		miembros.setFont(new Font("Verdana", Font.BOLD, 25));
-		JMenuItem mostrarMiembros = new JMenuItem("Mostrar Miembros");
-		mostrarMiembros.setForeground(new Color(37, 34, 81));
-		mostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 25));
-		miembros.add(mostrarMiembros);
-
-		// Añadimos a la barra las opciones.
-
-		barraMenu.add(new JSeparator());
-		barraMenu.add(personajes);
-		barraMenu.add(new JSeparator());
-		barraMenu.add(partidas);
-		barraMenu.add(new JSeparator());
-		barraMenu.add(miembros);
-		barraMenu.add(new JSeparator());
-
-		// Configuramos la barra de menú al JFrame
-		setJMenuBar(barraMenu);
+		setBackground(new Color(37, 34, 81));
+		setLayout(null);
 
 		// Titulo de Pagina
 		JLabel labelConsultarPartida = new JLabel("Consultar Partida");
 		labelConsultarPartida.setFont(new Font("Verdana", Font.BOLD, 40));
 		labelConsultarPartida.setForeground(new Color(255, 255, 255));
 		labelConsultarPartida.setBounds(309, 63, 401, 43);
-		getContentPane().add(labelConsultarPartida);
+		add(labelConsultarPartida);
 
 		// Tabla Partida
 		tablePartida = new JTable(new DefaultTableModel(
@@ -120,7 +47,7 @@ public class Consultar_Partida extends JFrame {
 		tablePartida.setForeground(new Color(255, 255, 255));
 		tablePartida.setBackground(new Color(37, 34, 81));
 		tablePartida.setBounds(-19, 26, 841, 452);
-		getContentPane().add(tablePartida);
+		add(tablePartida);
 
 		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
 		tablePartida.getColumnModel().getColumn(0).setPreferredWidth(90);
@@ -136,35 +63,19 @@ public class Consultar_Partida extends JFrame {
 		// necesario
 		JScrollPane scrollPane = new JScrollPane(tablePartida);
 		scrollPane.setBounds(34, 150, 964, 153);
-		getContentPane().add(scrollPane);
-		
+		add(scrollPane);
+
 		// Contenedor para recuadro blanco
 		JPanel panelContenedor = new JPanel();
 		panelContenedor.setBackground(new Color(255, 255, 255));
 		panelContenedor.setBounds(363, 456, 315, 70);
-		getContentPane().add(panelContenedor);
-		
+		add(panelContenedor);
+
 		// Imagen de Slogan
 		JLabel labelSlogan = new JLabel("");
 		panelContenedor.add(labelSlogan);
 		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
 
-		// Tamaño y posición de la ventana.
-		setSize(1050, 650);
-		setLocationRelativeTo(null);
-
-		// Hacemos visible la ventana para que se ejecute.
-		setVisible(true);
-
 	}
 
-	// Main de prueba.
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new Consultar_Partida();
-			}
-		});
-	}
 }
