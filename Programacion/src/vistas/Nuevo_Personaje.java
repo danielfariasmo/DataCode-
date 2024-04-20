@@ -50,6 +50,7 @@ public class Nuevo_Personaje extends JPanel {
 		labelNombrePersonaje.setBounds(195, 147, 192, 75);
 
 		textField_1 = new JTextField();
+		textField_1.setBackground(new Color(255, 255, 255));
 		textField_1.setSize(277, 46);
 		textField_1.setLocation(458, 95);
 		add(textField_1, BorderLayout.EAST);
