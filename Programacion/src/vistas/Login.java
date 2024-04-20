@@ -1,14 +1,28 @@
 package vistas;
 
-import javax.swing.*;
-
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import modelo.ConexionBBDD;
 
 public class Login extends JFrame {
 
@@ -69,7 +83,30 @@ public class Login extends JFrame {
 				String usuario = textoUsuarioLogin.getText();
 				String contraseña = new String(claveContraseñaLogin.getPassword());
 
-				if (true /* Condición de autenticación */) {
+				// Variable para guardar la informacion de la consulta
+				boolean loginExitoso = false;
+
+				// Creamos consulta
+				String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario
+						+ "' AND clave_usuario = " + contraseña;
+
+				// Conecto la bbs
+				Connection conn = ConexionBBDD.conectar();
+
+				// Ejecuto la consulta
+				try {
+					Statement s = conn.createStatement();
+					ResultSet resultado = s.executeQuery(selectLogin);
+					System.out.println(selectLogin);
+					loginExitoso = resultado.next();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				ConexionBBDD.cerrar();
+
+				if (loginExitoso) {
 					// Crear un cuadro de diálogo personalizado
 					JPanel panelDialogo = new JPanel();
 					JLabel labelBienvenida = new JLabel("Bienvenido " + usuario + " ¿Cómo quieres iniciar sesión?");
@@ -149,18 +186,18 @@ public class Login extends JFrame {
 
 	}
 
-	public void hacerVisible () {
+	public void hacerVisible() {
 		setVisible(true);
 	}
-	
+
 	// Main de prueba.
-		public static void main(String[] args) {
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					new Login();
-				}
-			});
-		}
-	
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new Login();
+			}
+		});
+	}
+
 }
