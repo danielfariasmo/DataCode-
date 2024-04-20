@@ -42,7 +42,7 @@ CREATE TABLE Personaje (
 CREATE TABLE Partida (
 	id_partida INT, 
     nombre TEXT,
-    dia_hora DATE, 
+    dia_hora DATETIME, 
     numero_sesion INT,
     ambientacion TEXT, 
     finalizada TEXT (2),
@@ -110,28 +110,28 @@ VALUES (99, 'Sara Durmiente', 06);
 
 -- Partidas
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (01, 'La búsqueda del anillo', '2024-04-01', 1, 'Tierra Media', 'No', 4, 99);
+VALUES (01, 'La búsqueda del anillo', '2024-05-23 18:00:00', 1, 'Tierra Media', 'No', 4, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (02, 'Galaxia en guerra', '2024-04-02', 1, 'Galaxia', 'No', 3, 99);
+VALUES (02, 'Galaxia en guerra', '2024-05-22 15:00:00', 1, 'Galaxia', 'No', 3, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (03, 'Las sombras de la montaña', '2024-04-03', 1, 'Montañas', 'No', 5, 99);
+VALUES (03, 'Las sombras de la montaña', '2024-05-22 21:00', 1, 'Montañas', 'No', 5, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (04, 'La magia perdida', '2024-04-04', 1, 'Bosque encantado', 'No', 4, 99);
+VALUES (04, 'La magia perdida', '2024-05-24 09:00:00', 1, 'Bosque encantado', 'No', 4, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (05, 'El rescate de la princesa', '2024-04-05', 1, 'Castillo', 'No', 3, 99);
+VALUES (05, 'El rescate de la princesa', '2024-05-24 12:00:00', 1, 'Castillo', 'No', 3, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (06, 'Intriga en la corte', '2024-04-06', 1, 'Palacio real', 'No', 5, 99);
+VALUES (06, 'Intriga en la corte', '2024-06-06 20:00:00', 1, 'Palacio real', 'No', 5, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (07, 'La ciudad maldita', '2024-04-07', 1, 'Ciudad abandonada', 'No', 4, 99);
+VALUES (07, 'La ciudad maldita', '2024-05-22 10:45:00', 1, 'Ciudad abandonada', 'No', 4, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (08, 'El laberinto de la muerte', '2024-04-08', 1, 'Laberinto', 'No', 6, 99);
+VALUES (08, 'El laberinto de la muerte', '2024-05-23 19:25:00', 1, 'Laberinto', 'No', 6, 99);
 
 -- INSERCION DE VALORES 
 -- Juega
