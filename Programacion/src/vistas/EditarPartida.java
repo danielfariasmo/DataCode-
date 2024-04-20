@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Editar_Partida extends JPanel {
+public class EditarPartida extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -24,7 +24,7 @@ public class Editar_Partida extends JPanel {
 	private JTextField textField_6;
 	private JTextField textField_7;
 
-	public Editar_Partida() {
+	public EditarPartida() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));

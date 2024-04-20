@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 
-public class Crear_Partida extends JPanel {
+public class CrearPartida extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -14,7 +14,7 @@ public class Crear_Partida extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Crear_Partida() {
+	public CrearPartida() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -151,7 +151,7 @@ public class Crear_Partida extends JPanel {
 				String identificador = textoIdentificador.getText();
 				// Mensaje del cuadro de dialogo , con la información del identificador
 				// introducido por el usuario
-				JOptionPane.showMessageDialog(Crear_Partida.this,
+				JOptionPane.showMessageDialog(CrearPartida.this,
 						"La partida con identificador " + identificador + ": ha sido creada correctamente");
 			}
 		});

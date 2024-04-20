@@ -8,7 +8,7 @@ import javax.swing.table.*;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Consultar_Partida extends JPanel {
+public class ConsultarPartida extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -17,7 +17,7 @@ public class Consultar_Partida extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable tablePartida;
 
-	public Consultar_Partida() {
+	public ConsultarPartida() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));

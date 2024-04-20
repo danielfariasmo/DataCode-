@@ -5,7 +5,7 @@ package vistas;
 
 import javax.swing.*;
 
-import control.ControladorMenuPrincipal;
+import control.ControlMenuPrincipalUsuario;
 
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -16,7 +16,7 @@ import java.awt.BorderLayout;
 /**
  * 
  */
-public class MenuPrincipal extends JFrame {
+public class MenuPrincipalUsuario extends JFrame {
 	/**
 	 * 
 	 */
@@ -32,7 +32,7 @@ public class MenuPrincipal extends JFrame {
 	JMenuItem editarPartida;
 	JMenuItem mostrarMiembros;
 
-	public MenuPrincipal() {
+	public MenuPrincipalUsuario() {
 
 		panelPrincipal = new JPanel();
 		scrollPrincipal = new JScrollPane();
@@ -171,7 +171,7 @@ public class MenuPrincipal extends JFrame {
 		scrollPrincipal.setViewportView(panel);
 	}
 	
-	public void setListener (ControladorMenuPrincipal listener) {
+	public void setListener (ControlMenuPrincipalUsuario listener) {
 		nuevoPersonaje.addActionListener(listener);
 		mostrarPersonajes.addActionListener(listener);
 		modificarPersonaje.addActionListener(listener);

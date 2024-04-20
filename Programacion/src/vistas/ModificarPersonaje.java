@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.BorderLayout;
 
-public class Modificar_Personaje extends JPanel {
+public class ModificarPersonaje extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -24,7 +24,7 @@ public class Modificar_Personaje extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_1;
 
-	public Modificar_Personaje() {
+	public ModificarPersonaje() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -125,7 +125,7 @@ public class Modificar_Personaje extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String identificador = textField_1.getText();
                 //Mensaje del cuadro de dialogo , con la información del identificador introducido por el usuario
-                JOptionPane.showMessageDialog(Modificar_Personaje.this, "El personaje con id " + identificador + ", ha sido actualizado correctamente");
+                JOptionPane.showMessageDialog(ModificarPersonaje.this, "El personaje con id " + identificador + ", ha sido actualizado correctamente");
             }
         });
 	}
