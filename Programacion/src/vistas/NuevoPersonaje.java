@@ -8,7 +8,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.BorderLayout;
 
-public class Nuevo_Personaje extends JPanel {
+public class NuevoPersonaje extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -21,7 +21,7 @@ public class Nuevo_Personaje extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_1;
 
-	public Nuevo_Personaje() {
+	public NuevoPersonaje() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -38,7 +38,7 @@ public class Nuevo_Personaje extends JPanel {
 		textField = new JTextField();
 		textField.setLocation(458, 164);
 		textField.setSize(277, 46);
-		textField.setForeground(new Color(255, 255, 255));
+		textField.setForeground(new Color(0, 0, 0));
 		add(textField, BorderLayout.EAST);
 		textField.setColumns(10);
 

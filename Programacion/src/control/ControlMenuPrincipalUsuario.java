@@ -6,34 +6,34 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
-import vistas.Consultar_Partida;
-import vistas.Crear_Partida;
-import vistas.Editar_Partida;
-import vistas.MenuPrincipal;
+import vistas.ConsultarPartida;
+import vistas.CrearPartida;
+import vistas.EditarPartida;
+import vistas.MenuPrincipalUsuario;
 import vistas.MiembroClub;
-import vistas.Modificar_Personaje;
-import vistas.Mostrar_Personaje;
-import vistas.Nuevo_Personaje;
+import vistas.ModificarPersonaje;
+import vistas.MostrarPersonaje;
+import vistas.NuevoPersonaje;
 
-public class ControladorMenuPrincipal implements ActionListener {
+public class ControlMenuPrincipalUsuario implements ActionListener {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
 
-	private MenuPrincipal menuPrincipal;
-	private Nuevo_Personaje nuevoPersonaje;
-	private Consultar_Partida consultarPartida;
-	private Crear_Partida crearPartida;
-	private Editar_Partida editarPartida;
+	private MenuPrincipalUsuario menuPrincipal;
+	private NuevoPersonaje nuevoPersonaje;
+	private ConsultarPartida consultarPartida;
+	private CrearPartida crearPartida;
+	private EditarPartida editarPartida;
 	private MiembroClub miembroClub;
-	private Modificar_Personaje modificarPersonaje;
-	private Mostrar_Personaje mostrarPersonaje;
+	private ModificarPersonaje modificarPersonaje;
+	private MostrarPersonaje mostrarPersonaje;
 
-	public ControladorMenuPrincipal(MenuPrincipal menuPrincipal, Nuevo_Personaje nuevoPersonaje,
-			Consultar_Partida consultarPartida, Crear_Partida crearPartida, Editar_Partida editarPartida,
-			MiembroClub miembroClub, Modificar_Personaje modificarPersonaje, Mostrar_Personaje mostrarPersonaje) {
+	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
+			ConsultarPartida consultarPartida, CrearPartida crearPartida, EditarPartida editarPartida,
+			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje, MostrarPersonaje mostrarPersonaje) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = consultarPartida;

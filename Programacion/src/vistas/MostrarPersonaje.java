@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Mostrar_Personaje extends JPanel {
+public class MostrarPersonaje extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -15,7 +15,7 @@ public class Mostrar_Personaje extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Mostrar_Personaje() {
+	public MostrarPersonaje() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
