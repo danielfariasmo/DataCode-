@@ -50,6 +50,7 @@ public class NuevoPersonaje extends JPanel {
 		labelNombrePersonaje.setBounds(195, 147, 192, 75);
 
 		textField_1 = new JTextField();
+		textField_1.setForeground(new Color(0, 0, 0));
 		textField_1.setBackground(new Color(255, 255, 255));
 		textField_1.setSize(277, 46);
 		textField_1.setLocation(458, 95);
@@ -102,7 +103,7 @@ public class NuevoPersonaje extends JPanel {
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 17));
 		botonAceptar.setBounds(515, 496, 156, 32);
 		add(botonAceptar);
-
+		
 	}
 
 }

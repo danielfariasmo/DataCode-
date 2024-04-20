@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultarPartida extends JPanel {
 	/**
@@ -75,7 +77,14 @@ public class ConsultarPartida extends JPanel {
 		JLabel labelSlogan = new JLabel("");
 		panelContenedor.add(labelSlogan);
 		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
-
+		
+		JButton botonInfoPartida = new JButton("Información de la partida");
+		botonInfoPartida.setFont(new Font("Verdana", Font.BOLD, 14));
+		botonInfoPartida.setBackground(new Color(135, 206, 235));
+		botonInfoPartida.setForeground(new Color(37, 34, 81));
+		botonInfoPartida.setBounds(387, 371, 262, 43);
+		add(botonInfoPartida);
+		
 	}
-
+	
 }

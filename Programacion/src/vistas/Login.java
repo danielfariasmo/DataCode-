@@ -88,7 +88,6 @@ public class Login extends JFrame {
 				try {
 					Statement s = conn.createStatement();
 					ResultSet resultado = s.executeQuery(selectLogin);
-					System.out.println(selectLogin);
 					loginExitoso = resultado.next();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

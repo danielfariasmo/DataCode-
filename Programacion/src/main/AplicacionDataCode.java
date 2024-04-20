@@ -42,7 +42,7 @@ public class AplicacionDataCode {
 				// Se muestra el menu principal.
 				menuPrincipal.setListener(listener);
 				menuPrincipal.hacerVisible();
-
+				
 			}
 		}
 
