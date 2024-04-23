@@ -15,10 +15,10 @@ import java.sql.SQLException;
 public class ConexionBBDD {
 
 	// Ruta de conexion.
-	private static String url = "jdbc:mysql://localhost:3306/datacode";
-	private static Connection conn = null;
+	private  String url = "jdbc:mysql://localhost:3306/datacode";
+	private  Connection conn = null;
 
-	public static Connection conectar() {
+	public  Connection conectar() {
 
 		if (conn != null) {
 			return conn;
@@ -26,7 +26,7 @@ public class ConexionBBDD {
 
 		try {
 			// Indicamos la clase a la que vamos a acceder
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
 			conn = DriverManager.getConnection(url, "root", "1590");
@@ -39,7 +39,7 @@ public class ConexionBBDD {
 		return conn;
 	}
 
-	public static void cerrar() {
+	public void cerrar() {
 		if (conn != null) {
 			try {
 				conn.close();

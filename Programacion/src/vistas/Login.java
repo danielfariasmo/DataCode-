@@ -78,11 +78,12 @@ public class Login extends JFrame {
 				boolean loginExitoso = false;
 
 				// Creamos consulta
-				String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario
-						+ "' AND clave_usuario = " + contraseña;
+				String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario + "' AND clave_usuario = " + contraseña;
 
 				// Conecto la bbs
-				Connection conn = ConexionBBDD.conectar();
+				ConexionBBDD conexionbbdd= new ConexionBBDD();
+				Connection conn = conexionbbdd.conectar();
+				//conn = ConexionBBDD.conectar();
 
 				// Ejecuto la consulta
 				try {
@@ -94,7 +95,7 @@ public class Login extends JFrame {
 					e1.printStackTrace();
 				}
 
-				ConexionBBDD.cerrar();
+				conexionbbdd.cerrar();
 
 				if (loginExitoso) {
 					// Crear un cuadro de diálogo personalizado
