@@ -77,35 +77,6 @@ public class MenuPrincipalGameMaster extends JFrame {
 		barraMenu.setFont(new Font("Verdana", Font.PLAIN, 30));
 
 		/*
-		 * Opcion Personaje.
-		 */
-		JMenu personajes = new JMenu("Personajes");
-		personajes.setForeground(new Color(37, 34, 81));
-		personajes.setFont(new Font("Verdana", Font.BOLD, 25));
-
-		// Nuevo Personaje
-		nuevoPersonaje = new JMenuItem("Nuevo Personaje");
-		nuevoPersonaje.setForeground(new Color(37, 34, 81));
-		nuevoPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-
-		// Mostrar Personaje
-		mostrarPersonajes = new JMenuItem("Mostrar Personajes");
-		mostrarPersonajes.setForeground(new Color(37, 34, 81));
-		mostrarPersonajes.setFont(new Font("Verdana", Font.PLAIN, 25));
-
-		// Modificar Personaje
-		modificarPersonaje = new JMenuItem("Modificar Personaje");
-		modificarPersonaje.setForeground(new Color(37, 34, 81));
-		modificarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-
-		// Añadimos a la barra las opciones.
-		personajes.add(nuevoPersonaje);
-		personajes.add(new JSeparator());
-		personajes.add(mostrarPersonajes);
-		personajes.add(new JSeparator());
-		personajes.add(modificarPersonaje);
-
-		/*
 		 * Opcion Partidas.
 		 */
 		JMenu partidas = new JMenu("Partidas");
@@ -151,8 +122,7 @@ public class MenuPrincipalGameMaster extends JFrame {
 		miembros.add(mostrarMiembros);
 
 		// Añadimos a la barra principal las opciones.
-		barraMenu.add(new JSeparator());
-		barraMenu.add(personajes);
+		
 		barraMenu.add(new JSeparator());
 		barraMenu.add(partidas);
 		barraMenu.add(new JSeparator());

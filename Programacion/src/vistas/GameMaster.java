@@ -36,7 +36,7 @@ public class GameMaster extends JFrame {
 		getContentPane().setLayout(null); // Layout null para posicionar elementos manualmente
 
 		// Texto en el centro de la ventana
-		JLabel textoCentral = new JLabel("Ups.. !No eres GameMaster!");
+		JLabel textoCentral = new JLabel("Ups.. ¡No eres GameMaster!");
 		textoCentral.setFont(new Font("Verdana", Font.BOLD, 30));
 		textoCentral.setForeground(Color.WHITE);
 		textoCentral.setBounds(539, 77, 487, 50);

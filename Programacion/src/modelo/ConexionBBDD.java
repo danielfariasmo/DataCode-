@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class ConexionBBDD {
 
 	// Ruta de conexion.
-	private  String url = "jdbc:mysql://localhost:3306/datacode";
+	private  String url = "jdbc:mysql://localhost:3306/proyectointegrador";
 	private  Connection conn = null;
 
 	public  Connection conectar() {
@@ -29,7 +29,7 @@ public class ConexionBBDD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			conn = DriverManager.getConnection(url, "root", "1590");
+			conn = DriverManager.getConnection(url, "root", "Villafranca1");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
