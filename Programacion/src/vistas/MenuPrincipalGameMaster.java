@@ -45,9 +45,11 @@ public class MenuPrincipalGameMaster extends JFrame {
 
 	public MenuPrincipalGameMaster() {
 
-		panelPrincipal = new JPanel();
-		scrollPrincipal = new JScrollPane();
-		getContentPane().add(scrollPrincipal);
+		configuracionInicial();
+		inicializarComponentes();
+	}
+
+	public void configuracionInicial() {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -56,6 +58,22 @@ public class MenuPrincipalGameMaster extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelPrincipal.setBackground(new Color(37, 34, 81));
 		panelPrincipal.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 50));
+		
+		// Tamaño y posición de la ventana.
+		setSize(1065, 660);
+		setLocationRelativeTo(null);
+
+		cambiarPanel(panelPrincipal);
+		// Hacemos visible la ventana para que se ejecute.
+		setVisible(true);
+
+	}
+
+	public void inicializarComponentes() {
+
+		panelPrincipal = new JPanel();
+		scrollPrincipal = new JScrollPane();
+		getContentPane().add(scrollPrincipal);
 
 		// Logo
 		JLabel labelLogo = new JLabel("");
@@ -122,7 +140,7 @@ public class MenuPrincipalGameMaster extends JFrame {
 		miembros.add(mostrarMiembros);
 
 		// Añadimos a la barra principal las opciones.
-		
+
 		barraMenu.add(new JSeparator());
 		barraMenu.add(partidas);
 		barraMenu.add(new JSeparator());
@@ -131,15 +149,6 @@ public class MenuPrincipalGameMaster extends JFrame {
 
 		// Configuramos la barra de menú al JFrame
 		setJMenuBar(barraMenu);
-
-		// Tamaño y posición de la ventana.
-		setSize(1065, 660);
-		setLocationRelativeTo(null);
-
-		cambiarPanel(panelPrincipal);
-		// Hacemos visible la ventana para que se ejecute.
-		setVisible(true);
-
 	}
 
 	public void hacerVisible() {

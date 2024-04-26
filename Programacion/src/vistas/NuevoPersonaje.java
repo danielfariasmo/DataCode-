@@ -23,10 +23,21 @@ public class NuevoPersonaje extends JPanel {
 
 	public NuevoPersonaje() {
 
+		configuracionInicial();
+		inicializarComponentes();
+
+	}
+
+	public void configuracionInicial() {
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
+
+	}
+
+	public void inicializarComponentes() {
 
 		// Id personaje
 		JLabel labelIdPersonaje = new JLabel("ID Personaje:");
@@ -103,7 +114,6 @@ public class NuevoPersonaje extends JPanel {
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 17));
 		botonAceptar.setBounds(515, 496, 156, 32);
 		add(botonAceptar);
-		
 	}
 
 }

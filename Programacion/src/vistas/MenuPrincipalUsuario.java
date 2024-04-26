@@ -173,6 +173,7 @@ public class MenuPrincipalUsuario extends JFrame {
 		setJMenuBar(barraMenu);
 	}
 
+	
 	public void hacerVisible() {
 		setVisible(true);
 	}

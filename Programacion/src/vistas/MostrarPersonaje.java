@@ -17,10 +17,20 @@ public class MostrarPersonaje extends JPanel {
 
 	public MostrarPersonaje() {
 
+		configuracionInicial();
+		inicializarComponentes();
+	}
+
+	public void configuracionInicial() {
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
+
+	}
+
+	public void inicializarComponentes() {
 
 		JComboBox<String> MostrarPersonajes = new JComboBox<String>();
 		MostrarPersonajes.setBackground(new Color(255, 255, 255));
@@ -47,21 +57,21 @@ public class MostrarPersonaje extends JPanel {
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 14));
 		botonAceptar.setBounds(113, 391, 155, 37);
 		add(botonAceptar);
-		
+
 		JButton botonConsultar = new JButton("Consultar stats");
 		botonConsultar.setBackground(new Color(135, 206, 235));
 		botonConsultar.setForeground(new Color(37, 34, 81));
 		botonConsultar.setFont(new Font("Verdana", Font.BOLD, 14));
 		botonConsultar.setBounds(567, 391, 175, 37);
 		add(botonConsultar);
-		
+
 		JButton botonEliminar = new JButton("Eliminar");
 		botonEliminar.setForeground(new Color(37, 34, 81));
 		botonEliminar.setBackground(new Color(135, 206, 235));
 		botonEliminar.setFont(new Font("Verdana", Font.BOLD, 14));
 		botonEliminar.setBounds(799, 391, 155, 37);
 		add(botonEliminar);
-		
+
 		JButton botonAñadirPersonaje = new JButton("Añadir Personaje");
 		botonAñadirPersonaje.setForeground(new Color(37, 34, 81));
 		botonAñadirPersonaje.setBackground(new Color(135, 206, 235));

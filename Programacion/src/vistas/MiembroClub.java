@@ -45,6 +45,7 @@ public class MiembroClub extends JPanel {
 		MostrarMiembros.setModel(dcbm);
 
 	}
+	
 	public void inicializarComponentes() {
 
 		// Listado de miembros:

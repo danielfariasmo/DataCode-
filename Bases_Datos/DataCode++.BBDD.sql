@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS Miembro;
 -- CREACION DE TABLAS
 -- MIEMBRO
 CREATE TABLE Miembro (
-	id_miembro INT,
+	id_miembro INT auto_increment,
     nombre_apellidos TEXT,
     numero_expediente INT,
     nombre_estudio TEXT,
@@ -28,7 +28,7 @@ CREATE TABLE GameMaster (
 
 -- PERSONAJE
 CREATE TABLE Personaje (
-	id_personaje INT, 
+	id_personaje INT auto_increment, 
     nombre TEXT, 
     raza TEXT, 
     nivel_experiencia INT, 
@@ -40,7 +40,7 @@ CREATE TABLE Personaje (
     
 -- PARTIDA
 CREATE TABLE Partida (
-	id_partida INT, 
+	id_partida INT auto_increment, 
     nombre TEXT,
     dia_hora DATETIME, 
     numero_sesion INT,
@@ -70,68 +70,68 @@ CREATE TABLE Juega (
     
 -- INSERCIÓN DE DATOS
 -- Miembros
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (01, 'Nacho Moreno', 456789, 'DAW', 'achonacho', 1234);
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (02, 'Daniel Farias', 876543, 'DAW', 'danielfarias', 0000);
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (03, 'Daniel Gonzalez', 674510, 'DAW', 'garrote', 2323);
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (04, 'Sara Villanueva', 346701, 'Educacion', 'sara', 3470);
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (05, 'Irene Rincon', 561201, 'Educacion', 'irene', 6565);
-INSERT INTO Miembro (id_miembro, nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES (06, 'Raul Rodriguez', 122101, 'Ingeniera', 'raul', 0219);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Nacho Moreno', 456789, 'DAW', 'achonacho', 1234);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Daniel Farias', 876543, 'DAW', 'danielfarias', 0000);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Daniel Gonzalez', 674510, 'DAW', 'garrote', 2323);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Sara Villanueva', 346701, 'Educacion', 'sara', 3470);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Irene Rincon', 561201, 'Educacion', 'irene', 6565);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Raul Rodriguez', 122101, 'Ingeniera', 'raul', 0219);
 
 -- Personajes
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (21, 'Aragorn', 'Humano', 3, 'Guerrero', 01) ;
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (11, 'Drako el Sabio', 'Draconido', 4, 'Mago', 01);
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (20, 'Thranduil', 'Elfo', 2, 'Guerrero', 02);
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (12, 'Han Solo', 'Humano', 4, 'Contrabandista', 02);
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (10, 'Frodo Bolson', 'Hobbit', 2, 'Heroe', 03);
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (16, 'Bofur Barbillas', 'Enano', 3, 'Picaro', 03);
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (13, 'Sam', 'Mediano', 01, 'Guardian', 03 );
-INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
-VALUES (18, 'Grimnir', 'Semiorco', 02, 'Paladin', 05);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Aragorn', 'Humano', 3, 'Guerrero', 01) ;
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Drako el Sabio', 'Draconido', 4, 'Mago', 01);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Thranduil', 'Elfo', 2, 'Guerrero', 02);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Han Solo', 'Humano', 4, 'Contrabandista', 02);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Frodo Bolson', 'Hobbit', 2, 'Heroe', 03);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Bofur Barbillas', 'Enano', 3, 'Picaro', 03);
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Sam', 'Mediano', 01, 'Guardian', 03 );
+INSERT INTO Personaje (nombre, raza, nivel_experiencia, clase, id_miembro)
+VALUES ('Grimnir', 'Semiorco', 02, 'Paladin', 05);
 
 -- Game Master
-INSERT INTO GameMaster (id_gameMaster, alias, id_miembro)
-VALUES (99, 'Sara Durmiente', 06);
+INSERT INTO GameMaster (alias, id_miembro)
+VALUES ('Sara Durmiente', 06);
 
 -- INSERCION VALORES 
 -- Partida 
 
 -- Partidas
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (01, 'La búsqueda del anillo', '2024-05-23 18:00:00', 1, 'Tierra Media', 'No', 4, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('La búsqueda del anillo', '2024-05-23 18:00:00', 1, 'Tierra Media', 'No', 4, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (02, 'Galaxia en guerra', '2024-05-22 15:00:00', 1, 'Galaxia', 'No', 3, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('Galaxia en guerra', '2024-05-22 15:00:00', 1, 'Galaxia', 'No', 3, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (03, 'Las sombras de la montaña', '2024-05-22 21:00', 1, 'Montañas', 'No', 5, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('Las sombras de la montaña', '2024-05-22 21:00', 1, 'Montañas', 'No', 5, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (04, 'La magia perdida', '2024-05-24 09:00:00', 1, 'Bosque encantado', 'No', 4, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('La magia perdida', '2024-05-24 09:00:00', 1, 'Bosque encantado', 'No', 4, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (05, 'El rescate de la princesa', '2024-05-24 12:00:00', 1, 'Castillo', 'No', 3, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('El rescate de la princesa', '2024-05-24 12:00:00', 1, 'Castillo', 'No', 3, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (06, 'Intriga en la corte', '2024-06-06 20:00:00', 1, 'Palacio real', 'No', 5, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('Intriga en la corte', '2024-06-06 20:00:00', 1, 'Palacio real', 'No', 5, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (07, 'La ciudad maldita', '2024-05-22 10:45:00', 1, 'Ciudad abandonada', 'No', 4, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('La ciudad maldita', '2024-05-22 10:45:00', 1, 'Ciudad abandonada', 'No', 4, 99);
 
-INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (08, 'El laberinto de la muerte', '2024-05-23 19:25:00', 1, 'Laberinto', 'No', 6, 99);
+INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES ('El laberinto de la muerte', '2024-05-23 19:25:00', 1, 'Laberinto', 'No', 6, 99);
 
 -- INSERCION DE VALORES 
 -- Juega

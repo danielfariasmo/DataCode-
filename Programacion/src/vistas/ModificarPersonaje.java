@@ -16,7 +16,7 @@ public class ModificarPersonaje extends JPanel {
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_4;
@@ -26,12 +26,21 @@ public class ModificarPersonaje extends JPanel {
 
 	public ModificarPersonaje() {
 
+		configuracionInicial();
+		inicializarComponentes();
+
+	}
+
+	public void configuracionInicial() {
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
+	}
 
-		
+	public void inicializarComponentes() {
+
 		// Titulo MODIFICAR PERSONAJE
 		JLabel labelModificarPersonaje = new JLabel("Modificar Personaje");
 		labelModificarPersonaje.setFont(new Font("Verdana", Font.BOLD, 40));
@@ -119,14 +128,16 @@ public class ModificarPersonaje extends JPanel {
 		botonActualizar.setBounds(458, 475, 277, 49);
 		add(botonActualizar);
 
-		 // Crear un cuadro de diálogo personalizado
-        botonActualizar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String identificador = textField_1.getText();
-                //Mensaje del cuadro de dialogo , con la información del identificador introducido por el usuario
-                JOptionPane.showMessageDialog(ModificarPersonaje.this, "El personaje con id " + identificador + ", ha sido actualizado correctamente");
-            }
-        });
+		// Crear un cuadro de diálogo personalizado
+		botonActualizar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String identificador = textField_1.getText();
+				// Mensaje del cuadro de dialogo , con la información del identificador
+				// introducido por el usuario
+				JOptionPane.showMessageDialog(ModificarPersonaje.this,
+						"El personaje con id " + identificador + ", ha sido actualizado correctamente");
+			}
+		});
 	}
 }

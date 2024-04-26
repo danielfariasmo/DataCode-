@@ -16,10 +16,20 @@ public class CrearPartida extends JPanel {
 
 	public CrearPartida() {
 
+		configuracionInicial();
+		inicializarComponentes();
+
+	}
+
+	public void configuracionInicial() {
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
+	}
+
+	public void inicializarComponentes() {
 
 		// Etiquetas para introducir la información
 		JLabel labelIdentificador = new JLabel("Identificador único:");
@@ -155,7 +165,6 @@ public class CrearPartida extends JPanel {
 						"La partida con identificador " + identificador + ": ha sido creada correctamente");
 			}
 		});
-
 	}
 
 }

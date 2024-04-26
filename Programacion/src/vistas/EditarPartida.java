@@ -13,7 +13,7 @@ public class EditarPartida extends JPanel {
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -26,10 +26,19 @@ public class EditarPartida extends JPanel {
 
 	public EditarPartida() {
 
+		configuracionInicial();
+		inicializarComponentes();
+	}
+
+	public void configuracionInicial() {
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
+	}
+
+	public void inicializarComponentes() {
 
 		// Etiquetas para introducir la información
 		JLabel labelIdentificador = new JLabel("Identificador único:");
