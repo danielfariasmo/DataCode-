@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class InfoPartida extends JPanel {
+public class InfoPartidaGameMaster extends JPanel {
+	
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -18,7 +19,7 @@ public class InfoPartida extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable tableInfoPartida;
 
-	public InfoPartida() {
+	public InfoPartidaGameMaster() {
 		setForeground(new Color(255, 255, 255));
 		
 		// Barra Superior.
@@ -41,87 +42,92 @@ public class InfoPartida extends JPanel {
 				add(labelTitulo);
 				
 				// Tabla Personajes
-				JTable tablaPersonajes = new JTable(new DefaultTableModel(
-						new Object[][] { {},
-								{},
-								{},
-								{},
-								{},
-								{},
-								{},
-								{} },
-						new String[] { "Id Personaje", "Nombre", "Raza", "Nivel", "Clase",
-								}));
-				tablaPersonajes.setFont(new Font("Verdana", Font.PLAIN, 15));
-				tablaPersonajes.setForeground(new Color(255, 255, 255));
-				tablaPersonajes.setBackground(new Color(37, 34, 81));
-				tablaPersonajes.setBounds(228, 63, 392, 133);
-				add(tablaPersonajes);
-
-				// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
-				tablaPersonajes.getColumnModel().getColumn(0).setPreferredWidth(30);
-				tablaPersonajes.getColumnModel().getColumn(1).setPreferredWidth(150);
-				tablaPersonajes.getColumnModel().getColumn(2).setPreferredWidth(60);
-				tablaPersonajes.getColumnModel().getColumn(3).setPreferredWidth(35);
-				tablaPersonajes.getColumnModel().getColumn(4).setPreferredWidth(130);
+				JTable tablaGameMaster = new JTable(new DefaultTableModel(
+					new Object[][] {
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+						{null, null, null},
+					},
+					new String[] {
+						"Id Game Master", "Alias", "Id Miembro"
+					}
+				));
+				tablaGameMaster.setFont(new Font("Verdana", Font.PLAIN, 15));
+				tablaGameMaster.setForeground(new Color(255, 255, 255));
+				tablaGameMaster.setBackground(new Color(37, 34, 81));
+				tablaGameMaster.setBounds(228, 63, 392, 133);
+				add(tablaGameMaster);
+				
 				
 
 				// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 				// necesario
-				JScrollPane scrollPane = new JScrollPane(tablaPersonajes);
-				scrollPane.setBounds(10, 266, 952, 153);
+				JScrollPane scrollPane = new JScrollPane(tablaGameMaster);
+				scrollPane.setBounds(22, 266, 940, 130);
 				add(scrollPane);
 				
-				//Boton unirme a la partida
-				JButton botonUnirmePartida = new JButton("Unirme a la partida");
-				botonUnirmePartida.setFont(new Font("Verdana", Font.BOLD, 15));
-				botonUnirmePartida.setBounds(380, 436, 208, 43);
-				add(botonUnirmePartida);
+				//Boton editar personajes
+				JButton botonEditarPersonajes = new JButton("Subir Nivel");
+				botonEditarPersonajes.setFont(new Font("Verdana", Font.BOLD, 15));
+				botonEditarPersonajes.setBounds(354, 442, 208, 43);
+				add(botonEditarPersonajes);
 				
-				JLabel lblNewLabel = new JLabel("ID Partida");
-				lblNewLabel.setForeground(new Color(255, 255, 255));
-				lblNewLabel.setBounds(83, 139, 80, 14);
-				add(lblNewLabel);
+				//Etiqueta superior id partida
+				JLabel labelIdPartida = new JLabel("ID Partida");
+				labelIdPartida.setForeground(new Color(255, 255, 255));
+				labelIdPartida.setBounds(83, 139, 80, 14);
+				add(labelIdPartida);
 				
-				JLabel lblNewLabel_1 = new JLabel("Número de Personajes");
-				lblNewLabel_1.setForeground(new Color(255, 255, 255));
-				lblNewLabel_1.setBounds(83, 164, 112, 14);
-				add(lblNewLabel_1);
+				//Etiqueta superior numero de personajes
+				JLabel labelNumeroPersonajes = new JLabel("Número de Game Master");
+				labelNumeroPersonajes.setForeground(new Color(255, 255, 255));
+				labelNumeroPersonajes.setBounds(83, 164, 132, 14);
+				add(labelNumeroPersonajes);
 				
+				//Etiqueta superior 
 				JLabel lblNewLabel_2 = new JLabel("New label");
 				lblNewLabel_2.setForeground(new Color(255, 255, 255));
 				lblNewLabel_2.setBounds(83, 189, 49, 14);
 				add(lblNewLabel_2);
 				
+				//Etiqueta superior 
 				JLabel lblNewLabel_3 = new JLabel("New label");
 				lblNewLabel_3.setForeground(new Color(255, 255, 255));
 				lblNewLabel_3.setBounds(83, 214, 49, 14);
 				add(lblNewLabel_3);
 				
+				//Etiqueta superior id partida
 				JLabel lblNewLabel_4 = new JLabel("1");
 				lblNewLabel_4.setForeground(new Color(255, 255, 255));
 				lblNewLabel_4.setBounds(205, 139, 139, 14);
 				add(lblNewLabel_4);
 				
+				//Etiqueta superior numero de personajes
 				JLabel lblNewLabel_5 = new JLabel("New label");
 				lblNewLabel_5.setForeground(new Color(255, 255, 255));
-				lblNewLabel_5.setBounds(205, 164, 101, 14);
+				lblNewLabel_5.setBounds(225, 164, 101, 14);
 				add(lblNewLabel_5);
 				
+				//Etiqueta superior 
 				JLabel lblNewLabel_6 = new JLabel("New label");
 				lblNewLabel_6.setForeground(new Color(255, 255, 255));
-				lblNewLabel_6.setBounds(205, 189, 101, 14);
+				lblNewLabel_6.setBounds(225, 189, 101, 14);
 				add(lblNewLabel_6);
 				
+				//Etiqueta superior 
 				JLabel lblNewLabel_7 = new JLabel("New label");
 				lblNewLabel_7.setForeground(new Color(255, 255, 255));
-				lblNewLabel_7.setBounds(205, 214, 101, 14);
+				lblNewLabel_7.setBounds(225, 214, 101, 14);
 				add(lblNewLabel_7);
 
 				
 
 	}
 	}
-
 
 
