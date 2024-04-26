@@ -21,7 +21,7 @@ public class MenuPrincipalUsuario extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	JPanel panelPrincipal;
 	JScrollPane scrollPrincipal;
 	JMenuItem nuevoPersonaje;
@@ -31,13 +31,19 @@ public class MenuPrincipalUsuario extends JFrame {
 	JMenuItem consultarPartida;
 	JMenuItem editarPartida;
 	JMenuItem mostrarMiembros;
+	JMenuItem volverMenuPrincipal;
 
 	public MenuPrincipalUsuario() {
 
+		configuracionInicial();
+		inicializarComponentes();
+	}
+
+	public void configuracionInicial() {
 		panelPrincipal = new JPanel();
 		scrollPrincipal = new JScrollPane();
 		getContentPane().add(scrollPrincipal);
-		
+
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setTitle("DataCode++");
@@ -45,6 +51,17 @@ public class MenuPrincipalUsuario extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelPrincipal.setBackground(new Color(37, 34, 81));
 		panelPrincipal.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 50));
+
+		// Tamaño y posición de la ventana.
+		setSize(1300, 660);
+		setLocationRelativeTo(null);
+
+		cambiarPanel(panelPrincipal);
+		// Hacemos visible la ventana para que se ejecute.
+		setVisible(true);
+	}
+
+	public void inicializarComponentes() {
 
 		// Logo
 		JLabel labelLogo = new JLabel("");
@@ -65,28 +82,28 @@ public class MenuPrincipalUsuario extends JFrame {
 		barraMenu.setBackground(new Color(135, 206, 235));
 		barraMenu.setFont(new Font("Verdana", Font.PLAIN, 30));
 
-		/* 
+		/*
 		 * Opcion Personaje.
-		 * */
+		 */
 		JMenu personajes = new JMenu("Personajes");
 		personajes.setForeground(new Color(37, 34, 81));
 		personajes.setFont(new Font("Verdana", Font.BOLD, 25));
-		
+
 		// Nuevo Personaje
 		nuevoPersonaje = new JMenuItem("Nuevo Personaje");
 		nuevoPersonaje.setForeground(new Color(37, 34, 81));
 		nuevoPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
-		//Mostrar Personaje
+
+		// Mostrar Personaje
 		mostrarPersonajes = new JMenuItem("Mostrar Personajes");
 		mostrarPersonajes.setForeground(new Color(37, 34, 81));
 		mostrarPersonajes.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
+
 		// Modificar Personaje
 		modificarPersonaje = new JMenuItem("Modificar Personaje");
 		modificarPersonaje.setForeground(new Color(37, 34, 81));
 		modificarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
+
 		// Añadimos a la barra las opciones.
 		personajes.add(nuevoPersonaje);
 		personajes.add(new JSeparator());
@@ -100,44 +117,46 @@ public class MenuPrincipalUsuario extends JFrame {
 		JMenu partidas = new JMenu("Partidas");
 		partidas.setForeground(new Color(37, 34, 81));
 		partidas.setFont(new Font("Verdana", Font.BOLD, 25));
-		
-		// Crear Partida
-		crearPartida = new JMenuItem("Crear Partida");
-		crearPartida.setForeground(new Color(37, 34, 81));
-		crearPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
+
 		// Consultar Partida
 		consultarPartida = new JMenuItem("Consultar Partida");
 		consultarPartida.setForeground(new Color(37, 34, 81));
 		consultarPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
-		// Editar Partida
-		editarPartida = new JMenuItem("Editar Partida");
-		editarPartida.setForeground(new Color(37, 34, 81));
-		editarPartida.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
+
 		// Añadimos a la barra las opciones.
-		partidas.add(crearPartida);
-		partidas.add(new JSeparator());
 		partidas.add(consultarPartida);
 		partidas.add(new JSeparator());
-		partidas.add(editarPartida);
 
-		/* 
+		/*
 		 * Opcion Miembros.
 		 */
-		
+
 		JMenu miembros = new JMenu("Miembros");
 		miembros.setForeground(new Color(37, 34, 81));
 		miembros.setFont(new Font("Verdana", Font.BOLD, 25));
-		
+
 		// Mostrar miembros.
 		mostrarMiembros = new JMenuItem("Mostrar Miembros");
 		mostrarMiembros.setForeground(new Color(37, 34, 81));
 		mostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 25));
-		
+
 		// Añadimos opcion a parte del menu Miembros.
 		miembros.add(mostrarMiembros);
+
+		/*
+		 * Opcion Volver a Menu Principal.
+		 */
+
+		JMenu volverMenu = new JMenu("");
+		volverMenu.setIcon(new ImageIcon("img/home.png"));
+		volverMenu.setForeground(new Color(37, 34, 81));
+		volverMenu.setFont(new Font("Verdana", Font.BOLD, 25));
+
+		// Añadimos opción a parte del menu Volver a menu
+		volverMenuPrincipal = new JMenuItem("Menú Principal");
+		volverMenuPrincipal.setForeground(new Color(37, 34, 81));
+		volverMenuPrincipal.setFont(new Font("Verdana", Font.PLAIN, 25));
+		volverMenu.add(volverMenuPrincipal);
 
 		// Añadimos a la barra principal las opciones.
 		barraMenu.add(new JSeparator());
@@ -147,38 +166,28 @@ public class MenuPrincipalUsuario extends JFrame {
 		barraMenu.add(new JSeparator());
 		barraMenu.add(miembros);
 		barraMenu.add(new JSeparator());
+		barraMenu.add(volverMenu);
+		barraMenu.add(new JSeparator());
 
 		// Configuramos la barra de menú al JFrame
 		setJMenuBar(barraMenu);
-
-		// Tamaño y posición de la ventana.
-		setSize(1065, 660);
-		setLocationRelativeTo(null);
-
-		
-		cambiarPanel(panelPrincipal);
-		// Hacemos visible la ventana para que se ejecute.
-		setVisible(true);
-
 	}
 
 	public void hacerVisible() {
 		setVisible(true);
 	}
 
-	
 	public void cambiarPanel(JPanel panel) {
 		scrollPrincipal.setViewportView(panel);
 	}
-	
-	public void setListener (ControlMenuPrincipalUsuario listener) {
+
+	public void setListener(ControlMenuPrincipalUsuario listener) {
 		nuevoPersonaje.addActionListener(listener);
 		mostrarPersonajes.addActionListener(listener);
 		modificarPersonaje.addActionListener(listener);
-		crearPartida.addActionListener(listener);
 		consultarPartida.addActionListener(listener);
-		editarPartida.addActionListener(listener);
 		mostrarMiembros.addActionListener(listener);
+		volverMenuPrincipal.addActionListener(listener);
 	}
 
 }

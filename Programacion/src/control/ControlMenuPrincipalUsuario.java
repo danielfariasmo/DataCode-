@@ -5,10 +5,13 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JMenuItem;
+
+import modelo.ConexionBBDD;
+import modelo.Miembro;
 import vistas.ConsultarPartida;
-import vistas.CrearPartida;
-import vistas.EditarPartida;
 import vistas.MenuPrincipalUsuario;
 import vistas.MiembroClub;
 import vistas.ModificarPersonaje;
@@ -25,20 +28,16 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private MenuPrincipalUsuario menuPrincipal;
 	private NuevoPersonaje nuevoPersonaje;
 	private ConsultarPartida consultarPartida;
-	private CrearPartida crearPartida;
-	private EditarPartida editarPartida;
 	private MiembroClub miembroClub;
 	private ModificarPersonaje modificarPersonaje;
 	private MostrarPersonaje mostrarPersonaje;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
-			ConsultarPartida consultarPartida, CrearPartida crearPartida, EditarPartida editarPartida,
-			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje, MostrarPersonaje mostrarPersonaje) {
+			ConsultarPartida consultarPartida, MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
+			MostrarPersonaje mostrarPersonaje) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = consultarPartida;
-		this.crearPartida = crearPartida;
-		this.editarPartida = editarPartida;
 		this.miembroClub = miembroClub;
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
@@ -54,21 +53,32 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 			} else if (evento.getActionCommand().equals("Consultar Partida")) {
 				menuPrincipal.cambiarPanel(consultarPartida);
 
-			} else if (evento.getActionCommand().equals("Crear Partida")) {
-				menuPrincipal.cambiarPanel(crearPartida);
-
-			} else if (evento.getActionCommand().equals("Editar Partida")) {
-				menuPrincipal.cambiarPanel(editarPartida);
-
 			} else if (evento.getActionCommand().equals("Mostrar Miembros")) {
 				menuPrincipal.cambiarPanel(miembroClub);
 
+				ConexionBBDD conexionBBDD = new ConexionBBDD();
+				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembro();
+
+				if (miembros != null) {
+					for (Miembro miembro : miembros) {
+						System.out.println(miembro);
+					}
+					
+					miembroClub.insertarMiembros(miembros);
+					
+				} else {
+					System.out.println("No se pudieron obtener los miembros.");
+				}
+
 			} else if (evento.getActionCommand().equals("Modificar Personaje")) {
 				menuPrincipal.cambiarPanel(modificarPersonaje);
-				
+
 			} else if (evento.getActionCommand().equals("Mostrar Personajes")) {
 				menuPrincipal.cambiarPanel(mostrarPersonaje);
-			
+			} else if (evento.getActionCommand().equals("Menú Principal")) {
+				menuPrincipal.dispose();
+				menuPrincipal.setVisible(true);
+
 			}
 		}
 

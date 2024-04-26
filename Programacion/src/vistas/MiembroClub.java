@@ -3,10 +3,18 @@
  */
 package vistas;
 
-import javax.swing.*;
-import java.awt.Font;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import modelo.Miembro;
 
 public class MiembroClub extends JPanel {
 	/**
@@ -14,25 +22,40 @@ public class MiembroClub extends JPanel {
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
-	
+	JComboBox<Miembro> MostrarMiembros;
+
 	private static final long serialVersionUID = 1L;
 
 	public MiembroClub() {
+		configuracionIncial();
+		inicializarComponentes();
+	}
 
+	public void configuracionIncial() {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
+	}
+
+	
+	public void insertarMiembros(ArrayList<Miembro> array){
+		DefaultComboBoxModel<Miembro> dcbm = new DefaultComboBoxModel<Miembro>();
+		dcbm.addAll(array);
+		MostrarMiembros.setModel(dcbm);
+
+	}
+	public void inicializarComponentes() {
 
 		// Listado de miembros:
-		JComboBox<String> MostrarMiembros = new JComboBox<String>();
+		MostrarMiembros = new JComboBox<Miembro>();
 		MostrarMiembros.setBackground(new Color(255, 255, 255));
 		MostrarMiembros.setForeground(new Color(37, 34, 81));
 		MostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
-		String[] Personajes = { "Nacho Moreno", "Daniel Farías", "Daniel Gonzalez", "Sara Villanueva",
-				"Irene del Rincón", "Raúl Rodriguez" };
-		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<String>(Personajes);
-		MostrarMiembros.setModel(dcbm);
+		//String[] Personajes = { "Nacho Moreno", "Daniel Farías", "Daniel Gonzalez", "Sara Villanueva",
+				//"Irene del Rincón", "Raúl Rodriguez" };
+		//DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<String>(Personajes);
+		//MostrarMiembros.setModel(dcbm);
 		MostrarMiembros.setBounds(622, 228, 273, 67);
 		add(MostrarMiembros);
 
@@ -67,50 +90,50 @@ public class MiembroClub extends JPanel {
 		labelTituloInformacion.setFont(new Font("Verdana", Font.BOLD, 30));
 		labelTituloInformacion.setBounds(22, 10, 479, 59);
 		add(labelTituloInformacion);
-		
+
 		// VIN DIESEL
 		JLabel labelVinDiesel = new JLabel("Vin Diesel");
 		labelVinDiesel.setForeground(new Color(37, 34, 81));
 		labelVinDiesel.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelVinDiesel.setBounds(57, 263, 114, 26);
 		add(labelVinDiesel);
-		
+
 		JLabel labelImagenVin = new JLabel("");
 		labelImagenVin.setIcon(new ImageIcon("img/Vin_Diesel.png"));
 		labelImagenVin.setBounds(32, 79, 173, 160);
 		add(labelImagenVin);
-		
+
 		// DAWYNE JOHNSE
 		JLabel labelLaRoca = new JLabel("Dawyne Johnse");
 		labelLaRoca.setForeground(new Color(37, 34, 81));
 		labelLaRoca.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelLaRoca.setBounds(289, 258, 183, 37);
 		add(labelLaRoca);
-		
+
 		JLabel labelImagenDawyne = new JLabel("");
 		labelImagenDawyne.setIcon(new ImageIcon("img/the_rock.png"));
 		labelImagenDawyne.setBounds(289, 79, 173, 160);
 		add(labelImagenDawyne);
-		
+
 		// MIKE MYERS
 		JLabel labelMikeMyers = new JLabel("Mike Myers");
 		labelMikeMyers.setForeground(new Color(37, 34, 81));
 		labelMikeMyers.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelMikeMyers.setBounds(54, 486, 128, 37);
 		add(labelMikeMyers);
-		
+
 		JLabel labelImagenMike = new JLabel("");
 		labelImagenMike.setIcon(new ImageIcon("img/mike_myers.png"));
 		labelImagenMike.setBounds(32, 317, 173, 160);
 		add(labelImagenMike);
-		
+
 		// TIM DUCAN
 		JLabel labelTimDuncan = new JLabel("Tim Duncan");
 		labelTimDuncan.setForeground(new Color(37, 34, 81));
 		labelTimDuncan.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelTimDuncan.setBounds(311, 486, 139, 37);
 		add(labelTimDuncan);
-		
+
 		JLabel labelImagenTim = new JLabel("");
 		labelImagenTim.setIcon(new ImageIcon("img/tim_duncan.png"));
 		labelImagenTim.setBounds(289, 317, 173, 160);

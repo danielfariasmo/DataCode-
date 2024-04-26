@@ -6,6 +6,9 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.sql.ResultSet;
 
 /**
  * @author Daniel F.
@@ -15,10 +18,10 @@ import java.sql.SQLException;
 public class ConexionBBDD {
 
 	// Ruta de conexion.
-	private  String url = "jdbc:mysql://localhost:3306/proyectointegrador";
-	private  Connection conn = null;
+	private String url = "jdbc:mysql://localhost:3306/proyectointegrador";
+	private Connection conn = null;
 
-	public  Connection conectar() {
+	public Connection conectar() {
 
 		if (conn != null) {
 			return conn;
@@ -29,7 +32,7 @@ public class ConexionBBDD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			conn = DriverManager.getConnection(url, "root", "Villafranca1");
+			conn = DriverManager.getConnection(url, "root", "1590");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -44,9 +47,29 @@ public class ConexionBBDD {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public ArrayList<Miembro> obtenerMiembro() {
+		ArrayList<Miembro> miembros = new ArrayList<>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT nombre_apellidos FROM miembro");
+			while (rs.next()) {
+				String nombreApellidos = rs.getString("nombre_apellidos");
+				Miembro miembro = new Miembro(nombreApellidos);
+				miembros.add(miembro);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return miembros;
+
 	}
 }
