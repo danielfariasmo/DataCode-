@@ -21,7 +21,7 @@ public class Miembro {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre_apelidos;
+		return nombre_apelidos;
 	}
 	
 	

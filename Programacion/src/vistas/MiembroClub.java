@@ -52,12 +52,12 @@ public class MiembroClub extends JPanel {
 		MostrarMiembros.setBackground(new Color(255, 255, 255));
 		MostrarMiembros.setForeground(new Color(37, 34, 81));
 		MostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
-		MostrarMiembros.setBounds(622, 228, 273, 67);
+		MostrarMiembros.setBounds(834, 189, 273, 106);
 		add(MostrarMiembros);
 
 		// Contenedor de imagen
 		JPanel contenedorSlogan = new JPanel();
-		contenedorSlogan.setBounds(596, 422, 328, 80);
+		contenedorSlogan.setBounds(805, 368, 328, 80);
 		add(contenedorSlogan);
 
 		// Imagen
@@ -69,13 +69,13 @@ public class MiembroClub extends JPanel {
 		JLabel labelTitulo = new JLabel("Miembros");
 		labelTitulo.setFont(new Font("Verdana", Font.BOLD, 40));
 		labelTitulo.setForeground(new Color(255, 255, 255));
-		labelTitulo.setBounds(649, 83, 275, 89);
+		labelTitulo.setBounds(858, 79, 275, 89);
 		add(labelTitulo);
 
 		// Contenedor de informacion adicional
 		JPanel contenedorInformacion = new JPanel();
 		contenedorInformacion.setBackground(new Color(37, 34, 81));
-		contenedorInformacion.setBounds(511, 0, 525, 575);
+		contenedorInformacion.setBounds(629, 0, 671, 600);
 		add(contenedorInformacion);
 		setLayout(null);
 		contenedorInformacion.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -84,55 +84,55 @@ public class MiembroClub extends JPanel {
 		JLabel labelTituloInformacion = new JLabel("Jugadores de Rol Famosos");
 		labelTituloInformacion.setForeground(new Color(37, 34, 81));
 		labelTituloInformacion.setFont(new Font("Verdana", Font.BOLD, 30));
-		labelTituloInformacion.setBounds(22, 10, 479, 59);
+		labelTituloInformacion.setBounds(50, 10, 479, 59);
 		add(labelTituloInformacion);
 
 		// VIN DIESEL
 		JLabel labelVinDiesel = new JLabel("Vin Diesel");
 		labelVinDiesel.setForeground(new Color(37, 34, 81));
 		labelVinDiesel.setFont(new Font("Verdana", Font.BOLD, 20));
-		labelVinDiesel.setBounds(57, 263, 114, 26);
+		labelVinDiesel.setBounds(75, 263, 114, 26);
 		add(labelVinDiesel);
 
 		JLabel labelImagenVin = new JLabel("");
 		labelImagenVin.setIcon(new ImageIcon("img/Vin_Diesel.png"));
-		labelImagenVin.setBounds(32, 79, 173, 160);
+		labelImagenVin.setBounds(50, 93, 173, 160);
 		add(labelImagenVin);
 
 		// DAWYNE JOHNSE
 		JLabel labelLaRoca = new JLabel("Dawyne Johnse");
 		labelLaRoca.setForeground(new Color(37, 34, 81));
 		labelLaRoca.setFont(new Font("Verdana", Font.BOLD, 20));
-		labelLaRoca.setBounds(289, 258, 183, 37);
+		labelLaRoca.setBounds(346, 258, 183, 37);
 		add(labelLaRoca);
 
 		JLabel labelImagenDawyne = new JLabel("");
 		labelImagenDawyne.setIcon(new ImageIcon("img/the_rock.png"));
-		labelImagenDawyne.setBounds(289, 79, 173, 160);
+		labelImagenDawyne.setBounds(336, 79, 173, 160);
 		add(labelImagenDawyne);
 
 		// MIKE MYERS
 		JLabel labelMikeMyers = new JLabel("Mike Myers");
 		labelMikeMyers.setForeground(new Color(37, 34, 81));
 		labelMikeMyers.setFont(new Font("Verdana", Font.BOLD, 20));
-		labelMikeMyers.setBounds(54, 486, 128, 37);
+		labelMikeMyers.setBounds(75, 487, 128, 37);
 		add(labelMikeMyers);
 
 		JLabel labelImagenMike = new JLabel("");
 		labelImagenMike.setIcon(new ImageIcon("img/mike_myers.png"));
-		labelImagenMike.setBounds(32, 317, 173, 160);
+		labelImagenMike.setBounds(50, 317, 173, 160);
 		add(labelImagenMike);
 
 		// TIM DUCAN
 		JLabel labelTimDuncan = new JLabel("Tim Duncan");
 		labelTimDuncan.setForeground(new Color(37, 34, 81));
 		labelTimDuncan.setFont(new Font("Verdana", Font.BOLD, 20));
-		labelTimDuncan.setBounds(311, 486, 139, 37);
+		labelTimDuncan.setBounds(370, 486, 139, 37);
 		add(labelTimDuncan);
 
 		JLabel labelImagenTim = new JLabel("");
 		labelImagenTim.setIcon(new ImageIcon("img/tim_duncan.png"));
-		labelImagenTim.setBounds(289, 317, 173, 160);
+		labelImagenTim.setBounds(336, 317, 173, 160);
 		add(labelImagenTim);
 	}
 
