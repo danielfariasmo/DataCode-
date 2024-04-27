@@ -2,6 +2,8 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import control.ControlInfoGM;
+
 
 public class InfoPartidaGameMaster extends JPanel {
 
@@ -35,18 +40,11 @@ public class InfoPartidaGameMaster extends JPanel {
 
 	public void inicializarComponentes() {
 
-		// Titulo de Pagina
-		JLabel labelInfoPartida = new JLabel("Información de la Partida");
-		labelInfoPartida.setFont(new Font("Verdana", Font.BOLD, 40));
-		labelInfoPartida.setForeground(new Color(255, 255, 255));
-		labelInfoPartida.setBounds(177, 27, 624, 43);
-		add(labelInfoPartida);
-
 		// Titulo de la partida
 		JLabel labelTitulo = new JLabel("-TÍTULO DE LA PARTIDA-");
 		labelTitulo.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelTitulo.setForeground(new Color(255, 255, 255));
-		labelTitulo.setBounds(311, 81, 305, 60);
+		labelTitulo.setBounds(341, 30, 305, 60);
 		add(labelTitulo);
 
 		// Tabla Personajes
@@ -63,15 +61,22 @@ public class InfoPartidaGameMaster extends JPanel {
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario
 		JScrollPane scrollPane = new JScrollPane(tablaGameMaster);
-		scrollPane.setBounds(22, 266, 940, 130);
+		scrollPane.setBounds(42, 266, 940, 130);
 		add(scrollPane);
 
 		// Boton editar personajes
 		JButton botonEditarPersonajes = new JButton("Subir Nivel");
 		botonEditarPersonajes.setFont(new Font("Verdana", Font.BOLD, 15));
-		botonEditarPersonajes.setBounds(354, 442, 208, 43);
+		botonEditarPersonajes.setBounds(378, 442, 208, 43);
 		add(botonEditarPersonajes);
-
+		
+		//FUNCIONALIDAD DEL BOTÓN, CON LA CLASE ( ControlInfoGM )
+		botonEditarPersonajes.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	ControlInfoGM.mostrarMensajeSubirNivel();
+		    }
+		});
+		
 		// Etiqueta superior id partida
 		JLabel labelIdPartida = new JLabel("ID Partida");
 		labelIdPartida.setForeground(new Color(255, 255, 255));
@@ -90,12 +95,6 @@ public class InfoPartidaGameMaster extends JPanel {
 		lblNewLabel_2.setBounds(83, 189, 49, 14);
 		add(lblNewLabel_2);
 
-		// Etiqueta superior
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(83, 214, 49, 14);
-		add(lblNewLabel_3);
-
 		// Etiqueta superior id partida
 		JLabel lblNewLabel_4 = new JLabel("1");
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
@@ -113,11 +112,5 @@ public class InfoPartidaGameMaster extends JPanel {
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setBounds(225, 189, 101, 14);
 		add(lblNewLabel_6);
-
-		// Etiqueta superior
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_7.setBounds(225, 214, 101, 14);
-		add(lblNewLabel_7);
 	}
 }
