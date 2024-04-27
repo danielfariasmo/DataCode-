@@ -38,14 +38,13 @@ public class MiembroClub extends JPanel {
 		setLayout(null);
 	}
 
-	
-	public void insertarMiembros(ArrayList<Miembro> array){
+	public void insertarMiembros(ArrayList<Miembro> array) {
 		DefaultComboBoxModel<Miembro> dcbm = new DefaultComboBoxModel<Miembro>();
 		dcbm.addAll(array);
 		MostrarMiembros.setModel(dcbm);
 
 	}
-	
+
 	public void inicializarComponentes() {
 
 		// Listado de miembros:
@@ -53,10 +52,6 @@ public class MiembroClub extends JPanel {
 		MostrarMiembros.setBackground(new Color(255, 255, 255));
 		MostrarMiembros.setForeground(new Color(37, 34, 81));
 		MostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
-		//String[] Personajes = { "Nacho Moreno", "Daniel Farías", "Daniel Gonzalez", "Sara Villanueva",
-				//"Irene del Rincón", "Raúl Rodriguez" };
-		//DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<String>(Personajes);
-		//MostrarMiembros.setModel(dcbm);
 		MostrarMiembros.setBounds(622, 228, 273, 67);
 		add(MostrarMiembros);
 
