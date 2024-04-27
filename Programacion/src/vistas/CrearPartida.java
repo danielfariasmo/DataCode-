@@ -153,7 +153,7 @@ public class CrearPartida extends JPanel {
 		botonCrearPartida.setFont(new Font("Verdana", Font.BOLD, 20));
 		botonCrearPartida.setForeground(new Color(37, 34, 81));
 		botonCrearPartida.setBackground(new Color(135, 206, 235));
-		botonCrearPartida.setBounds(629, 522, 400, 50);
+		botonCrearPartida.setBounds(629, 491, 400, 50);
 		add(botonCrearPartida);
 
 		// Crear un cuadro de diálogo personalizado
