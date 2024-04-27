@@ -9,6 +9,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,9 +20,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.SwingUtilities;
 
-import control.ControlMenuPrincipalUsuario;
+import control.ControlMenuPrincipalGM;
 
 /**
  * 
@@ -33,9 +34,6 @@ public class MenuPrincipalGameMaster extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel panelPrincipal;
     private JScrollPane scrollPrincipal;
-    private JMenuItem nuevoPersonaje;
-    private JMenuItem mostrarPersonajes;
-    private JMenuItem modificarPersonaje;
     private JMenuItem crearPartida;
     private JMenuItem consultarPartida;
     private JMenuItem editarPartida;
@@ -54,7 +52,6 @@ public class MenuPrincipalGameMaster extends JFrame {
 
         panelPrincipal = new JPanel();
         scrollPrincipal = new JScrollPane();
-        getContentPane().add(scrollPrincipal);
 
         // Barra Superior.
         setFont(new Font("Verdana", Font.BOLD, 20));
@@ -69,6 +66,16 @@ public class MenuPrincipalGameMaster extends JFrame {
         setLocationRelativeTo(null);
 
         cambiarPanel(panelPrincipal);
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(scrollPrincipal, GroupLayout.PREFERRED_SIZE, 1286, GroupLayout.PREFERRED_SIZE)
+        );
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(scrollPrincipal, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE)
+        );
+        getContentPane().setLayout(groupLayout);
         // Hacemos visible la ventana para que se ejecute.
         setVisible(true);
 
@@ -176,10 +183,7 @@ public class MenuPrincipalGameMaster extends JFrame {
         scrollPrincipal.setViewportView(panel);
     }
 
-    public void setListener(ControlMenuPrincipalUsuario listener) {
-        nuevoPersonaje.addActionListener(listener);
-        mostrarPersonajes.addActionListener(listener);
-        modificarPersonaje.addActionListener(listener);
+    public void setListener(ControlMenuPrincipalGM listener) {
         crearPartida.addActionListener(listener);
         consultarPartida.addActionListener(listener);
         editarPartida.addActionListener(listener);
@@ -187,14 +191,7 @@ public class MenuPrincipalGameMaster extends JFrame {
         volverMenuPrincipal.addActionListener(listener);
     }
 
-    // Main de prueba.
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MenuPrincipalGameMaster();
-            }
-        });
-    }
+
+
 
 }

@@ -22,16 +22,14 @@ public class MenuPrincipalUsuario extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JPanel panelPrincipal;
-	JScrollPane scrollPrincipal;
-	JMenuItem nuevoPersonaje;
-	JMenuItem mostrarPersonajes;
-	JMenuItem modificarPersonaje;
-	JMenuItem crearPartida;
-	JMenuItem consultarPartida;
-	JMenuItem editarPartida;
-	JMenuItem mostrarMiembros;
-	JMenuItem volverMenuPrincipal;
+	private JPanel panelPrincipal;
+	private JScrollPane scrollPrincipal;
+	private JMenuItem nuevoPersonaje;
+	private JMenuItem mostrarPersonajes;
+	private JMenuItem modificarPersonaje;
+	private JMenuItem consultarPartida;
+	private JMenuItem mostrarMiembros;
+	private JMenuItem volverMenuPrincipal;
 
 	public MenuPrincipalUsuario() {
 
@@ -173,7 +171,6 @@ public class MenuPrincipalUsuario extends JFrame {
 		setJMenuBar(barraMenu);
 	}
 
-	
 	public void hacerVisible() {
 		setVisible(true);
 	}

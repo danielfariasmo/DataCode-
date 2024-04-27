@@ -17,6 +17,7 @@ import vistas.MiembroClub;
 import vistas.ModificarPersonaje;
 import vistas.MostrarPersonaje;
 import vistas.NuevoPersonaje;
+import vistas.TextoMenuPrincipal;
 
 public class ControlMenuPrincipalUsuario implements ActionListener {
 	/**
@@ -31,16 +32,18 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private MiembroClub miembroClub;
 	private ModificarPersonaje modificarPersonaje;
 	private MostrarPersonaje mostrarPersonaje;
+	private TextoMenuPrincipal textoMenuPrincipal;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
 			ConsultarPartida consultarPartida, MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
-			MostrarPersonaje mostrarPersonaje) {
+			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = consultarPartida;
 		this.miembroClub = miembroClub;
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
+		this.textoMenuPrincipal = textoMenuPrincipal;
 	}
 
 	@Override
@@ -76,8 +79,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 			} else if (evento.getActionCommand().equals("Mostrar Personajes")) {
 				menuPrincipal.cambiarPanel(mostrarPersonaje);
 			} else if (evento.getActionCommand().equals("Menú Principal")) {
-				menuPrincipal.dispose();
-				menuPrincipal.setVisible(true);
+				menuPrincipal.cambiarPanel(textoMenuPrincipal);
 
 			}
 		}
