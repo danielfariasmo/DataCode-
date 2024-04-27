@@ -1,12 +1,12 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,7 +41,7 @@ public class GameMaster extends JFrame {
 		getContentPane().setLayout(null); // Layout null para posicionar elementos manualmente
 
 		// Tamaño y posición de la ventana.
-		setSize(1050, 650);
+		setSize(1300, 660);
 		setLocationRelativeTo(null);
 
 		// Hacemos visible la ventana para que se ejecute.
@@ -54,27 +54,20 @@ public class GameMaster extends JFrame {
 		JLabel textoCentral = new JLabel("Ups.. ¡No eres GameMaster!");
 		textoCentral.setFont(new Font("Verdana", Font.BOLD, 30));
 		textoCentral.setForeground(Color.WHITE);
-		textoCentral.setBounds(539, 77, 487, 50);
+		textoCentral.setBounds(717, 63, 487, 50);
 		getContentPane().add(textoCentral);
-
-		// Panel para el texto "Escribe tu alias"
-		JPanel panelAlias = new JPanel();
-		panelAlias.setBackground(new Color(37, 34, 81));
-		panelAlias.setLayout(new BorderLayout());
-		panelAlias.setBounds(597, 337, 350, 50);
-		getContentPane().add(panelAlias);
 
 		// Botón para registrarse
 		JButton botonRegistrarse = new JButton("Registrarse");
 		botonRegistrarse.setFont(new Font("Verdana", Font.BOLD, 20));
 		botonRegistrarse.setForeground(new Color(37, 34, 81));
 		botonRegistrarse.setBackground(new Color(135, 206, 235));
-		botonRegistrarse.setBounds(670, 426, 216, 50);
+		botonRegistrarse.setBounds(848, 420, 223, 50);
 		getContentPane().add(botonRegistrarse);
 
 		// Label alias
 		JLabel labelAlias = new JLabel("Escribe tu \"Alias\" :");
-		labelAlias.setBounds(624, 230, 303, 50);
+		labelAlias.setBounds(821, 230, 303, 50);
 		getContentPane().add(labelAlias);
 		labelAlias.setFont(new Font("Verdana", Font.PLAIN, 30));
 		labelAlias.setForeground(Color.WHITE);
@@ -88,25 +81,25 @@ public class GameMaster extends JFrame {
 
 		// Texto para escribir el alias
 		JTextField textoAlias = new JTextField();
-		textoAlias.setBounds(597, 290, 350, 50);
+		textoAlias.setBounds(755, 289, 392, 50);
 		getContentPane().add(textoAlias);
 		textoAlias.setFont(new Font("Verdana", Font.PLAIN, 20));
 		textoAlias.setPreferredSize(new Dimension(200, 40));
 
 		JLabel etiquetaLogo = new JLabel(" ");
-		etiquetaLogo.setBounds(10, 0, 519, 612);
+		etiquetaLogo.setBounds(45, 12, 600, 612);
 		etiquetaLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
 		getContentPane().add(etiquetaLogo);
 
 		JLabel labelRegistrate = new JLabel("REGISTRATE");
 		labelRegistrate.setForeground(new Color(255, 255, 255));
 		labelRegistrate.setFont(new Font("Verdana", Font.BOLD, 30));
-		labelRegistrate.setBounds(670, 137, 223, 43);
+		labelRegistrate.setBounds(848, 137, 223, 43);
 		getContentPane().add(labelRegistrate);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(37, 34, 81));
-		panel.setBounds(522, 0, 514, 613);
+		panel.setBounds(637, 0, 649, 624);
 		getContentPane().add(panel);
 
 		// Crear un cuadro de diálogo personalizado

@@ -1,43 +1,67 @@
 package vistas;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class TextoMenuPrincipal extends JPanel {
 
-    public TextoMenuPrincipal() {
-    	setBackground(new Color(135, 206, 255));
-        setLayout(new BorderLayout());
+	/**
+	 * @author Daniel F.
+	 * @author Ignacio M.
+	 * @author Daniel G.
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel labelTexto;
 
-        // Logo a la izquierda
-        JLabel logoLabel = new JLabel(new ImageIcon("img/DataCode.Logo.png"));
-        logoLabel.setBackground(new Color(135, 206, 255));
-        add(logoLabel, BorderLayout.WEST);
+	public TextoMenuPrincipal() {
+		configuracionInicial();
+		inicializarComponentes();
+	}
 
-        // Introduccion a la derecha
-        JLabel labelTexto = new JLabel(
-                "<html><div style='text-align: center; width: 350px;'>Adéntrate en el mundo del Club de Rol DataCode++ de la UEM, donde la imaginación cobra vida a través de épicas aventuras. Nuestra aplicación de gestión de personajes te permite crear y dirigir héroes en sus peligrosos viajes, mientras los Game Masters dan forma a mundos llenos de misterio y emoción. Con un simple clic, podrás explorar tierras desconocidas, forjar alianzas y enfrentarte a desafíos que pondrán a prueba tu valentía. ¿Estás listo para sumergirte en un universo donde solo la imaginación es el límite? Entonces únete a nosotros y deja que la aventura comience.</div></html>");
-        labelTexto.setBackground(new Color(135, 206, 235));
-        labelTexto.setForeground(new Color(37, 34, 81));
-        labelTexto.setFont(new Font("Verdana", Font.PLAIN, 20));
-        add(labelTexto, BorderLayout.EAST);
+	public void configuracionInicial() {
+		setBackground(new Color(37, 34, 82));
+	}
 
-        // Crear un JMenuBar y agregar el JMenu
-//        JMenuBar menuBar = new JMenuBar();
-//        JMenu volverMenu = new JMenu("");
-//        volverMenu.setIcon(new ImageIcon("img/home.png"));
-//        volverMenu.setForeground(new Color(37, 34, 81));
-//        volverMenu.setFont(new Font("Verdana", Font.BOLD, 25));
-//        menuBar.add(volverMenu);
-        
-        // Asignar el JMenuBar al frame (o al contenedor superior)
-        JFrame frame = new JFrame("DataCode++");
-        frame.setBackground(new Color(135, 206, 235));
-        frame.getContentPane().setBackground(new Color(135, 206, 235));
-//        frame.setJMenuBar(menuBar);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(this);
-        frame.pack();
-        frame.setVisible(true);
-    }
+	public void inicializarComponentes() {
+
+		// Introduccion a la derecha
+		labelTexto = new JLabel(
+				"<html><div style='text-align: center; width: 350px;'>Adéntrate en el mundo del Club de Rol DataCode++ de la UEM, donde la imaginación cobra vida a través de épicas aventuras. Nuestra aplicación de gestión de personajes te permite crear y dirigir héroes en sus peligrosos viajes, mientras los Game Masters dan forma a mundos llenos de misterio y emoción. Con un simple clic, podrás explorar tierras desconocidas, forjar alianzas y enfrentarte a desafíos que pondrán a prueba tu valentía. ¿Estás listo para sumergirte en un universo donde solo la imaginación es el límite? Entonces únete a nosotros y deja que la aventura comience.</div></html>");
+		labelTexto.setBackground(new Color(135, 206, 235));
+		labelTexto.setForeground(new Color(255, 255, 255));
+		labelTexto.setFont(new Font("Verdana", Font.PLAIN, 20));
+		
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(68)
+					.addComponent(labelLogo, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+					.addGap(120)
+					.addComponent(labelTexto, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE)
+					.addGap(104))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(45)
+							.addComponent(labelTexto, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(19)
+							.addComponent(labelLogo, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(106, Short.MAX_VALUE))
+		);
+		setLayout(groupLayout);
+
+	}
 }

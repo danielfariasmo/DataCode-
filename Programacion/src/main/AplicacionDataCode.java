@@ -12,6 +12,7 @@ import vistas.MiembroClub;
 import vistas.ModificarPersonaje;
 import vistas.MostrarPersonaje;
 import vistas.NuevoPersonaje;
+import vistas.TextoMenuPrincipal;
 
 public class AplicacionDataCode {
 	/**
@@ -31,9 +32,10 @@ public class AplicacionDataCode {
 				MiembroClub miembroClub = new MiembroClub();
 				ModificarPersonaje modificarPersonaje = new ModificarPersonaje();
 				MostrarPersonaje mostrarPersonaje = new MostrarPersonaje();
+				TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
 				ControlMenuPrincipalUsuario listener = new ControlMenuPrincipalUsuario(menuPrincipal, nuevoPersonaje,
-						consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje);
+						consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal);
 
 				// Se muestra el menu principal.
 				menuPrincipal.setListener(listener);

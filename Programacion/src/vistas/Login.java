@@ -23,15 +23,26 @@ public class Login extends JFrame {
 	private JPasswordField claveContraseñaLogin;
 
 	public Login() {
+
+		configuracionInicial();
+		inicializarComponentes();
+	}
+
+	public void configuracionInicial() {
+
 		setType(Type.POPUP);
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/DC.Icon2.png"));
 		getContentPane().setBackground(new Color(0, 0, 0));
 		setBackground(Color.WHITE);
 		setTitle("DataCode++");
-		setSize(1050, 650);
+		setSize(1300, 660);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new CardLayout());
+		setVisible(true);
+	}
+
+	public void inicializarComponentes() {
 
 		panelLogin = new JPanel();
 		panelLogin.setBackground(new Color(255, 255, 255));
@@ -41,18 +52,19 @@ public class Login extends JFrame {
 
 		claveContraseñaLogin = new JPasswordField();
 		claveContraseñaLogin.setFont(new Font("Verdana", Font.PLAIN, 20));
+		
 		JButton btnLogin = new JButton("Entrar");
 		btnLogin.setBackground(new Color(135, 206, 235));
 		btnLogin.setFont(new Font("Verdana", Font.BOLD, 18));
 
 		panelLogin.setLayout(null);
-		textoUsuarioLogin.setBounds(550, 172, 457, 40);
-		claveContraseñaLogin.setBounds(550, 263, 457, 40);
-		btnLogin.setBounds(694, 344, 186, 40);
+		textoUsuarioLogin.setBounds(701, 175, 499, 40);
+		claveContraseñaLogin.setBounds(701, 313, 499, 40);
+		btnLogin.setBounds(852, 382, 186, 40);
 
 		JLabel labelUsuario = new JLabel("Usuario:");
 		labelUsuario.setForeground(new Color(255, 255, 255));
-		labelUsuario.setBounds(550, 136, 105, 26);
+		labelUsuario.setBounds(701, 126, 105, 26);
 		labelUsuario.setFont(new Font("Verdana", Font.BOLD, 20));
 		panelLogin.add(labelUsuario);
 		panelLogin.add(textoUsuarioLogin);
@@ -60,15 +72,12 @@ public class Login extends JFrame {
 		JLabel lblContr = new JLabel("Contraseña:");
 		lblContr.setForeground(new Color(255, 255, 255));
 		lblContr.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblContr.setBounds(550, 233, 151, 20);
+		lblContr.setBounds(701, 270, 151, 20);
 		panelLogin.add(lblContr);
 		panelLogin.add(claveContraseñaLogin);
 		panelLogin.add(btnLogin);
 
-		setVisible(true);
-
 		btnLogin.addActionListener(new ActionListener() {
-			@SuppressWarnings("unused")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String usuario = textoUsuarioLogin.getText();
@@ -78,12 +87,13 @@ public class Login extends JFrame {
 				boolean loginExitoso = false;
 
 				// Creamos consulta
-				String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario + "' AND clave_usuario = " + contraseña;
+				String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario
+						+ "' AND clave_usuario = " + contraseña;
 
 				// Conecto la bbs
-				ConexionBBDD conexionbbdd= new ConexionBBDD();
+				ConexionBBDD conexionbbdd = new ConexionBBDD();
 				Connection conn = conexionbbdd.conectar();
-				//conn = ConexionBBDD.conectar();
+				// conn = ConexionBBDD.conectar();
 
 				// Ejecuto la consulta
 				try {
@@ -139,36 +149,36 @@ public class Login extends JFrame {
 
 		JLabel labelLogin = new JLabel("Login");
 		labelLogin.setForeground(new Color(255, 255, 255));
-		labelLogin.setBounds(720, 40, 141, 78);
+		labelLogin.setBounds(882, 26, 141, 78);
 		labelLogin.setFont(new Font("Verdana", Font.BOLD, 40));
 		panelLogin.add(labelLogin);
 		panelLogin.setComponentZOrder(labelLogin, 0);
 
 		JLabel labelFacebook = new JLabel(" ");
 		labelFacebook.setIcon(new ImageIcon("img\\facebook3.png"));
-		labelFacebook.setBounds(758, 452, 51, 40);
+		labelFacebook.setBounds(801, 468, 51, 40);
 		panelLogin.add(labelFacebook);
 
 		JLabel labelInstagram = new JLabel(" ");
 		labelInstagram.setIcon(new ImageIcon("img\\Instagram.png"));
-		labelInstagram.setBounds(676, 452, 51, 40);
+		labelInstagram.setBounds(927, 468, 51, 40);
 		panelLogin.add(labelInstagram);
 
 		JLabel labelPinterest = new JLabel(" ");
 		labelPinterest.setIcon(new ImageIcon("img\\Pinterest.png"));
-		labelPinterest.setBounds(840, 452, 51, 40);
+		labelPinterest.setBounds(1033, 468, 51, 40);
 		panelLogin.add(labelPinterest);
 
 		JLabel labelAzul = new JLabel("");
 		labelAzul.setOpaque(true);
 		labelAzul.setForeground(new Color(37, 34, 81));
 		labelAzul.setBackground(new Color(37, 34, 81));
-		labelAzul.setBounds(524, 0, 512, 613);
+		labelAzul.setBounds(620, 0, 666, 623);
 		panelLogin.add(labelAzul);
 
 		JPanel panelContenedor = new JPanel();
 		panelContenedor.setBackground(new Color(255, 255, 255));
-		panelContenedor.setBounds(10, 57, 504, 462);
+		panelContenedor.setBounds(10, 57, 600, 506);
 		panelLogin.add(panelContenedor);
 
 		JLabel labelLogo = new JLabel("");
