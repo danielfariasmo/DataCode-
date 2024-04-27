@@ -8,10 +8,12 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultarPartida extends JPanel {
@@ -40,7 +42,8 @@ public class ConsultarPartida extends JPanel {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
-		setLayout(null);
+		setLayout(null); 
+		setSize(1300, 660); 
 
 	}
 
@@ -50,7 +53,7 @@ public class ConsultarPartida extends JPanel {
 		labelConsultarPartida = new JLabel("Consultar Partida");
 		labelConsultarPartida.setFont(new Font("Verdana", Font.BOLD, 40));
 		labelConsultarPartida.setForeground(new Color(255, 255, 255));
-		labelConsultarPartida.setBounds(309, 63, 401, 43);
+		labelConsultarPartida.setBounds(432, 65, 401, 43);
 		add(labelConsultarPartida);
 
 		// Tabla Partida
@@ -69,7 +72,7 @@ public class ConsultarPartida extends JPanel {
 		tablePartida.setFont(new Font("Verdana", Font.PLAIN, 15));
 		tablePartida.setForeground(new Color(255, 255, 255));
 		tablePartida.setBackground(new Color(37, 34, 81));
-		tablePartida.setBounds(-19, 26, 841, 452);
+		tablePartida.setBounds(10, -13, 841, 452);
 		add(tablePartida);
 
 		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
@@ -83,13 +86,13 @@ public class ConsultarPartida extends JPanel {
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario
 		scrollPane = new JScrollPane(tablePartida);
-		scrollPane.setBounds(30, 152, 952, 153);
+		scrollPane.setBounds(162, 157, 952, 153);
 		add(scrollPane);
 
 		// Contenedor para recuadro blanco
 		panelContenedor = new JPanel();
 		panelContenedor.setBackground(new Color(255, 255, 255));
-		panelContenedor.setBounds(363, 456, 315, 70);
+		panelContenedor.setBounds(480, 454, 315, 70);
 		add(panelContenedor);
 
 		// Imagen de Slogan
@@ -101,7 +104,10 @@ public class ConsultarPartida extends JPanel {
 		botonInfoPartida.setFont(new Font("Verdana", Font.BOLD, 14));
 		botonInfoPartida.setBackground(new Color(135, 206, 235));
 		botonInfoPartida.setForeground(new Color(37, 34, 81));
-		botonInfoPartida.setBounds(387, 371, 262, 43);
+		botonInfoPartida.setBounds(509, 363, 262, 43);
 		add(botonInfoPartida);
 	}
 }
+
+
+
