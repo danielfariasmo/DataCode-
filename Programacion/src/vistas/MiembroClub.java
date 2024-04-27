@@ -52,7 +52,7 @@ public class MiembroClub extends JPanel {
 		MostrarMiembros.setBackground(new Color(255, 255, 255));
 		MostrarMiembros.setForeground(new Color(37, 34, 81));
 		MostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
-		MostrarMiembros.setBounds(834, 189, 273, 106);
+		MostrarMiembros.setBounds(715, 189, 486, 106);
 		add(MostrarMiembros);
 
 		// Contenedor de imagen
