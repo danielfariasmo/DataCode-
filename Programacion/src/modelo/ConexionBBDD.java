@@ -57,11 +57,14 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT nombre_apellidos, numero_expediente FROM miembro");
+			ResultSet rs = stmt.executeQuery("SELECT id_miembro, nombre_apellidos, numero_expediente FROM miembro");
 			while (rs.next()) {
+				String idMiembro = rs.getString("id_miembro");
 				String nombreApellidos = rs.getString("nombre_apellidos");
-				String numeroExpediente = rs.getString("numero_expediente");
-				Miembro miembro = new Miembro(nombreApellidos, numeroExpediente, null, null, null, null);
+				
+				// Ejemplo de como meter numero.
+				int numeroExpediente = rs.getInt("numero_expediente");
+				Miembro miembro = new Miembro(idMiembro, nombreApellidos, numeroExpediente);
 				miembros.add(miembro);
 			}
 			rs.close();
