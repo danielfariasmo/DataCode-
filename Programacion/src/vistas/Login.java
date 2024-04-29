@@ -77,6 +77,18 @@ public class Login extends JFrame {
 		panelLogin.add(claveContraseñaLogin);
 		panelLogin.add(btnLogin);
 
+		
+//		
+//		btnLogin.addActionListener(new ActionListener() {
+//		    @Override
+//		    public void actionPerformed(ActionEvent e) {
+//		        ControlLogin.handleLogin(textoUsuarioLogin, claveContraseñaLogin, panelLogin);
+//		    }
+//		});
+//		
+		
+		
+	
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
