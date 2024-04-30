@@ -76,4 +76,22 @@ public class ConexionBBDD {
 		return miembros;
 
 	}
+	
+	public boolean hacerLogin(Connection c, String usuario, String clave) {
+		boolean r=false;
+		
+		// Creamos consulta
+		String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario + "' AND clave_usuario = '"
+						+ clave + "'";
+
+				// Ejecuto la consulta
+				try {
+					Statement s = c.createStatement();
+					ResultSet resultado = s.executeQuery(selectLogin);
+					r = resultado.next();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+		return r;
+	}
 }
