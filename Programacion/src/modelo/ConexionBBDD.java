@@ -3,6 +3,13 @@
  */
 package modelo;
 
+import static modelo.Miembro.ID_MIEMBRO;
+import static modelo.Miembro.NOMBRE_APELLIDOS;
+import static modelo.Miembro.NUMERO_EXPEDIENTE;
+import static modelo.Miembro.NOMBRE_ESTUDIO;
+import static modelo.Miembro.NOMBRE_USUARIO;
+import static modelo.Miembro.CLAVE_USUARIO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,6 +27,14 @@ public class ConexionBBDD {
 	// Ruta de conexion.
 	private String url = "jdbc:mysql://localhost:3306/proyectointegrador";
 	private Connection conn = null;
+	
+
+	
+	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = '%s'";
+	
+	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
+	
+	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro) VALUES ('%s');";
 
 	public Connection conectar() {
 
@@ -52,7 +67,7 @@ public class ConexionBBDD {
 		}
 	}
 
-	public ArrayList<Miembro> obtenerMiembro() {
+	public ArrayList<Miembro> obtenerMiembros() {
 		ArrayList<Miembro> miembros = new ArrayList<>();
 		try {
 			Connection conn = conectar();
@@ -77,21 +92,57 @@ public class ConexionBBDD {
 
 	}
 	
-	public boolean hacerLogin(Connection c, String usuario, String clave) {
-		boolean r=false;
+	public Miembro obtenerMiembro(Connection connection, String usuario, String clave) {
 		
-		// Creamos consulta
-		String selectLogin = "SELECT * FROM miembro WHERE nombre_usuario = '" + usuario + "' AND clave_usuario = '"
-						+ clave + "'";
-
-				// Ejecuto la consulta
-				try {
-					Statement s = c.createStatement();
-					ResultSet resultado = s.executeQuery(selectLogin);
-					r = resultado.next();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-		return r;
+		Miembro miembro = null;
+		ResultSet resultSet;
+		
+		// Ejecuto la consulta
+		try {
+			Statement statement = connection.createStatement();
+			resultSet = statement.executeQuery(String.format(FIND_USER_QUERY, usuario, clave));
+			if (resultSet.next()) {
+				miembro = new Miembro(String.valueOf(resultSet.getInt(ID_MIEMBRO)), resultSet.getString(NOMBRE_APELLIDOS), 
+						resultSet.getInt(NUMERO_EXPEDIENTE), resultSet.getString(NOMBRE_ESTUDIO), resultSet.getString(NOMBRE_USUARIO), String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+//		finally {
+//			this.cerrar();
+//		}
+		return miembro;
+	}
+	
+	public boolean isGameMaster(Connection connection, String id_miembro) {
+		
+		boolean isMaster = false;
+		ResultSet resultSet;
+		
+		// Ejecuto la consulta
+		try {
+			Statement statement = connection.createStatement();
+			resultSet = statement.executeQuery(String.format(FIND_MASTER_QUERY, id_miembro));
+			isMaster = resultSet.next();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+//		finally {
+//			this.cerrar();
+//		}
+		return isMaster;
+	}
+	
+	public void convertIntoGameMaster(Connection connection, String id_miembro) {
+		
+		ResultSet resultSet;
+		
+		// Ejecuto la consulta
+		try {
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(String.format(INSERT_MASTER, id_miembro));
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 }

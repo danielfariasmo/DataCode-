@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 
 import modelo.ConexionBBDD;
+import modelo.Miembro;
 import vistas.Login;
 
 public class ControlLogin implements ActionListener {
@@ -22,22 +23,22 @@ public class ControlLogin implements ActionListener {
 		String usuario = login.getTextoUsuarioLogin();
 		String contraseña = login.getClaveContraseñaLogin();
 
-		// Variable para guardar la informacion de la consulta
-		boolean loginExitoso = false;
+//		// Variable para guardar la informacion de la consulta
+//		 miembro;
 
 		// Conexion con BBDD
 		conexionbbdd = new ConexionBBDD();
 		Connection conn = conexionbbdd.conectar();
 
 		// Metodo en Conexion de BBDD
-		loginExitoso = conexionbbdd.hacerLogin(conn, usuario, contraseña);
 		System.out.println("USUARIO: "+ usuario + " / PASS: "+ contraseña);
+		Miembro miembro = conexionbbdd.obtenerMiembro(conn, usuario, contraseña);
 
 		// Cierro BBDD
 		conexionbbdd.cerrar();
 
-		if (loginExitoso) {
-			login.mostrarDialogoExito();
+		if (miembro != null) {
+			login.mostrarDialogoExito(miembro);
 		} else {
 			login.mostrarDialogoError();
 		}

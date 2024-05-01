@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 
 import control.ControlMenuPrincipalGM;
+import modelo.Miembro;
 
 /**
  * 
@@ -41,9 +42,11 @@ public class MenuPrincipalGameMaster extends JFrame {
     private JMenuBar barraMenu;
     private JMenu volverMenu;
     private JMenuItem volverMenuPrincipal;
+    
+    private Miembro miembro;
 
-    public MenuPrincipalGameMaster() {
-
+    public MenuPrincipalGameMaster(Miembro miembro) {
+    	this.miembro = miembro;
         configuracionInicial();
         inicializarComponentes();
     }

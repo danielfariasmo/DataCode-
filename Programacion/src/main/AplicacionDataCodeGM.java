@@ -25,7 +25,7 @@ public class AplicacionDataCodeGM {
 			public void run() {
 
 				// Inicializamos las ventanas.
-				MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster();
+				MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(null);
 				EditarPartida editarPartida = new EditarPartida();
 				CrearPartida crearPartida = new CrearPartida();
 				ConsultarPartida consultarPartida = new ConsultarPartida();

@@ -57,7 +57,7 @@ public class ControlMenuPrincipalGM implements ActionListener{
 				menuPrincipalGameMaster.cambiarPanel(miembroClub);
 
 				ConexionBBDD conexionBBDD = new ConexionBBDD();
-				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembro();
+				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembros();
 
 				if (miembros != null) {
 					for (Miembro miembro : miembros) {

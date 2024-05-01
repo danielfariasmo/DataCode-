@@ -6,6 +6,7 @@ package vistas;
 import javax.swing.*;
 
 import control.ControlMenuPrincipalUsuario;
+import modelo.Miembro;
 
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -30,9 +31,11 @@ public class MenuPrincipalUsuario extends JFrame {
 	private JMenuItem consultarPartida;
 	private JMenuItem mostrarMiembros;
 	private JMenuItem volverMenuPrincipal;
+	
+	private Miembro miembro;
 
-	public MenuPrincipalUsuario() {
-
+	public MenuPrincipalUsuario(Miembro miembro) {
+		this.miembro = miembro;
 		configuracionInicial();
 		inicializarComponentes();
 	}
@@ -44,7 +47,7 @@ public class MenuPrincipalUsuario extends JFrame {
 
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
-		setTitle("DataCode++");
+		setTitle("DataCode++ : " + miembro.getNombreUsuario());
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/DC.Icon2.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelPrincipal.setBackground(new Color(37, 34, 81));

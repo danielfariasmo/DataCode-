@@ -18,6 +18,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import control.ControlLogin;
+import control.ControlMenuPrincipalGM;
+import control.ControlMenuPrincipalUsuario;
+import control.MasterController;
+import modelo.Miembro;
 
 public class Login extends JFrame {
 
@@ -28,12 +32,19 @@ public class Login extends JFrame {
 	private JPasswordField claveContraseñaLogin;
 	private JButton botonLogin;
 	//private ControlLogin controlLogin;
+	
+	// Menu Usuario
+	private MenuPrincipalUsuario menuPrincipalUsuario;
+	
+	// Menu Master
+	private MenuPrincipalGameMaster menuPrincipalGameMaster;
+	
+	private Miembro miembro;
 
 	public Login() {
 		configuracionInicial();
 		inicializarComponentes();
 		System.out.println("Componentes creados");
-		//agregarActionListenerBotonLogin();
 	}
 
 	public void configuracionInicial() {
@@ -47,6 +58,7 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new CardLayout());
 		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	public void inicializarComponentes() {
@@ -76,6 +88,7 @@ public class Login extends JFrame {
 		panelLogin.add(lblContr);
 		panelLogin.add(claveContraseñaLogin);
 		panelLogin.add(botonLogin);
+		botonLogin.addActionListener(new ControlLogin(this));
 		getContentPane().add(panelLogin, "login");
 		JLabel labelLogin = new JLabel("Login");
 		labelLogin.setForeground(new Color(255, 255, 255));
@@ -109,14 +122,40 @@ public class Login extends JFrame {
 		labelLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
 		panelContenedor.add(labelLogo);
 	}
+	
+	private MenuPrincipalUsuario inicializarMenuPrincipalUsuario(Miembro miembro) {
+		MenuPrincipalUsuario menuPrincipalUsuario = new MenuPrincipalUsuario(miembro);
+		NuevoPersonaje nuevoPersonaje = new NuevoPersonaje();
+		ConsultarPartida consultarPArtida = new ConsultarPartida();
+		MiembroClub miembroClub = new MiembroClub();
+		ModificarPersonaje modificarPersonaje = new ModificarPersonaje();
+		MostrarPersonaje mostrarPersonaje = new MostrarPersonaje();
+		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
-	// Método para agregar el ActionListener al botón de login
-	public void agregarActionListenerBotonLogin(ControlLogin controlLogin) {
-		//JButton botonLogin = new JButton("Entrar");
+		ControlMenuPrincipalUsuario listener = new ControlMenuPrincipalUsuario(menuPrincipalUsuario, nuevoPersonaje,
+				consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal);
 
-		botonLogin.addActionListener(controlLogin);
-
+		menuPrincipalUsuario.setListener(listener);
+		
+		return menuPrincipalUsuario;
 	}
+	
+	private MenuPrincipalGameMaster inicializarMenuPrincipalGameMaster(Miembro miembro) {
+		MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(miembro);
+		EditarPartida editarPartida = new EditarPartida();
+		CrearPartida crearPartida = new CrearPartida();
+		ConsultarPartida consultarPartida = new ConsultarPartida();
+		MiembroClub miembroClub = new MiembroClub();
+		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
+
+		ControlMenuPrincipalGM  listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster, consultarPartida, crearPartida, editarPartida, miembroClub, textoMenuPrincipal);
+
+		// Se muestra el menu principal.
+		menuPrincipalGameMaster.setListener(listener);
+		
+		return menuPrincipalGameMaster;
+	}
+
 
 	// Getter para el texto del usuario
 	public String getTextoUsuarioLogin() {
@@ -134,8 +173,6 @@ public class Login extends JFrame {
 			@Override
 			public void run() {
 				Login l = new Login();
-				ControlLogin controlL = new ControlLogin(l);
-				l.agregarActionListenerBotonLogin(controlL);
 				l.setVisible(true);
 				
 			}
@@ -143,10 +180,10 @@ public class Login extends JFrame {
 	}
 
 	
-	public void mostrarDialogoExito() {
+	public void mostrarDialogoExito(Miembro miembro) {
 		System.out.println("EXITO LOGIN");
 		JPanel panelDialogo = new JPanel();
-		JLabel labelBienvenida = new JLabel("Bienvenido " + textoUsuarioLogin.getText() + " ¿Cómo quieres iniciar sesión?");
+		JLabel labelBienvenida = new JLabel("Bienvenido " + miembro.getNombre_apelidos() + " ¿Cómo quieres iniciar sesión?");
 		panelDialogo.add(labelBienvenida);
 
 		JPanel panelOpciones = new JPanel();
@@ -166,11 +203,32 @@ public class Login extends JFrame {
 			if (jugador.isSelected()) {
 				rolGameMaster = false;
 				JOptionPane.showMessageDialog(this, "Has seleccionado iniciar sesión como Jugador");
+				
+				mostrarMenuPrincipalUsuario(miembro);
+				
 			} else if (gameMaster.isSelected()) {
 				rolGameMaster = true;
 				JOptionPane.showMessageDialog(this, "Has seleccionado iniciar sesión como GameMaster");
+				
+				new MasterController(miembro).actionPerformed(null);
+
+				mostrarMenuPrincipalGameMaster(miembro);
 			}
+			
+
 		}
+	}
+	
+	private void mostrarMenuPrincipalUsuario(Miembro miembro) {
+		this.setVisible(false);
+		menuPrincipalUsuario = inicializarMenuPrincipalUsuario(miembro);
+		menuPrincipalUsuario.setVisible(true);
+	}
+	
+	private void mostrarMenuPrincipalGameMaster(Miembro miembro) {
+		this.setVisible(false);
+		menuPrincipalGameMaster = inicializarMenuPrincipalGameMaster(miembro);
+		menuPrincipalGameMaster.setVisible(true);
 	}
 	
 	public void mostrarDialogoError() {

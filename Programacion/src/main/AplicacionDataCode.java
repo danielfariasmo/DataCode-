@@ -26,7 +26,7 @@ public class AplicacionDataCode {
 			public void run() {
 
 				// Inicializamos las ventanas.
-				MenuPrincipalUsuario menuPrincipal = new MenuPrincipalUsuario();
+				MenuPrincipalUsuario menuPrincipal = new MenuPrincipalUsuario(null);
 				NuevoPersonaje nuevoPersonaje = new NuevoPersonaje();
 				ConsultarPartida consultarPArtida = new ConsultarPartida();
 				MiembroClub miembroClub = new MiembroClub();

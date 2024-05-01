@@ -60,7 +60,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 				menuPrincipal.cambiarPanel(miembroClub);
 
 				ConexionBBDD conexionBBDD = new ConexionBBDD();
-				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembro();
+				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembros();
 
 				if (miembros != null) {
 					for (Miembro miembro : miembros) {
