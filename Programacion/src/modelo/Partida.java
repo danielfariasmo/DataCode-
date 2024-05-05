@@ -29,8 +29,7 @@ public class Partida {
 		this.idGameMaster = idGameMaster;
 	}
 	
-	public Partida (String nombre, String diaHora, String numeroSesion, String ambientacion,
-			String finalizada, String duracionSesion) {
+	public Partida (String nombre, String diaHora, String finalizada, String numeroSesion, String duracionSesion, String ambientacion) {
 		this.nombre = nombre;
 		this.diaHora = diaHora;
 		this.numeroSesion = numeroSesion;
