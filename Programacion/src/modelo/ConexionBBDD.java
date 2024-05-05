@@ -27,14 +27,9 @@ public class ConexionBBDD {
 	// Ruta de conexion.
 	private String url = "jdbc:mysql://localhost:3306/proyectointegrador";
 	private Connection conn = null;
-	
-
-	
 	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = '%s'";
-	
 	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
-	
-	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro) VALUES ('%s');";
+	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro, alias) VALUES ('%s', '%s');";
 
 	public Connection conectar() {
 
@@ -92,14 +87,14 @@ public class ConexionBBDD {
 
 	}
 	
-	public Miembro obtenerMiembro(Connection connection, String usuario, String clave) {
+	public Miembro obtenerMiembro(String usuario, String clave) {
 		
 		Miembro miembro = null;
 		ResultSet resultSet;
 		
 		// Ejecuto la consulta
 		try {
-			Statement statement = connection.createStatement();
+			Statement statement = conectar().createStatement();
 			resultSet = statement.executeQuery(String.format(FIND_USER_QUERY, usuario, clave));
 			if (resultSet.next()) {
 				miembro = new Miembro(String.valueOf(resultSet.getInt(ID_MIEMBRO)), resultSet.getString(NOMBRE_APELLIDOS), 
@@ -108,41 +103,37 @@ public class ConexionBBDD {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-//		finally {
-//			this.cerrar();
-//		}
+
+		cerrar();
 		return miembro;
 	}
 	
-	public boolean isGameMaster(Connection connection, String id_miembro) {
+	public boolean isGameMaster(String id_miembro) {
 		
 		boolean isMaster = false;
 		ResultSet resultSet;
 		
-		// Ejecuto la consulta
 		try {
-			Statement statement = connection.createStatement();
+			Statement statement = conectar().createStatement();
 			resultSet = statement.executeQuery(String.format(FIND_MASTER_QUERY, id_miembro));
 			isMaster = resultSet.next();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-//		finally {
-//			this.cerrar();
-//		}
+
+		cerrar();
 		return isMaster;
 	}
 	
-	public void convertIntoGameMaster(Connection connection, String id_miembro) {
+	public void convertIntoGameMaster(String id_miembro, String alias) {
 		
-		ResultSet resultSet;
-		
-		// Ejecuto la consulta
 		try {
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(String.format(INSERT_MASTER, id_miembro));
+			Statement statement = conectar().createStatement();
+			statement.executeUpdate(String.format(INSERT_MASTER, id_miembro, alias));
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		
+		cerrar();
 	}
 }

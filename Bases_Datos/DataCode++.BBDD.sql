@@ -158,3 +158,7 @@ VALUES (03, 07, 'Amigo leal, valiente', 44, 50, 62, 49, 66, 89);
 
 INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
 VALUES (08, 08, 'Poderoso guerrero, resistente', 88, 71, 68, 11, 38, 50);
+
+delete from gamemaster where id_gameMaster=100;
+commit;
+select * from GameMaster;

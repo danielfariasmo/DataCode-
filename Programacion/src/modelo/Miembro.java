@@ -22,6 +22,7 @@ public class Miembro {
 	private String nombreEstudio;
 	private String nombreUsuario;
 	private String claveUsuario;
+	private String alias;
 
 	public Miembro(String idMiembro, String nombreApellidos, int numeroExpediente, String nombreEstudio,
 			String nombreUsuario, String claveUsuario) {
@@ -40,7 +41,6 @@ public class Miembro {
 		this.numeroExpediente = numeroExpediente;
 	}
 
-
 	@Override
 	public String toString() {
 		return nombreApellidos + ". [Expediente: " + numeroExpediente + "]";
@@ -49,6 +49,13 @@ public class Miembro {
 	// EJEMPLO PARA IMPRIMIR.
 	public String paraPartidas() {
 		return "info miembro para partidas";
+	}
+	
+	public boolean esMaster() {
+		
+		ConexionBBDD conn = new ConexionBBDD();
+	
+		return conn.isGameMaster(idMiembro);
 	}
 
 	public String getIdMiembro() {
@@ -99,4 +106,13 @@ public class Miembro {
 		this.claveUsuario = claveUsuario;
 	}
 
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	
 }

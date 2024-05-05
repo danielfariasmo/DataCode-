@@ -17,10 +17,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import control.ControlGameMasterAlias;
 import control.ControlLogin;
 import control.ControlMenuPrincipalGM;
 import control.ControlMenuPrincipalUsuario;
-import control.MasterController;
 import modelo.Miembro;
 
 public class Login extends JFrame {
@@ -31,15 +31,8 @@ public class Login extends JFrame {
 	private JTextField textoUsuarioLogin;
 	private JPasswordField claveContraseñaLogin;
 	private JButton botonLogin;
-	//private ControlLogin controlLogin;
-	
-	// Menu Usuario
 	private MenuPrincipalUsuario menuPrincipalUsuario;
-	
-	// Menu Master
 	private MenuPrincipalGameMaster menuPrincipalGameMaster;
-	
-	private Miembro miembro;
 
 	public Login() {
 		configuracionInicial();
@@ -122,7 +115,7 @@ public class Login extends JFrame {
 		labelLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
 		panelContenedor.add(labelLogo);
 	}
-	
+
 	private MenuPrincipalUsuario inicializarMenuPrincipalUsuario(Miembro miembro) {
 		MenuPrincipalUsuario menuPrincipalUsuario = new MenuPrincipalUsuario(miembro);
 		NuevoPersonaje nuevoPersonaje = new NuevoPersonaje();
@@ -136,10 +129,10 @@ public class Login extends JFrame {
 				consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal);
 
 		menuPrincipalUsuario.setListener(listener);
-		
+
 		return menuPrincipalUsuario;
 	}
-	
+
 	private MenuPrincipalGameMaster inicializarMenuPrincipalGameMaster(Miembro miembro) {
 		MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(miembro);
 		EditarPartida editarPartida = new EditarPartida();
@@ -148,14 +141,14 @@ public class Login extends JFrame {
 		MiembroClub miembroClub = new MiembroClub();
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
-		ControlMenuPrincipalGM  listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster, consultarPartida, crearPartida, editarPartida, miembroClub, textoMenuPrincipal);
+		ControlMenuPrincipalGM listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster, consultarPartida,
+				crearPartida, editarPartida, miembroClub, textoMenuPrincipal);
 
 		// Se muestra el menu principal.
 		menuPrincipalGameMaster.setListener(listener);
-		
+
 		return menuPrincipalGameMaster;
 	}
-
 
 	// Getter para el texto del usuario
 	public String getTextoUsuarioLogin() {
@@ -174,16 +167,16 @@ public class Login extends JFrame {
 			public void run() {
 				Login l = new Login();
 				l.setVisible(true);
-				
+
 			}
 		});
 	}
 
-	
 	public void mostrarDialogoExito(Miembro miembro) {
 		System.out.println("EXITO LOGIN");
 		JPanel panelDialogo = new JPanel();
-		JLabel labelBienvenida = new JLabel("Bienvenido " + miembro.getNombre_apelidos() + " ¿Cómo quieres iniciar sesión?");
+		JLabel labelBienvenida = new JLabel(
+				"Bienvenido " + miembro.getNombre_apelidos() + " ¿Cómo quieres iniciar sesión?");
 		panelDialogo.add(labelBienvenida);
 
 		JPanel panelOpciones = new JPanel();
@@ -196,45 +189,45 @@ public class Login extends JFrame {
 		panelOpciones.add(gameMaster);
 		panelDialogo.add(panelOpciones);
 
-		int opcion = JOptionPane.showConfirmDialog(this, panelDialogo, "Inicio de Sesión",
-				JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		int opcion = JOptionPane.showConfirmDialog(this, panelDialogo, "Inicio de Sesión", JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.PLAIN_MESSAGE);
 
 		if (opcion == JOptionPane.OK_OPTION) {
 			if (jugador.isSelected()) {
 				rolGameMaster = false;
 				JOptionPane.showMessageDialog(this, "Has seleccionado iniciar sesión como Jugador");
-				
+
 				mostrarMenuPrincipalUsuario(miembro);
-				
-			} else if (gameMaster.isSelected()) {
+
+			} else if (gameMaster.isSelected() && miembro.esMaster()) {
 				rolGameMaster = true;
 				JOptionPane.showMessageDialog(this, "Has seleccionado iniciar sesión como GameMaster");
-				
-				new MasterController(miembro).actionPerformed(null);
 
 				mostrarMenuPrincipalGameMaster(miembro);
-			}
-			
-
+				
+			}else if (gameMaster.isSelected() && !miembro.esMaster()) {
+				setVisible(false);
+				new ControlGameMasterAlias(miembro);
+			} 
 		}
 	}
-	
-	private void mostrarMenuPrincipalUsuario(Miembro miembro) {
+
+	public void mostrarMenuPrincipalUsuario(Miembro miembro) {
 		this.setVisible(false);
 		menuPrincipalUsuario = inicializarMenuPrincipalUsuario(miembro);
 		menuPrincipalUsuario.setVisible(true);
 	}
-	
-	private void mostrarMenuPrincipalGameMaster(Miembro miembro) {
+
+	public void mostrarMenuPrincipalGameMaster(Miembro miembro) {
 		this.setVisible(false);
 		menuPrincipalGameMaster = inicializarMenuPrincipalGameMaster(miembro);
 		menuPrincipalGameMaster.setVisible(true);
 	}
-	
+
 	public void mostrarDialogoError() {
 		JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
 	}
-	
+
 	public static boolean getRolGameMaster() {
 		return rolGameMaster;
 	}
