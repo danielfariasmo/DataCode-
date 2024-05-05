@@ -5,6 +5,7 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modelo.Partida;
+
 public class ConsultarPartida extends JPanel {
 	/**
 	 * @author Daniel F.
@@ -21,7 +24,7 @@ public class ConsultarPartida extends JPanel {
 	 * @author Daniel G.
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable tablePartida;
+	private JTable tablaPartida;
 	private JLabel labelConsultarPartida;
 	private JScrollPane scrollPane;
 	private JPanel panelContenedor;
@@ -40,9 +43,48 @@ public class ConsultarPartida extends JPanel {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
-		setLayout(null); 
-		setSize(1300, 660); 
+		setLayout(null);
+		setSize(1300, 660);
 
+	}
+
+	public void cargarPartida(ArrayList<Partida> partidas) {
+
+		String [][] datos = new String[partidas.size()][6];
+		
+		
+		for (int i = 0; i < partidas.size(); i++) {
+			Partida partida = partidas.get(i);
+
+			datos [i][0] = partida.getNombre();
+			datos [i][1] = partida.getDiaHora();
+			datos [i][2] = partida.getDuracionSesion();
+			datos [i][3] = partida.getNumeroSesion();
+			datos [i][4] = partida.getAmbientacion();
+			datos [i][5] = partida.getFinalizada();
+		}
+
+		tablaPartida = new JTable(new DefaultTableModel(datos, new String[] { "Nombre",
+				"Día y hora de Creación", "Duración Sesión", "Nº Sesión", "Ambientación", "Finalizada (Si/No)", }));
+		tablaPartida.setFont(new Font("Verdana", Font.PLAIN, 15));
+		tablaPartida.setForeground(new Color(255, 255, 255));
+		tablaPartida.setBackground(new Color(37, 34, 81));
+		tablaPartida.setBounds(10, -13, 841, 452);
+		add(tablaPartida);
+
+		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
+		tablaPartida.getColumnModel().getColumn(0).setPreferredWidth(450);
+		tablaPartida.getColumnModel().getColumn(1).setPreferredWidth(450);
+		tablaPartida.getColumnModel().getColumn(2).setPreferredWidth(450);
+		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(10);
+		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(130);
+		tablaPartida.getColumnModel().getColumn(5).setPreferredWidth(10);
+
+		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
+		// necesario
+		scrollPane = new JScrollPane(tablaPartida);
+		scrollPane.setBounds(162, 157, 952, 153);
+		add(scrollPane);
 	}
 
 	public void inicializarComponentes() {
@@ -55,37 +97,8 @@ public class ConsultarPartida extends JPanel {
 		add(labelConsultarPartida);
 
 		// Tabla Partida
-		tablePartida = new JTable(new DefaultTableModel(new Object[][] {
-				{ "La búsqueda del anillo", "01-04-2024 / 10:30h", "06-04-2024 / 16:00h", 1, "Tierra Media", "No" },
-				{ "Galaxia en guerra", "02-04-2024 / 20:00h", "10-04-2024 / 23:50h", 1, "Galaxia", "No" },
-				{ "Las sombras de la montaña", "03-02-2024 / 15:00h", "06-04-2024 / 22:00h", 1, "Montañas", "No" },
-				{ "La magia perdida", "04-04-2024 / 10:30h", "11-04-2024 / 16:30h", 1, "Bosque encantado", "No" },
-				{ "El rescate de la princesa", "05-04-2024 / 08:00h", "12-04-2024 / 12:00h", 1, "Castillo", "No" },
-				{ "Intriga en la corte", "06-04-2024 / 14:00h", "15-04-2024 / 20:00h", 1, "Palacio real", "No" },
-				{ "La ciudad maldita", "07-04-2024 / 12:30h", "12-04-2024 / 19:00h", 1, "Ciudad abandonada", "No" },
-				{ "El laberinto de la muerte", "08-04-2024 / 15:00h", "09-04-2024 / 20:00h", 1, "Laberinto", "No" } },
-				new String[] { "Nombre", "Día y hora de Creación", "Próxima Sesión", "Nº Sesión", "Ambientación",
-						"Finalizada (Si/No)", }));
-
-		tablePartida.setFont(new Font("Verdana", Font.PLAIN, 15));
-		tablePartida.setForeground(new Color(255, 255, 255));
-		tablePartida.setBackground(new Color(37, 34, 81));
-		tablePartida.setBounds(10, -13, 841, 452);
-		add(tablePartida);
-
-		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
-		tablePartida.getColumnModel().getColumn(0).setPreferredWidth(450);
-		tablePartida.getColumnModel().getColumn(1).setPreferredWidth(450);
-		tablePartida.getColumnModel().getColumn(2).setPreferredWidth(450);
-		tablePartida.getColumnModel().getColumn(3).setPreferredWidth(10);
-		tablePartida.getColumnModel().getColumn(4).setPreferredWidth(130);
-		tablePartida.getColumnModel().getColumn(5).setPreferredWidth(10);
-
-		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
-		// necesario
-		scrollPane = new JScrollPane(tablePartida);
-		scrollPane.setBounds(162, 157, 952, 153);
-		add(scrollPane);
+		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre",
+				"Día y hora de Creación", "Duración Sesión", "Nº Sesión", "Ambientación", "Finalizada (Si/No)", }));
 
 		// Contenedor para recuadro blanco
 		panelContenedor = new JPanel();
@@ -106,6 +119,3 @@ public class ConsultarPartida extends JPanel {
 		add(botonInfoPartida);
 	}
 }
-
-
-

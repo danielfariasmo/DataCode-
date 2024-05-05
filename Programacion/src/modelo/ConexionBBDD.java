@@ -71,7 +71,7 @@ public class ConexionBBDD {
 			while (rs.next()) {
 				String idMiembro = rs.getString("id_miembro");
 				String nombreApellidos = rs.getString("nombre_apellidos");
-				
+
 				// Ejemplo de como meter numero.
 				int numeroExpediente = rs.getInt("numero_expediente");
 				Miembro miembro = new Miembro(idMiembro, nombreApellidos, numeroExpediente);
@@ -86,19 +86,71 @@ public class ConexionBBDD {
 		return miembros;
 
 	}
-	
+
+	public ArrayList<Personaje> obtenerPersonaje(String idMiembro) {
+		ArrayList<Personaje> personajes = new ArrayList<>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT nombre FROM Personaje WHERE id_miembro=" + idMiembro);
+			while (rs.next()) {
+				String nombre = rs.getString("nombre");
+
+				Personaje personaje = new Personaje(nombre);
+				personajes.add(personaje);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return personajes;
+
+	}
+
+	public ArrayList<Partida> consultarPartida() {
+		ArrayList<Partida> partidas = new ArrayList<>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT nombre, dia_hora, duracion_sesion, numero_sesion, ambientacion, finalizada FROM Partida");
+			while (rs.next()) {
+				String nombre = rs.getString("nombre");
+				String dia_hora = rs.getString("dia_hora");
+				String duracion_sesion = rs.getString("duracion_sesion");
+				String numero_sesion = rs.getString("numero_sesion");
+				String ambientacion = rs.getString("ambientacion");
+				String finalizada = rs.getString("finalizada");
+
+				Partida partida = new Partida(nombre, dia_hora, duracion_sesion, numero_sesion, ambientacion,
+						finalizada);
+				partidas.add(partida);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return partidas;
+	}
+
 	public Miembro obtenerMiembro(String usuario, String clave) {
-		
+
 		Miembro miembro = null;
 		ResultSet resultSet;
-		
+
 		// Ejecuto la consulta
 		try {
 			Statement statement = conectar().createStatement();
 			resultSet = statement.executeQuery(String.format(FIND_USER_QUERY, usuario, clave));
 			if (resultSet.next()) {
-				miembro = new Miembro(String.valueOf(resultSet.getInt(ID_MIEMBRO)), resultSet.getString(NOMBRE_APELLIDOS), 
-						resultSet.getInt(NUMERO_EXPEDIENTE), resultSet.getString(NOMBRE_ESTUDIO), resultSet.getString(NOMBRE_USUARIO), String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
+				miembro = new Miembro(String.valueOf(resultSet.getInt(ID_MIEMBRO)),
+						resultSet.getString(NOMBRE_APELLIDOS), resultSet.getInt(NUMERO_EXPEDIENTE),
+						resultSet.getString(NOMBRE_ESTUDIO), resultSet.getString(NOMBRE_USUARIO),
+						String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -107,12 +159,12 @@ public class ConexionBBDD {
 		cerrar();
 		return miembro;
 	}
-	
+
 	public boolean isGameMaster(String id_miembro) {
-		
+
 		boolean isMaster = false;
 		ResultSet resultSet;
-		
+
 		try {
 			Statement statement = conectar().createStatement();
 			resultSet = statement.executeQuery(String.format(FIND_MASTER_QUERY, id_miembro));
@@ -124,16 +176,16 @@ public class ConexionBBDD {
 		cerrar();
 		return isMaster;
 	}
-	
+
 	public void convertIntoGameMaster(String id_miembro, String alias) {
-		
+
 		try {
 			Statement statement = conectar().createStatement();
 			statement.executeUpdate(String.format(INSERT_MASTER, id_miembro, alias));
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		cerrar();
 	}
 }

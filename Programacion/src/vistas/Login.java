@@ -126,7 +126,7 @@ public class Login extends JFrame {
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
 		ControlMenuPrincipalUsuario listener = new ControlMenuPrincipalUsuario(menuPrincipalUsuario, nuevoPersonaje,
-				consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal);
+				consultarPArtida, miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal, miembro);
 
 		menuPrincipalUsuario.setListener(listener);
 

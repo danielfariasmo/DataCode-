@@ -11,6 +11,8 @@ import javax.swing.JMenuItem;
 
 import modelo.ConexionBBDD;
 import modelo.Miembro;
+import modelo.Partida;
+import modelo.Personaje;
 import vistas.ConsultarPartida;
 import vistas.MenuPrincipalUsuario;
 import vistas.MiembroClub;
@@ -33,10 +35,12 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private ModificarPersonaje modificarPersonaje;
 	private MostrarPersonaje mostrarPersonaje;
 	private TextoMenuPrincipal textoMenuPrincipal;
+	private Miembro miembro;
+	private ConexionBBDD conexionbbdd;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
 			ConsultarPartida consultarPartida, MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
-			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal) {
+			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, Miembro miembro) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = consultarPartida;
@@ -44,6 +48,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
 		this.textoMenuPrincipal = textoMenuPrincipal;
+		this.miembro = miembro;
 	}
 
 	@Override
@@ -54,7 +59,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 				menuPrincipal.cambiarPanel(nuevoPersonaje);
 
 			} else if (evento.getActionCommand().equals("Consultar Partida")) {
-				menuPrincipal.cambiarPanel(consultarPartida);
+				consultarPartida();
 
 			} else if (evento.getActionCommand().equals("Mostrar Miembros")) {
 				menuPrincipal.cambiarPanel(miembroClub);
@@ -77,7 +82,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 				menuPrincipal.cambiarPanel(modificarPersonaje);
 
 			} else if (evento.getActionCommand().equals("Mostrar Personajes")) {
-				menuPrincipal.cambiarPanel(mostrarPersonaje);
+				mostrarPersonajes();
 			} else if (evento.getActionCommand().equals("Menú Principal")) {
 				menuPrincipal.cambiarPanel(textoMenuPrincipal);
 
@@ -86,4 +91,19 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 
 	}
 
+	private void mostrarPersonajes() {
+		menuPrincipal.cambiarPanel(mostrarPersonaje);
+		conexionbbdd = new ConexionBBDD();
+		
+		ArrayList<Personaje> personajes = conexionbbdd.obtenerPersonaje(miembro.getIdMiembro());
+		mostrarPersonaje.insertarPersonaje(personajes);
+	}
+	
+	private void consultarPartida() {
+		menuPrincipal.cambiarPanel(consultarPartida);
+		conexionbbdd = new ConexionBBDD();
+		
+		ArrayList<Partida> partidas = conexionbbdd.consultarPartida();
+		consultarPartida.cargarPartida(partidas);
+	}
 }

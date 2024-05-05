@@ -28,6 +28,16 @@ public class Partida {
 		this.duracionSesion = duracionSesion;
 		this.idGameMaster = idGameMaster;
 	}
+	
+	public Partida (String nombre, String diaHora, String numeroSesion, String ambientacion,
+			String finalizada, String duracionSesion) {
+		this.nombre = nombre;
+		this.diaHora = diaHora;
+		this.numeroSesion = numeroSesion;
+		this.ambientacion = ambientacion;
+		this.finalizada = finalizada;
+		this.duracionSesion = duracionSesion;
+	}
 
 	@Override
 	public String toString() {
