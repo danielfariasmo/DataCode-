@@ -22,7 +22,7 @@ public class MiembroClub extends JPanel {
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
-	JComboBox<Miembro> MostrarMiembros;
+	JComboBox<Miembro> mostrarMiembros;
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,19 +41,19 @@ public class MiembroClub extends JPanel {
 	public void insertarMiembros(ArrayList<Miembro> array) {
 		DefaultComboBoxModel<Miembro> dcbm = new DefaultComboBoxModel<Miembro>();
 		dcbm.addAll(array);
-		MostrarMiembros.setModel(dcbm);
+		mostrarMiembros.setModel(dcbm);
 
 	}
 
 	public void inicializarComponentes() {
 
 		// Listado de miembros:
-		MostrarMiembros = new JComboBox<Miembro>();
-		MostrarMiembros.setBackground(new Color(255, 255, 255));
-		MostrarMiembros.setForeground(new Color(37, 34, 81));
-		MostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
-		MostrarMiembros.setBounds(715, 189, 486, 106);
-		add(MostrarMiembros);
+		mostrarMiembros = new JComboBox<Miembro>();
+		mostrarMiembros.setBackground(new Color(255, 255, 255));
+		mostrarMiembros.setForeground(new Color(37, 34, 81));
+		mostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));
+		mostrarMiembros.setBounds(715, 189, 486, 106);
+		add(mostrarMiembros);
 
 		// Contenedor de imagen
 		JPanel contenedorSlogan = new JPanel();

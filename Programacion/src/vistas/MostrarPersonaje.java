@@ -3,9 +3,17 @@
  */
 package vistas;
 
-import javax.swing.*;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import modelo.Personaje;
 
 public class MostrarPersonaje extends JPanel {
 	/**
@@ -14,6 +22,7 @@ public class MostrarPersonaje extends JPanel {
 	 * @author Daniel G.
 	 */
 	private static final long serialVersionUID = 1L;
+	JComboBox<Personaje> mostrarPersonaje;
 
 	public MostrarPersonaje() {
 
@@ -31,19 +40,20 @@ public class MostrarPersonaje extends JPanel {
 
 	}
 
+	public void insertarPersonaje(ArrayList<Personaje> array) {
+		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
+		dcbm.addAll(array);
+		mostrarPersonaje.setModel(dcbm);
+	}
+
 	public void inicializarComponentes() {
 
-		JComboBox<String> MostrarPersonajes = new JComboBox<String>();
-		MostrarPersonajes.setBackground(new Color(255, 255, 255));
-		MostrarPersonajes.setForeground(new Color(37, 34, 81));
-		MostrarPersonajes.setFont(new Font("Verdana", Font.PLAIN, 17));
-		String[] Personajes = { "Aragorn - Guerrero", "Drako el Sabio - Mago", "Thranduil - Guerrero",
-				"Han Solo - Contrabandista", "Frodo Bolson - Héroe", "Bofur Barbillas - Pícaro", "Sam - Guardián",
-				"Grimnir - Paladín" };
-		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<String>(Personajes);
-		MostrarPersonajes.setModel(dcbm);
-		MostrarPersonajes.setBounds(536, 195, 240, 66);
-		add(MostrarPersonajes);
+		mostrarPersonaje = new JComboBox<Personaje>();
+		mostrarPersonaje.setBackground(new Color(255, 255, 255));
+		mostrarPersonaje.setForeground(new Color(37, 34, 81));
+		mostrarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 17));
+		mostrarPersonaje.setBounds(301, 195, 682, 66);
+		add(mostrarPersonaje);
 
 		JLabel lblNewLabel = new JLabel("PERSONAJES:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));

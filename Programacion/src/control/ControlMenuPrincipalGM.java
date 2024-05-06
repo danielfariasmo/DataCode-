@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 
 import modelo.ConexionBBDD;
 import modelo.Miembro;
+import modelo.Partida;
 import vistas.ConsultarPartida;
 import vistas.CrearPartida;
 import vistas.EditarPartida;
@@ -32,6 +33,7 @@ public class ControlMenuPrincipalGM implements ActionListener{
 	private EditarPartida editarPartida;
 	private MiembroClub miembroClub;
 	private TextoMenuPrincipal textoMenuPrincipal;
+	private ConexionBBDD conexionbbdd;
 
 	public ControlMenuPrincipalGM(MenuPrincipalGameMaster menuPrincipalGameMaster, ConsultarPartida consultarPartida,
 			CrearPartida crearPartida, EditarPartida editarPartida, MiembroClub miembroClub,
@@ -51,13 +53,12 @@ public class ControlMenuPrincipalGM implements ActionListener{
 				menuPrincipalGameMaster.cambiarPanel(crearPartida);
 
 			} else if (evento.getActionCommand().equals("Consultar Partida")) {
-				menuPrincipalGameMaster.cambiarPanel(consultarPartida);
-
+				consultarPartida();
 			} else if (evento.getActionCommand().equals("Mostrar Miembros")) {
 				menuPrincipalGameMaster.cambiarPanel(miembroClub);
 
 				ConexionBBDD conexionBBDD = new ConexionBBDD();
-				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembro();
+				ArrayList<Miembro> miembros = conexionBBDD.obtenerMiembros();
 
 				if (miembros != null) {
 					for (Miembro miembro : miembros) {
@@ -79,5 +80,13 @@ public class ControlMenuPrincipalGM implements ActionListener{
 			}
 		}
 
+	}
+	
+	private void consultarPartida() {
+		menuPrincipalGameMaster.cambiarPanel(consultarPartida);
+		conexionbbdd = new ConexionBBDD();
+		
+		ArrayList<Partida> partidas = conexionbbdd.consultarPartida();
+		consultarPartida.cargarPartida(partidas);
 	}
 }

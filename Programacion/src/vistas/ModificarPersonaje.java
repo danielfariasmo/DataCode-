@@ -3,12 +3,17 @@
  */
 package vistas;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
-import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class ModificarPersonaje extends JPanel {
 	/**
@@ -23,6 +28,7 @@ public class ModificarPersonaje extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_2;
 	private JTextField textField_1;
+	
 
 	public ModificarPersonaje() {
 

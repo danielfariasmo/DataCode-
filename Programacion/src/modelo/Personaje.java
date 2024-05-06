@@ -27,11 +27,14 @@ public class Personaje {
 		this.clase = clase;
 		this.id_miembro = id_miembro;
 	}
+	
+	public Personaje (String nombre) {
+		this.nombre = nombre;
+	}
 
 	@Override
 	public String toString() {
-		return "Personaje [idPersonaje=" + idPersonaje + ", nombre=" + nombre + ", raza=" + raza + ", nivelExperiencia="
-				+ nivelExperiencia + ", clase=" + clase + ", id_miembro=" + id_miembro + "]";
+		return "Personaje: " + nombre;
 	}
 
 	public String getIdPersonaje() {
