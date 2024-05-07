@@ -73,7 +73,7 @@ CREATE TABLE Juega (
 INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
 VALUES ('Nacho Moreno', 456789, 'DAW', 'achonacho', 1234);
 INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
-VALUES ('Daniel Farias', 876543, 'DAW', 'danielfarias', 0000);
+VALUES ('Daniel Farias', 876543, 'DAW', 'dani', 0000);
 INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
 VALUES ('Daniel Gonzalez', 674510, 'DAW', 'garrote', 2323);
 INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
@@ -82,6 +82,8 @@ INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre
 VALUES ('Irene Rincon', 561201, 'Educacion', 'irene', 6565);
 INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
 VALUES ('Raul Rodriguez', 122101, 'Ingeniera', 'raul', 0219);
+INSERT INTO Miembro (nombre_apellidos, numero_expediente, nombre_estudio, nombre_usuario, clave_usuario)
+VALUES ('Prueba', 0000, 'Pruebas', 'a', 0);
 
 -- Personajes
 INSERT INTO Personaje (id_personaje, nombre, raza, nivel_experiencia, clase, id_miembro)
@@ -133,6 +135,42 @@ VALUES (07, 'La ciudad maldita', '2024-05-22 10:45:00', 1, 'Ciudad abandonada', 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
 VALUES (08, 'El laberinto de la muerte', '2024-05-23 19:25:00', 1, 'Laberinto', 'No', 6, 99);
 
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (09, 'La expedición al misterio', '2024-05-22 18:00:00', 1, 'Selva Amazónica', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (10, 'La búsqueda del tesoro perdido', '2024-05-23 18:00:00', 1, 'Islas del Caribe', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (11, 'La maldición del faraón', '2024-05-24 18:00:00', 1, 'Antiguo Egipto', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (12, 'La leyenda del unicornio', '2024-05-25 18:00:00', 1, 'Bosque Encantado', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (13, 'La búsqueda del Grial', '2024-05-26 18:00:00', 1, 'Camelot', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (14, 'El misterio de la Atlántida', '2024-05-27 18:00:00', 1, 'Atlántida', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (15, 'La rebelión de las máquinas', '2024-05-28 18:00:00', 1, 'Futuro distópico', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (16, 'La conquista del espacio', '2024-05-29 18:00:00', 1, 'Galaxias lejanas', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (17, 'La invasión zombie', '2024-05-30 18:00:00', 1, 'Ciudad abandonada', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (18, 'El viaje al centro de la Tierra', '2024-05-31 18:00:00', 1, 'Subterráneo', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (19, 'La venganza del pirata', '2024-06-01 18:00:00', 1, 'Mar Caribe', 'No', 4, 99);
+
+INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
+VALUES (20, 'La guerra de los magos', '2024-06-02 18:00:00', 1, 'Reino de Fantasía', 'No', 4, 99);
+
 -- INSERCION DE VALORES 
 -- Juega
 INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
@@ -159,6 +197,43 @@ VALUES (03, 07, 'Amigo leal, valiente', 44, 50, 62, 49, 66, 89);
 INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
 VALUES (08, 08, 'Poderoso guerrero, resistente', 88, 71, 68, 11, 38, 50);
 
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (02, 09, 'Astuto ladrón, ágil y rápido', 70, 90, 60, 55, 30, 75);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (03, 10, 'Sabio mago, experto en hechizos', 30, 40, 40, 90, 85, 65);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (04, 11, 'Hábil arquero, preciso y certero', 65, 85, 55, 40, 35, 60);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (05, 12, 'Valiente paladín, protector divino', 90, 60, 75, 50, 55, 80);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (06, 13, 'Misterioso hechicero, controla las sombras', 50, 65, 45, 85, 80, 40);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (07, 14, 'Ágil asesino, maestro del sigilo', 75, 90, 50, 45, 30, 55); 
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (08, 15, 'Ingeniero habilidoso, domina la tecnología', 55, 60, 70, 75, 40, 65);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (01, 16, 'Noble caballero, con honor y lealtad', 85, 70, 80, 45, 50, 70);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (02, 17, 'Pícaro encantador, persuasivo y astuto', 60, 80, 50, 60, 45, 85);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES  (03, 18, 'Sabio druida, conectado con la naturaleza', 75, 65, 85, 60, 70, 55);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (04, 19, 'Temible bárbaro, salvaje y poderoso', 95, 50, 90, 35, 30, 40);
+
+INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma)
+VALUES (05, 20, 'Cazador experto, rastrea y caza sin igual', 80, 85, 65, 45, 40, 60);
+       
+-- PRUEBAS: 
 delete from gamemaster where id_gameMaster=100;
 commit;
 select * from GameMaster;

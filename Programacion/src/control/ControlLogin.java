@@ -19,7 +19,7 @@ public class ControlLogin implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String usuario = login.getTextoUsuarioLogin();
-		String contraseña = login.getClaveContraseñaLogin();
+		String contraseña = login.getClaveContrasenhaLogin();
 		
 		conexionbbdd = new ConexionBBDD();
 

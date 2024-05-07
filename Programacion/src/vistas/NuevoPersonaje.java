@@ -15,11 +15,10 @@ public class NuevoPersonaje extends JPanel {
 	 * @author Daniel G.
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_4;
-	private JTextField textField_3;
-	private JTextField textField_2;
-	private JTextField textField_1;
+	private JTextField textoNombre;
+	private JTextField textoExperiencia;
+	private JTextField textoClase;
+	private JTextField textoRaza;
 
 	public NuevoPersonaje() {
 
@@ -40,80 +39,65 @@ public class NuevoPersonaje extends JPanel {
 
 	public void inicializarComponentes() {
 
-		// Id personaje
-		JLabel labelIdPersonaje = new JLabel("ID Personaje:");
-		labelIdPersonaje.setFont(new Font("Verdana", Font.BOLD, 17));
-		labelIdPersonaje.setForeground(new Color(255, 255, 255));
-		add(labelIdPersonaje, BorderLayout.NORTH);
-		labelIdPersonaje.setBounds(195, 102, 192, 75);
-
-		textField = new JTextField();
-		textField.setLocation(530, 190);
-		textField.setSize(277, 46);
-		textField.setForeground(new Color(0, 0, 0));
-		add(textField, BorderLayout.EAST);
-		textField.setColumns(10);
+		textoNombre = new JTextField();
+		textoNombre.setLocation(530, 134);
+		textoNombre.setSize(277, 46);
+		textoNombre.setForeground(new Color(0, 0, 0));
+		add(textoNombre, BorderLayout.EAST);
+		textoNombre.setColumns(10);
 
 		// Nombre del personaje
 		JLabel labelNombrePersonaje = new JLabel("Nombre Personaje:");
 		labelNombrePersonaje.setFont(new Font("Verdana", Font.BOLD, 17));
 		labelNombrePersonaje.setForeground(new Color(255, 255, 255));
 		add(labelNombrePersonaje, BorderLayout.NORTH);
-		labelNombrePersonaje.setBounds(195, 173, 192, 75);
-
-		textField_1 = new JTextField();
-		textField_1.setForeground(new Color(0, 0, 0));
-		textField_1.setBackground(new Color(255, 255, 255));
-		textField_1.setSize(277, 46);
-		textField_1.setLocation(530, 119);
-		add(textField_1, BorderLayout.EAST);
-		textField_1.setColumns(10);
+		labelNombrePersonaje.setBounds(195, 116, 192, 75);
 
 		// Raza
 		JLabel labelRaza = new JLabel("Raza:");
 		labelRaza.setFont(new Font("Verdana", Font.BOLD, 17));
 		labelRaza.setForeground(new Color(255, 255, 255));
 		add(labelRaza, BorderLayout.NORTH);
-		labelRaza.setBounds(195, 249, 192, 75);
+		labelRaza.setBounds(195, 208, 192, 75);
 
-		textField_2 = new JTextField();
-		textField_2.setSize(277, 46);
-		textField_2.setLocation(530, 266);
-		add(textField_2, BorderLayout.EAST);
-		textField_2.setColumns(10);
+		textoRaza = new JTextField();
+		textoRaza.setSize(277, 46);
+		textoRaza.setLocation(530, 226);
+		add(textoRaza, BorderLayout.EAST);
+		textoRaza.setColumns(10);
 
 		// Clase
 		JLabel labelClase = new JLabel("Clase:");
 		labelClase.setFont(new Font("Verdana", Font.BOLD, 17));
 		labelClase.setForeground(new Color(255, 255, 255));
 		add(labelClase, BorderLayout.NORTH);
-		labelClase.setBounds(195, 324, 192, 75);
+		labelClase.setBounds(195, 293, 192, 75);
 
-		textField_3 = new JTextField();
-		textField_3.setSize(277, 46);
-		textField_3.setLocation(530, 341);
-		add(textField_3, BorderLayout.EAST);
-		textField_3.setColumns(10);
+		textoClase = new JTextField();
+		textoClase.setSize(277, 46);
+		textoClase.setLocation(530, 311);
+		add(textoClase, BorderLayout.EAST);
+		textoClase.setColumns(10);
 
 		// Nivel de experiencia
 		JLabel labelNivelExperiencia = new JLabel("Nivel de Experiencia:");
 		labelNivelExperiencia.setFont(new Font("Verdana", Font.BOLD, 17));
 		labelNivelExperiencia.setForeground(new Color(255, 255, 255));
 		add(labelNivelExperiencia, BorderLayout.NORTH);
-		labelNivelExperiencia.setBounds(195, 403, 221, 75);
+		labelNivelExperiencia.setBounds(195, 385, 221, 75);
 
-		textField_4 = new JTextField();
-		textField_4.setSize(277, 46);
-		textField_4.setLocation(530, 420);
-		add(textField_4, BorderLayout.EAST);
-		textField_4.setColumns(10);
+		textoExperiencia = new JTextField();
+		textoExperiencia.setSize(277, 46);
+		textoExperiencia.setLocation(530, 403);
+		add(textoExperiencia, BorderLayout.EAST);
+		textoExperiencia.setColumns(10);
 
 		// Boton Aceptar
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setForeground(new Color(37, 34, 81));
 		botonAceptar.setBackground(new Color(135, 206, 235));
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 17));
-		botonAceptar.setBounds(571, 515, 197, 38);
+		botonAceptar.setBounds(571, 478, 197, 38);
 		add(botonAceptar);
 		
 		JLabel labelNuevoPersonaje = new JLabel("Nuevo Personaje");

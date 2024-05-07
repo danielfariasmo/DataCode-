@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelo.Personaje;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MostrarPersonaje extends JPanel {
 	/**
@@ -52,7 +54,7 @@ public class MostrarPersonaje extends JPanel {
 		mostrarPersonaje.setBackground(new Color(255, 255, 255));
 		mostrarPersonaje.setForeground(new Color(37, 34, 81));
 		mostrarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 17));
-		mostrarPersonaje.setBounds(301, 195, 682, 66);
+		mostrarPersonaje.setBounds(433, 195, 465, 66);
 		add(mostrarPersonaje);
 
 		JLabel lblNewLabel = new JLabel("PERSONAJES:");
@@ -61,33 +63,22 @@ public class MostrarPersonaje extends JPanel {
 		lblNewLabel.setBounds(500, 88, 320, 52);
 		add(lblNewLabel);
 
-		// Boton Aceptar
-		JButton botonAceptar = new JButton("Aceptar");
-		botonAceptar.setForeground(new Color(37, 34, 81));
-		botonAceptar.setBackground(new Color(135, 206, 235));
-		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonAceptar.setBounds(157, 430, 155, 37);
-		add(botonAceptar);
-
-		JButton botonConsultar = new JButton("Consultar stats");
-		botonConsultar.setBackground(new Color(135, 206, 235));
-		botonConsultar.setForeground(new Color(37, 34, 81));
-		botonConsultar.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonConsultar.setBounds(687, 430, 175, 37);
-		add(botonConsultar);
-
 		JButton botonEliminar = new JButton("Eliminar");
 		botonEliminar.setForeground(new Color(37, 34, 81));
 		botonEliminar.setBackground(new Color(135, 206, 235));
 		botonEliminar.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonEliminar.setBounds(961, 430, 155, 37);
+		botonEliminar.setBounds(743, 371, 155, 37);
 		add(botonEliminar);
 
 		JButton botonAñadirPersonaje = new JButton("Añadir Personaje");
+		botonAñadirPersonaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		botonAñadirPersonaje.setForeground(new Color(37, 34, 81));
 		botonAñadirPersonaje.setBackground(new Color(135, 206, 235));
 		botonAñadirPersonaje.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonAñadirPersonaje.setBounds(411, 430, 177, 37);
+		botonAñadirPersonaje.setBounds(433, 371, 177, 37);
 		add(botonAñadirPersonaje);
 	}
 }

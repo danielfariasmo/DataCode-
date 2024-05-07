@@ -49,6 +49,7 @@ public class MiembroClub extends JPanel {
 
 		// Listado de miembros:
 		mostrarMiembros = new JComboBox<Miembro>();
+		mostrarMiembros.setToolTipText("");
 		mostrarMiembros.setBackground(new Color(255, 255, 255));
 		mostrarMiembros.setForeground(new Color(37, 34, 81));
 		mostrarMiembros.setFont(new Font("Verdana", Font.PLAIN, 19));

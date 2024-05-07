@@ -14,6 +14,7 @@ import modelo.Miembro;
 import modelo.Partida;
 import modelo.Personaje;
 import vistas.ConsultarPartida;
+import vistas.JugarPersonaje;
 import vistas.MenuPrincipalUsuario;
 import vistas.MiembroClub;
 import vistas.ModificarPersonaje;
@@ -36,11 +37,12 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private MostrarPersonaje mostrarPersonaje;
 	private TextoMenuPrincipal textoMenuPrincipal;
 	private Miembro miembro;
+	private JugarPersonaje jugarPersonaje;
 	private ConexionBBDD conexionbbdd;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
 			ConsultarPartida consultarPartida, MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
-			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, Miembro miembro) {
+			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, JugarPersonaje jugarPersonaje, Miembro miembro) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = consultarPartida;
@@ -48,6 +50,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
 		this.textoMenuPrincipal = textoMenuPrincipal;
+		this.jugarPersonaje = jugarPersonaje;
 		this.miembro = miembro;
 	}
 
@@ -83,6 +86,9 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 
 			} else if (evento.getActionCommand().equals("Mostrar Personajes")) {
 				mostrarPersonajes();
+			} else if (evento.getActionCommand().equals("Jugar")) {
+				menuPrincipal.cambiarPanel(jugarPersonaje);
+				
 			} else if (evento.getActionCommand().equals("Menú Principal")) {
 				menuPrincipal.cambiarPanel(textoMenuPrincipal);
 

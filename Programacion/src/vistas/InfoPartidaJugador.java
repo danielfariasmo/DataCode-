@@ -113,10 +113,10 @@ public class InfoPartidaJugador extends JPanel {
 		add(lblNewLabel_5);
 
 		// Etiqueta superior
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setBounds(316, 189, 101, 14);
-		add(lblNewLabel_6);
+		JLabel labelInfoMaxJugadores = new JLabel("New label");
+		labelInfoMaxJugadores.setForeground(new Color(255, 255, 255));
+		labelInfoMaxJugadores.setBounds(316, 189, 101, 14);
+		add(labelInfoMaxJugadores);
 	}
 
 }

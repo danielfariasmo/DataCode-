@@ -24,10 +24,9 @@ import java.sql.ResultSet;
  */
 public class ConexionBBDD {
 
-	// Ruta de conexion.
 	private String url = "jdbc:mysql://localhost:3306/proyectointegrador";
 	private Connection conn = null;
-	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = '%s'";
+	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = %d";
 	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
 	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro, alias) VALUES ('%s', '%s');";
 
@@ -92,11 +91,13 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT nombre FROM Personaje WHERE id_miembro=" + idMiembro);
+			ResultSet rs = stmt
+					.executeQuery("SELECT nombre, nivel_experiencia FROM Personaje WHERE id_miembro=" + idMiembro);
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
+				int nivelExperiencia = rs.getInt("nivel_experiencia");
 
-				Personaje personaje = new Personaje(nombre);
+				Personaje personaje = new Personaje(nombre, nivelExperiencia);
 				personajes.add(personaje);
 			}
 			rs.close();
@@ -114,18 +115,16 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"SELECT nombre, dia_hora, duracion_sesion, numero_sesion, ambientacion, finalizada FROM Partida");
+			ResultSet rs = stmt
+					.executeQuery("SELECT nombre, dia_hora, ambientacion, finalizada, duracion_sesion FROM Partida");
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
 				String dia_hora = rs.getString("dia_hora");
 				String duracion_sesion = rs.getString("duracion_sesion");
-				String numero_sesion = rs.getString("numero_sesion");
 				String ambientacion = rs.getString("ambientacion");
 				String finalizada = rs.getString("finalizada");
 
-				Partida partida = new Partida(nombre, dia_hora, duracion_sesion, numero_sesion, ambientacion,
-						finalizada);
+				Partida partida = new Partida(nombre, dia_hora, duracion_sesion, ambientacion, finalizada);
 				partidas.add(partida);
 			}
 			rs.close();
@@ -144,15 +143,17 @@ public class ConexionBBDD {
 
 		// Ejecuto la consulta
 		try {
+
+			int claveNum = Integer.parseInt(clave);
 			Statement statement = conectar().createStatement();
-			resultSet = statement.executeQuery(String.format(FIND_USER_QUERY, usuario, clave));
+			resultSet = statement.executeQuery(String.format(FIND_USER_QUERY, usuario, claveNum));
 			if (resultSet.next()) {
 				miembro = new Miembro(String.valueOf(resultSet.getInt(ID_MIEMBRO)),
 						resultSet.getString(NOMBRE_APELLIDOS), resultSet.getInt(NUMERO_EXPEDIENTE),
 						resultSet.getString(NOMBRE_ESTUDIO), resultSet.getString(NOMBRE_USUARIO),
 						String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
 			}
-		} catch (SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 

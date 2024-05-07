@@ -14,11 +14,11 @@ public class Personaje {
 	private String idPersonaje;
 	private String nombre;
 	private String raza;
-	private String nivelExperiencia;
+	private int nivelExperiencia;
 	private String clase;
 	private String id_miembro;
 
-	public Personaje(String idPersonaje, String nombre, String raza, String nivelExperiencia, String clase,
+	public Personaje(String idPersonaje, String nombre, String raza, int nivelExperiencia, String clase,
 			String id_miembro) {
 		this.idPersonaje = idPersonaje;
 		this.nombre = nombre;
@@ -28,13 +28,14 @@ public class Personaje {
 		this.id_miembro = id_miembro;
 	}
 	
-	public Personaje (String nombre) {
+	public Personaje (String nombre, int nivelExperiencia) {
 		this.nombre = nombre;
+		this.nivelExperiencia = nivelExperiencia;
 	}
 
 	@Override
 	public String toString() {
-		return "Personaje: " + nombre;
+		return "Personaje: " + nombre + ". [Nivel Experiencia: " + nivelExperiencia +"]";
 	}
 
 	public String getIdPersonaje() {
@@ -61,11 +62,11 @@ public class Personaje {
 		this.raza = raza;
 	}
 
-	public String getNivelExperiencia() {
+	public int getNivelExperiencia() {
 		return nivelExperiencia;
 	}
 
-	public void setNivelExperiencia(String nivelExperiencia) {
+	public void setNivelExperiencia(int nivelExperiencia) {
 		this.nivelExperiencia = nivelExperiencia;
 	}
 
