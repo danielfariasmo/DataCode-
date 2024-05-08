@@ -101,7 +101,7 @@ public class EditarPartida extends JPanel {
 		botonCrearPartida.setFont(new Font("Verdana", Font.BOLD, 20));
 		botonCrearPartida.setForeground(new Color(37, 34, 81));
 		botonCrearPartida.setBackground(new Color(135, 206, 235));
-		botonCrearPartida.setBounds(450, 495, 400, 50);
+		botonCrearPartida.setBounds(452, 508, 400, 50);
 		add(botonCrearPartida);
 
 		// Botones de seleccion

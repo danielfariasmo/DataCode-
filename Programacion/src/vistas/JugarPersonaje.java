@@ -134,7 +134,7 @@ public class JugarPersonaje extends JPanel {
 		botonActualizar.setBackground(new Color(135, 206, 235));
 		botonActualizar.setForeground(new Color(37, 34, 81));
 		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonActualizar.setBounds(480, 493, 181, 65);
+		botonActualizar.setBounds(481, 501, 181, 65);
 		add(botonActualizar);
 
 		
