@@ -5,6 +5,8 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.ControlMenuPrincipalUsuario;
 import modelo.Partida;
 
 public class ConsultarPartida extends JPanel {
@@ -30,9 +33,11 @@ public class ConsultarPartida extends JPanel {
 	private JPanel panelContenedor;
 	private JLabel labelSlogan;
 	private JButton botonInfoPartida;
+	private ArrayList<Partida> partidasEnTabla;
+	private ControlMenuPrincipalUsuario controlMenuPrincipal;
 
-	public ConsultarPartida() {
-
+	public ConsultarPartida(ControlMenuPrincipalUsuario controlMenuPrincipal) {
+		this.controlMenuPrincipal = controlMenuPrincipal;
 		configuracionInicial();
 		inicializarComponentes();
 
@@ -50,6 +55,8 @@ public class ConsultarPartida extends JPanel {
 
 	public void cargarPartida(ArrayList<Partida> partidas) {
 
+		partidasEnTabla = partidas;
+
 		String[][] datos = new String[partidas.size()][6];
 
 		for (int i = 0; i < partidas.size(); i++) {
@@ -64,7 +71,7 @@ public class ConsultarPartida extends JPanel {
 		}
 
 		tablaPartida = new JTable(new DefaultTableModel(datos, new String[] { "Nombre", "Día y hora de creación",
-				"Finalizada (Si/No)", "Duración (horas)", "Ambientación" }));
+				"Ambientación", "Finalizada (Si/No)", "Duración (horas)" }));
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
 		tablaPartida.setBounds(10, -13, 841, 452);
@@ -113,6 +120,24 @@ public class ConsultarPartida extends JPanel {
 		botonInfoPartida.setBackground(new Color(135, 206, 235));
 		botonInfoPartida.setForeground(new Color(37, 34, 81));
 		botonInfoPartida.setBounds(509, 363, 262, 43);
+		botonInfoPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				itemSeleccionado(evt);
+			}
+		});
 		add(botonInfoPartida);
 	}
+
+	public void itemSeleccionado(ActionEvent e) {
+
+		Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
+		System.out.println(partidaSeleccionada);
+		
+		controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
+	}
+
+	public JTable getTablaPartida() {
+		return tablaPartida;
+	}
+
 }

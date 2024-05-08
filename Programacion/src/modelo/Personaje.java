@@ -32,6 +32,13 @@ public class Personaje {
 		this.nombre = nombre;
 		this.nivelExperiencia = nivelExperiencia;
 	}
+	
+	public Personaje (String nombre, int nivelExperiencia, String raza, String clase) {
+		this.nombre = nombre;
+		this.nivelExperiencia = nivelExperiencia;
+		this.clase = clase;
+		this.raza = raza;
+	}
 
 	@Override
 	public String toString() {

@@ -14,6 +14,7 @@ import modelo.Miembro;
 import modelo.Partida;
 import modelo.Personaje;
 import vistas.ConsultarPartida;
+import vistas.InfoPartidaJugador;
 import vistas.JugarPersonaje;
 import vistas.MenuPrincipalUsuario;
 import vistas.MiembroClub;
@@ -39,19 +40,22 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private Miembro miembro;
 	private JugarPersonaje jugarPersonaje;
 	private ConexionBBDD conexionbbdd;
+	private InfoPartidaJugador infoPartidaJugador;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
-			ConsultarPartida consultarPartida, MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
-			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, JugarPersonaje jugarPersonaje, Miembro miembro) {
+			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
+			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, JugarPersonaje jugarPersonaje, Miembro miembro,
+			InfoPartidaJugador infoPartidaJugador) {
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
-		this.consultarPartida = consultarPartida;
+		this.consultarPartida = new ConsultarPartida(this);
 		this.miembroClub = miembroClub;
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
 		this.textoMenuPrincipal = textoMenuPrincipal;
 		this.jugarPersonaje = jugarPersonaje;
 		this.miembro = miembro;
+		this.infoPartidaJugador = infoPartidaJugador;
 	}
 
 	@Override
@@ -111,5 +115,16 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		
 		ArrayList<Partida> partidas = conexionbbdd.consultarPartida();
 		consultarPartida.cargarPartida(partidas);
+	}
+	
+	public void cambiarInfoPartidaJugador(Partida partida) {
+		menuPrincipal.cambiarPanel(infoPartidaJugador);
+		
+		conexionbbdd = new ConexionBBDD();
+		ArrayList<Personaje> misPersonajes = conexionbbdd.obtenerPersonaje(miembro.getIdMiembro());
+		ArrayList<Personaje> todosPersonajes = conexionbbdd.cargarTodosPersonajes(partida.getIdPartida());
+		
+		infoPartidaJugador.cargarInfoPartida(partida, misPersonajes, todosPersonajes);
+	
 	}
 }

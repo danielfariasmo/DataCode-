@@ -32,16 +32,16 @@ public class ConexionBBDD {
 
 	public Connection conectar() {
 
-		if (conn != null) {
-			return conn;
-		}
+//		if (conn != null) {
+//			return conn;
+//		}
 
 		try {
 			// Indicamos la clase a la que vamos a acceder
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			conn = DriverManager.getConnection(url, "root", "1590");
+			return DriverManager.getConnection(url, "root", "1590");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -116,15 +116,18 @@ public class ConexionBBDD {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("SELECT nombre, dia_hora, ambientacion, finalizada, duracion_sesion FROM Partida");
+					.executeQuery("SELECT * FROM Partida");
 			while (rs.next()) {
+				String idPartida = String.valueOf(rs.getInt("id_partida"));
 				String nombre = rs.getString("nombre");
 				String dia_hora = rs.getString("dia_hora");
+				String numeroSesion = String.valueOf(rs.getInt("numero_sesion"));
 				String duracion_sesion = rs.getString("duracion_sesion");
 				String ambientacion = rs.getString("ambientacion");
 				String finalizada = rs.getString("finalizada");
+				String idGameMaster = rs.getString("id_gameMaster");
 
-				Partida partida = new Partida(nombre, dia_hora, duracion_sesion, ambientacion, finalizada);
+				Partida partida = new Partida(idPartida, nombre, dia_hora, numeroSesion, ambientacion, finalizada, duracion_sesion, idGameMaster);
 				partidas.add(partida);
 			}
 			rs.close();
@@ -189,4 +192,34 @@ public class ConexionBBDD {
 
 		cerrar();
 	}
+	
+	public ArrayList<Personaje> cargarTodosPersonajes(String id_partida) {
+		ArrayList<Personaje> personajes = new ArrayList<>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT p.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia \r\n"
+							+ "FROM Partida p\r\n"
+							+ "JOIN Personaje per ON p.id_partida = per.id_personaje\r\n"
+							+ "WHERE p.id_partida = "+ id_partida);
+			while (rs.next()) {
+				String nombre = rs.getString("nombre");
+				String raza = rs.getString("raza");
+				String clase = rs.getString("clase");
+				int nivelExperiencia = rs.getInt("nivel_experiencia");
+
+				Personaje personaje = new Personaje(nombre, nivelExperiencia, raza, clase);
+				personajes.add(personaje);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return personajes;
+
+	}
+	
 }
