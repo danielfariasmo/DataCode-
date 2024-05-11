@@ -91,13 +91,15 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("SELECT nombre, nivel_experiencia FROM Personaje WHERE id_miembro=" + idMiembro);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Personaje WHERE id_miembro=" + idMiembro);
 			while (rs.next()) {
+				String idPersonaje = String.valueOf(rs.getInt("id_personaje"));
 				String nombre = rs.getString("nombre");
+				String raza = rs.getString("raza");
 				int nivelExperiencia = rs.getInt("nivel_experiencia");
+				String clase = rs.getString("clase");
 
-				Personaje personaje = new Personaje(nombre, nivelExperiencia);
+				Personaje personaje = new Personaje(idPersonaje, nombre, raza, nivelExperiencia, clase, idMiembro);
 				personajes.add(personaje);
 			}
 			rs.close();
@@ -115,8 +117,7 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("SELECT * FROM Partida");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Partida");
 			while (rs.next()) {
 				String idPartida = String.valueOf(rs.getInt("id_partida"));
 				String nombre = rs.getString("nombre");
@@ -127,7 +128,8 @@ public class ConexionBBDD {
 				String finalizada = rs.getString("finalizada");
 				String idGameMaster = rs.getString("id_gameMaster");
 
-				Partida partida = new Partida(idPartida, nombre, dia_hora, numeroSesion, ambientacion, finalizada, duracion_sesion, idGameMaster);
+				Partida partida = new Partida(idPartida, nombre, dia_hora, numeroSesion, ambientacion, finalizada,
+						duracion_sesion, idGameMaster);
 				partidas.add(partida);
 			}
 			rs.close();
@@ -192,17 +194,17 @@ public class ConexionBBDD {
 
 		cerrar();
 	}
-	
+
 	public ArrayList<Personaje> cargarTodosPersonajes(String id_partida) {
 		ArrayList<Personaje> personajes = new ArrayList<>();
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
+			// TODO: error en consulta
 			ResultSet rs = stmt
-					.executeQuery("SELECT p.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia \r\n"
-							+ "FROM Partida p\r\n"
-							+ "JOIN Personaje per ON p.id_partida = per.id_personaje\r\n"
-							+ "WHERE p.id_partida = "+ id_partida);
+					.executeQuery("SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia "
+							+ "FROM Juega j " + "JOIN Personaje per ON j.id_personaje = per.id_personaje "
+							+ "WHERE j.id_partida = " + id_partida);
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
 				String raza = rs.getString("raza");
@@ -219,7 +221,126 @@ public class ConexionBBDD {
 			e.printStackTrace();
 		}
 		return personajes;
+	}
 
+	public void agregarPartida(Juega partidaActual) {
+
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(
+					"INSERT INTO Juega (id_personaje, id_partida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma) "
+							+ "VALUES (" + partidaActual.getIdPersonaje() + ", " + partidaActual.getId_partida() + ", '"
+							+ partidaActual.getDescripcion() + "', " + partidaActual.getFuerza() + ", "
+							+ partidaActual.getDestreza() + ", " + partidaActual.getConstitucion() + ", "
+							+ partidaActual.getInteligencia() + ", " + partidaActual.getSabiduria() + ", "
+							+ partidaActual.getCarisma() + ");");
+
+			stmt.close();
+			cerrar();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<String[]> obtenerPartidasActuales(String id_miembro) {
+
+		ArrayList<String[]> obtenerPatida = new ArrayList<String[]>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			// TODO: error en consulta
+			ResultSet rs = stmt.executeQuery(
+					"SELECT p.nombre, p.finalizada, per.nombre AS nombre_personaje, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j "
+							+ "JOIN Personaje per ON j.id_personaje = per.id_personaje "
+							+ "JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_miembro = " + id_miembro);
+			while (rs.next()) {
+				String nombrePartida = rs.getString("nombre");
+				String finalizada = rs.getString("finalizada");
+				String nombrePersonaje = rs.getString("nombre_personaje");
+				String fuerza = String.valueOf(rs.getInt("fuerza"));
+				String destreza = String.valueOf(rs.getInt("destreza"));
+				String constitucion = String.valueOf(rs.getInt("constitucion"));
+				String inteligencia = String.valueOf(rs.getInt("inteligencia"));
+				String sabiduria = String.valueOf(rs.getInt("sabiduria"));
+				String carisma = String.valueOf(rs.getInt("carisma"));
+
+				String[] registro = new String[] { nombrePartida, finalizada, nombrePersonaje, fuerza, destreza,
+						constitucion, inteligencia, sabiduria, carisma };
+
+				obtenerPatida.add(registro);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return obtenerPatida;
+	}
+
+	public ArrayList<String[]> obtenerCaracteristicasPartida(String idPersonaje) {
+
+		ArrayList<String[]> obtenerPatida = new ArrayList<String[]>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			// TODO: error en consulta
+			ResultSet rs = stmt.executeQuery(
+					"SELECT p.nombre, p.id_partida  "
+					+ "FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje "
+					+ "JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje =" + idPersonaje);
+			while (rs.next()) {
+				String nombrePartida = rs.getString("nombre");
+				String idPartida = String.valueOf(rs.getInt("id_partida"));
+				
+
+				String[] registro = new String[] { nombrePartida, idPartida};
+
+				obtenerPatida.add(registro);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return obtenerPatida;
 	}
 	
+	public Juega consultarCaracteristicas(int idPersonaje, int idPartida) {
+		
+		Juega caracteristicas= null;
+		
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			// TODO: error en consulta
+			ResultSet rs = stmt.executeQuery("SELECT * FROM juega WHERE id_personaje = " + idPersonaje + " AND id_partida = " + idPartida);
+			while (rs.next()) {
+				String descripcion = rs.getString("descripcion");
+				int fuerza = rs.getInt("fuerza");
+				int destreza = rs.getInt("destreza");
+				int constitucion = rs.getInt("constitucion");
+				int inteligencia = rs.getInt("inteligencia");
+				int sabiduria = rs.getInt("sabiduria");
+				int carisma = rs.getInt("carisma");
+
+				caracteristicas = new Juega (idPersonaje, idPartida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma);
+
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return caracteristicas;
+		
+	}
+
 }

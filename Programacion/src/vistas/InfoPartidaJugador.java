@@ -2,17 +2,21 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.ControlMenuPrincipalUsuario;
 import modelo.Partida;
 import modelo.Personaje;
 
@@ -29,9 +33,11 @@ public class InfoPartidaJugador extends JPanel {
 	private JLabel labelInfoMaxJugadores;
 	private JLabel labelInfoGameMaster;
 	private JTable tablaPersonajes;
+	private Partida partidaClase;
+	private ControlMenuPrincipalUsuario control;
 
-	public InfoPartidaJugador() {
-
+	public InfoPartidaJugador(ControlMenuPrincipalUsuario control) {
+		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 	}
@@ -55,11 +61,27 @@ public class InfoPartidaJugador extends JPanel {
 		labelTitulo.setBounds(350, 35, 1200, 60);
 		add(labelTitulo);
 
-		
 		// Tabla Personajes
-		tablaPersonajes = new JTable(new DefaultTableModel(new Object[][] { {}, {}, {}, {}, {}, {}, {}, {} },
+		tablaPersonajes = new JTable(new DefaultTableModel(new Object[][] { },
 				new String[] { "Nombre", "Raza", "Clase", "Nivel" }));
-		
+		// Tabla Personajes
+		tablaPersonajes.setFont(new Font("Verdana", Font.PLAIN, 15));
+		tablaPersonajes.setForeground(new Color(255, 255, 255));
+		tablaPersonajes.setBackground(new Color(37, 34, 81));
+		tablaPersonajes.setBounds(-15, 25, 939, 77);
+		add(tablaPersonajes);
+
+		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
+		tablaPersonajes.getColumnModel().getColumn(0).setPreferredWidth(150);
+		tablaPersonajes.getColumnModel().getColumn(1).setPreferredWidth(150);
+		tablaPersonajes.getColumnModel().getColumn(2).setPreferredWidth(60);
+		tablaPersonajes.getColumnModel().getColumn(3).setPreferredWidth(35);
+
+		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
+		// necesario
+		JScrollPane scrollPane = new JScrollPane(tablaPersonajes);
+		scrollPane.setBounds(181, 219, 958, 153);
+		add(scrollPane);
 
 		// Boton unirme a la partida
 		JButton botonUnirmePartida = new JButton("Unirme a la partida");
@@ -67,6 +89,11 @@ public class InfoPartidaJugador extends JPanel {
 		botonUnirmePartida.setForeground(new Color(37, 34, 81));
 		botonUnirmePartida.setFont(new Font("Verdana", Font.BOLD, 20));
 		botonUnirmePartida.setBounds(711, 453, 272, 43);
+		botonUnirmePartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				itemSeleccionado(evt);
+			}
+		});
 		add(botonUnirmePartida);
 
 		// Id Partida
@@ -124,48 +151,51 @@ public class InfoPartidaJugador extends JPanel {
 		return boxPersonaje;
 	}
 
-	public void cargarInfoPartida(Partida partida, ArrayList<Personaje> misPersonajes, ArrayList<Personaje> todosPersonajes) {
-		
+	public void cargarInfoPartida(Partida partida, ArrayList<Personaje> misPersonajes,
+			ArrayList<Personaje> todosPersonajes) {
+
 		labelTitulo.setText(partida.getNombre());
 		labelIdentificadorPartida.setText(partida.getIdPartida());
 		labelInfoMaxJugadores.setText(partida.getDuracionSesion() + " horas.");
 		labelInfoGameMaster.setText(partida.getIdGameMaster());
-		
-		String[][] datos = new String[todosPersonajes.size()][4];
 
-		for (int i = 0; i < todosPersonajes.size(); i++) {
-			Personaje personaje = todosPersonajes.get(i);
+		DefaultTableModel modelo = (DefaultTableModel) tablaPersonajes.getModel();
+		modelo.setNumRows(0);
 
-			datos[i][0] = personaje.getNombre();
-			datos[i][1] = personaje.getRaza();
-			datos[i][2] = personaje.getClase();
-			datos[i][3] = String.valueOf(personaje.getNivelExperiencia());
-	
+		for (Personaje personaje : todosPersonajes) {
+			ArrayList<String> registro = new ArrayList<String>();
+			registro.add(personaje.getNombre());
+			registro.add(personaje.getRaza());
+			registro.add(personaje.getClase());
+			registro.add(String.valueOf(personaje.getNivelExperiencia()));
+
+			modelo.addRow(registro.toArray());
 		}
-		// Tabla Personajes
-				tablaPersonajes = new JTable(new DefaultTableModel(datos,
-						new String[] { "Nombre", "Raza", "Clase", "Nivel" }));
-		tablaPersonajes.setFont(new Font("Verdana", Font.PLAIN, 15));
-		tablaPersonajes.setForeground(new Color(255, 255, 255));
-		tablaPersonajes.setBackground(new Color(37, 34, 81));
-		tablaPersonajes.setBounds(-15, 25, 939, 77);
-		add(tablaPersonajes);
 
-		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
-		tablaPersonajes.getColumnModel().getColumn(0).setPreferredWidth(150);
-		tablaPersonajes.getColumnModel().getColumn(1).setPreferredWidth(150);
-		tablaPersonajes.getColumnModel().getColumn(2).setPreferredWidth(60);
-		tablaPersonajes.getColumnModel().getColumn(3).setPreferredWidth(35);
-
-		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
-		// necesario
-		JScrollPane scrollPane = new JScrollPane(tablaPersonajes);
-		scrollPane.setBounds(181, 219, 958, 153);
-		add(scrollPane);
-		
 		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
 		dcbm.addAll(misPersonajes);
 		boxPersonaje.setModel(dcbm);
+		
+		partidaClase = partida;
+
+	}
+	
+	private void itemSeleccionado (ActionEvent e) {
+		
+		Personaje personaje = (Personaje) boxPersonaje.getSelectedItem();
+		System.out.println(personaje);
+		
+		if (personaje != null) {
+			
+			String descripcion = JOptionPane.showInputDialog("Indica la descripción de tu personaje: ");
+			
+			System.out.println(descripcion);
+			
+			JOptionPane.showMessageDialog(this, "Te has unido a la partida: " + partidaClase.getNombre());
+			control.agregarPartida(partidaClase, personaje, descripcion);
+		} else {
+			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje");
+		}
 		
 	}
 }

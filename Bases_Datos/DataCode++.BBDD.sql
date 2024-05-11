@@ -28,7 +28,7 @@ CREATE TABLE GameMaster (
 
 -- PERSONAJE
 CREATE TABLE Personaje (
-	id_personaje INT, 
+	id_personaje INT auto_increment, 
     nombre TEXT, 
     raza TEXT, 
     nivel_experiencia INT, 
@@ -40,7 +40,7 @@ CREATE TABLE Personaje (
     
 -- PARTIDA
 CREATE TABLE Partida (
-	id_partida INT, 
+	id_partida INT auto_increment, 
     nombre TEXT,
     dia_hora DATETIME, 
     numero_sesion INT,
@@ -54,7 +54,7 @@ CREATE TABLE Partida (
     
 -- JUEGA
 CREATE TABLE Juega (
-	id_personaje INT,
+	id_personaje INT auto_increment,
     id_partida INT,
     descripcion TEXT,
     fuerza INT,
@@ -237,3 +237,11 @@ VALUES (05, 20, 'Cazador experto, rastrea y caza sin igual', 80, 85, 65, 45, 40,
 delete from gamemaster where id_gameMaster=100;
 commit;
 select * from GameMaster;
+
+select * from Juega WHERE id_partida = 20;
+
+SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje WHERE j.id_partida = 19;
+
+SELECT p.nombre, p.finalizada, per.nombre AS nombrePer, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_miembro = 02;
+
+SELECT p.nombre, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje = 03;

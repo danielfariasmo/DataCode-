@@ -57,21 +57,35 @@ public class ConsultarPartida extends JPanel {
 
 		partidasEnTabla = partidas;
 
-		String[][] datos = new String[partidas.size()][6];
+		DefaultTableModel modelo = (DefaultTableModel) tablaPartida.getModel();
+		modelo.setNumRows(0);
 
-		for (int i = 0; i < partidas.size(); i++) {
-			Partida partida = partidas.get(i);
+		for (Partida partida : partidas) {
+			ArrayList<String> registro = new ArrayList<String>();
+			registro.add(partida.getNombre());
+			registro.add(partida.getDiaHora());
+			registro.add(partida.getDuracionSesion());
+			registro.add(partida.getAmbientacion());
+			registro.add(partida.getFinalizada());
 
-			datos[i][0] = partida.getNombre();
-			datos[i][1] = partida.getDiaHora();
-			datos[i][2] = partida.getAmbientacion();
-			datos[i][3] = partida.getFinalizada();
-			datos[i][4] = partida.getDuracionSesion();
-
+			modelo.addRow(registro.toArray());
 		}
 
-		tablaPartida = new JTable(new DefaultTableModel(datos, new String[] { "Nombre", "Día y hora de creación",
-				"Ambientación", "Finalizada (Si/No)", "Duración (horas)" }));
+	}
+
+	public void inicializarComponentes() {
+
+		// Titulo de Pagina
+		labelConsultarPartida = new JLabel("Consultar Partida");
+		labelConsultarPartida.setFont(new Font("Verdana", Font.BOLD, 40));
+		labelConsultarPartida.setForeground(new Color(255, 255, 255));
+		labelConsultarPartida.setBounds(432, 65, 401, 43);
+		add(labelConsultarPartida);
+
+		// Tabla Partida
+		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre",
+				"Día y hora de Creación", "Duración Sesión", "Ambientación", "Finalizada (Si/No)", }));
+
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
 		tablaPartida.setBounds(10, -13, 841, 452);
@@ -89,20 +103,6 @@ public class ConsultarPartida extends JPanel {
 		scrollPane = new JScrollPane(tablaPartida);
 		scrollPane.setBounds(162, 157, 952, 153);
 		add(scrollPane);
-	}
-
-	public void inicializarComponentes() {
-
-		// Titulo de Pagina
-		labelConsultarPartida = new JLabel("Consultar Partida");
-		labelConsultarPartida.setFont(new Font("Verdana", Font.BOLD, 40));
-		labelConsultarPartida.setForeground(new Color(255, 255, 255));
-		labelConsultarPartida.setBounds(432, 65, 401, 43);
-		add(labelConsultarPartida);
-
-		// Tabla Partida
-		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre",
-				"Día y hora de Creación", "Duración Sesión", "Nº Sesión", "Ambientación", "Finalizada (Si/No)", }));
 
 		// Contenedor para recuadro blanco
 		panelContenedor = new JPanel();
@@ -130,9 +130,10 @@ public class ConsultarPartida extends JPanel {
 
 	public void itemSeleccionado(ActionEvent e) {
 
+		// TODO
 		Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
 		System.out.println(partidaSeleccionada);
-		
+
 		controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
 	}
 

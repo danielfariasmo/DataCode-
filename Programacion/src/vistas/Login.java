@@ -134,12 +134,10 @@ public class Login extends JFrame {
 		ModificarPersonaje modificarPersonaje = new ModificarPersonaje();
 		MostrarPersonaje mostrarPersonaje = new MostrarPersonaje();
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
-		JugarPersonaje jugarPersonaje = new JugarPersonaje();
-		InfoPartidaJugador infoPartidaJugador = new InfoPartidaJugador();
+		PartidaActual partidaActual = new PartidaActual();
 
 		ControlMenuPrincipalUsuario listener = new ControlMenuPrincipalUsuario(menuPrincipalUsuario, nuevoPersonaje,
-				miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal, jugarPersonaje, miembro, 
-				infoPartidaJugador);
+				miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal, partidaActual, miembro);
 
 		menuPrincipalUsuario.setListener(listener);
 

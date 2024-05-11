@@ -42,7 +42,7 @@ public class Personaje {
 
 	@Override
 	public String toString() {
-		return "Personaje: " + nombre + ". [Nivel Experiencia: " + nivelExperiencia +"]";
+		return "Personaje: " + nombre + ". [Experiencia: " + nivelExperiencia +"]";
 	}
 
 	public String getIdPersonaje() {

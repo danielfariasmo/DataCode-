@@ -32,7 +32,8 @@ public class MenuPrincipalUsuario extends JFrame {
 	private JMenuItem mostrarMiembros;
 	private JMenuItem volverMenuPrincipal;
 	private JMenuItem juegos;
-	
+	private JMenuItem partidaActual;
+
 	private Miembro miembro;
 
 	public MenuPrincipalUsuario(Miembro miembro) {
@@ -144,7 +145,7 @@ public class MenuPrincipalUsuario extends JFrame {
 
 		// Añadimos opcion a parte del menu Miembros.
 		miembros.add(mostrarMiembros);
-		
+
 		/*
 		 * Opcion Jugar.
 		 */
@@ -157,8 +158,15 @@ public class MenuPrincipalUsuario extends JFrame {
 		juegos.setForeground(new Color(37, 34, 81));
 		juegos.setFont(new Font("Verdana", Font.PLAIN, 25));
 
+		// Jugar
+		partidaActual = new JMenuItem("Partidas Actuales");
+		partidaActual.setForeground(new Color(37, 34, 81));
+		partidaActual.setFont(new Font("Verdana", Font.PLAIN, 25));
+
 		// Añadimos a la barra las opciones.
 		jugar.add(juegos);
+		jugar.add(new JSeparator());
+		jugar.add(partidaActual);
 		jugar.add(new JSeparator());
 
 		/*
@@ -171,7 +179,7 @@ public class MenuPrincipalUsuario extends JFrame {
 		volverMenu.setFont(new Font("Verdana", Font.BOLD, 25));
 
 		// Añadimos opción a parte del menu Volver a menu
-		volverMenuPrincipal = new JMenuItem("Menú Principal");
+		volverMenuPrincipal = new JMenuItem("Menú");
 		volverMenuPrincipal.setForeground(new Color(37, 34, 81));
 		volverMenuPrincipal.setFont(new Font("Verdana", Font.PLAIN, 25));
 		volverMenu.add(volverMenuPrincipal);
@@ -209,6 +217,7 @@ public class MenuPrincipalUsuario extends JFrame {
 		mostrarMiembros.addActionListener(listener);
 		volverMenuPrincipal.addActionListener(listener);
 		juegos.addActionListener(listener);
+		partidaActual.addActionListener(listener);
 	}
 
 }

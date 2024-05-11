@@ -6,10 +6,12 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JMenuItem;
 
 import modelo.ConexionBBDD;
+import modelo.Juega;
 import modelo.Miembro;
 import modelo.Partida;
 import modelo.Personaje;
@@ -21,6 +23,7 @@ import vistas.MiembroClub;
 import vistas.ModificarPersonaje;
 import vistas.MostrarPersonaje;
 import vistas.NuevoPersonaje;
+import vistas.PartidaActual;
 import vistas.TextoMenuPrincipal;
 
 public class ControlMenuPrincipalUsuario implements ActionListener {
@@ -41,11 +44,14 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private JugarPersonaje jugarPersonaje;
 	private ConexionBBDD conexionbbdd;
 	private InfoPartidaJugador infoPartidaJugador;
+	private PartidaActual partidaActual;
+	private ControlJugarPersonaje controlJugarPersonaje;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
-			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
-			MostrarPersonaje mostrarPersonaje, TextoMenuPrincipal textoMenuPrincipal, JugarPersonaje jugarPersonaje, Miembro miembro,
-			InfoPartidaJugador infoPartidaJugador) {
+			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje, MostrarPersonaje mostrarPersonaje,
+			TextoMenuPrincipal textoMenuPrincipal, PartidaActual partidaActual,
+			Miembro miembro) {
+		this.controlJugarPersonaje = new ControlJugarPersonaje(miembro);
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = new ConsultarPartida(this);
@@ -53,9 +59,10 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		this.modificarPersonaje = modificarPersonaje;
 		this.mostrarPersonaje = mostrarPersonaje;
 		this.textoMenuPrincipal = textoMenuPrincipal;
-		this.jugarPersonaje = jugarPersonaje;
+		this.jugarPersonaje = controlJugarPersonaje.getJugarPersonaje();
+		this.partidaActual = partidaActual;
 		this.miembro = miembro;
-		this.infoPartidaJugador = infoPartidaJugador;
+		this.infoPartidaJugador = new InfoPartidaJugador(this);
 	}
 
 	@Override
@@ -78,9 +85,9 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 					for (Miembro miembro : miembros) {
 						System.out.println(miembro);
 					}
-					
+
 					miembroClub.insertarMiembros(miembros);
-					
+
 				} else {
 					System.out.println("No se pudieron obtener los miembros.");
 				}
@@ -92,8 +99,11 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 				mostrarPersonajes();
 			} else if (evento.getActionCommand().equals("Jugar")) {
 				menuPrincipal.cambiarPanel(jugarPersonaje);
-				
-			} else if (evento.getActionCommand().equals("Menú Principal")) {
+
+			} else if (evento.getActionCommand().equals("Partidas Actuales")) {
+				cambioPanelPartidaActual();
+
+			} else if (evento.getActionCommand().equals("Menú")) {
 				menuPrincipal.cambiarPanel(textoMenuPrincipal);
 
 			}
@@ -104,27 +114,52 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private void mostrarPersonajes() {
 		menuPrincipal.cambiarPanel(mostrarPersonaje);
 		conexionbbdd = new ConexionBBDD();
-		
+
 		ArrayList<Personaje> personajes = conexionbbdd.obtenerPersonaje(miembro.getIdMiembro());
 		mostrarPersonaje.insertarPersonaje(personajes);
 	}
-	
+
 	private void consultarPartida() {
 		menuPrincipal.cambiarPanel(consultarPartida);
 		conexionbbdd = new ConexionBBDD();
-		
+
 		ArrayList<Partida> partidas = conexionbbdd.consultarPartida();
 		consultarPartida.cargarPartida(partidas);
 	}
-	
+
 	public void cambiarInfoPartidaJugador(Partida partida) {
 		menuPrincipal.cambiarPanel(infoPartidaJugador);
-		
+
 		conexionbbdd = new ConexionBBDD();
 		ArrayList<Personaje> misPersonajes = conexionbbdd.obtenerPersonaje(miembro.getIdMiembro());
 		ArrayList<Personaje> todosPersonajes = conexionbbdd.cargarTodosPersonajes(partida.getIdPartida());
-		
+
 		infoPartidaJugador.cargarInfoPartida(partida, misPersonajes, todosPersonajes);
+
+	}
+
+	public void agregarPartida(Partida partida, Personaje personaje, String descripcion) {
+
+		Random aleatorio = new Random();
+		conexionbbdd = new ConexionBBDD();
+
+		Juega partidasActuales = new Juega(Integer.parseInt(personaje.getIdPersonaje()),
+				Integer.parseInt(partida.getIdPartida()), descripcion, aleatorio.nextInt(100), aleatorio.nextInt(100),
+				aleatorio.nextInt(100), aleatorio.nextInt(100), aleatorio.nextInt(100), aleatorio.nextInt(100));
+		
+		conexionbbdd.agregarPartida(partidasActuales);
+
+		cambioPanelPartidaActual();
+	}
 	
+	private void cambioPanelPartidaActual() {
+		
+		conexionbbdd = new ConexionBBDD();
+		
+		ArrayList <String[]> partidas = conexionbbdd.obtenerPartidasActuales(miembro.getIdMiembro());
+	
+		
+		menuPrincipal.cambiarPanel(partidaActual);
+		partidaActual.cargarPartida(partidas);
 	}
 }

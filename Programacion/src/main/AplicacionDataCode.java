@@ -28,3 +28,5 @@ public class AplicacionDataCode {
 	}
 
 }
+
+/* 	CERRAR SESION Y PODER CAMBIAR A GM O USUARIO*/

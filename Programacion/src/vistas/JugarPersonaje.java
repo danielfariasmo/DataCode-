@@ -2,26 +2,65 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JButton;
+
+import control.ControlJugarPersonaje;
+import modelo.Juega;
+import modelo.Personaje;
 
 public class JugarPersonaje extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JComboBox<Personaje> seleccionPersonaje;
+	private ControlJugarPersonaje control;
+	private JComboBox<String> seleccionPartida;
+	private ArrayList<String[]> partidas;
+	private Personaje personaje;
+	private JSpinner spinnerInteligencia;
+	private JSpinner spinnerCarisma;
+	private JSpinner spinnerFuerza;
+	private JSpinner spinnerDestreza;
+	private JSpinner spinnerConstitucion;
+	private JSpinner spinnerSabiduria;
 
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
 	 * @author Daniel G.
 	 */
-	public JugarPersonaje() {
+	public JugarPersonaje(ControlJugarPersonaje control) {
+		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 
+	}
+	
+	public void insertarPersonaje(ArrayList<Personaje> array) {
+		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
+		dcbm.addAll(array);
+		seleccionPersonaje.setModel(dcbm);
+	}
+	
+	public void insertarPartida(ArrayList<String[]> array) {
+		
+		partidas = array;
+		DefaultComboBoxModel<String> dcbm = new DefaultComboBoxModel<String>();
+		ArrayList <String> contenedor = new ArrayList<String>();
+		
+		for (String[] strings : array) {
+			contenedor.add(strings[0]);
+		}
+		dcbm.addAll(contenedor);
+		seleccionPartida.setModel(dcbm);
 	}
 
 	public void configuracionInicial() {
@@ -42,8 +81,14 @@ public class JugarPersonaje extends JPanel {
 		labelPersonaje.setBounds(341, 70, 152, 50);
 		add(labelPersonaje);
 
-		JComboBox<Object> seleccionPartida = new JComboBox<Object>();
+		seleccionPartida = new JComboBox<String>();
 		seleccionPartida.setBounds(595, 130, 306, 50);
+		seleccionPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				seleccionPartidaCombo(e);
+			}
+		});
 		add(seleccionPartida);
 
 		JLabel labelPartida = new JLabel("Partida");
@@ -52,8 +97,14 @@ public class JugarPersonaje extends JPanel {
 		labelPartida.setBounds(701, 70, 109, 50);
 		add(labelPartida);
 
-		JComboBox<Object> seleccionPersonaje = new JComboBox<Object>();
+		seleccionPersonaje = new JComboBox<Personaje>();
 		seleccionPersonaje.setBounds(294, 130, 232, 50);
+		seleccionPersonaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				seleccionPersonajeCombo(e);
+			}
+		});
 		add(seleccionPersonaje);
 
 		// Carisma
@@ -64,7 +115,7 @@ public class JugarPersonaje extends JPanel {
 		labelCarisma.setBounds(294, 256, 114, 32);
 		add(labelCarisma);
 
-		JSpinner spinnerCarisma = new JSpinner();
+		spinnerCarisma = new JSpinner();
 		spinnerCarisma.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerCarisma.setBounds(419, 252, 74, 41);
 		add(spinnerCarisma);
@@ -77,7 +128,7 @@ public class JugarPersonaje extends JPanel {
 		labelFuerza.setBounds(294, 339, 88, 30);
 		add(labelFuerza);
 		
-		JSpinner spinnerFuerza = new JSpinner();
+		spinnerFuerza = new JSpinner();
 		spinnerFuerza.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerFuerza.setBounds(419, 334, 74, 41);
 		add(spinnerFuerza);
@@ -89,7 +140,7 @@ public class JugarPersonaje extends JPanel {
 		labelDestreza.setBounds(294, 409, 123, 28);
 		add(labelDestreza);
 		
-		JSpinner spinnerDestreza = new JSpinner();
+		spinnerDestreza = new JSpinner();
 		spinnerDestreza.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerDestreza.setBounds(419, 403, 74, 41);
 		add(spinnerDestreza);
@@ -101,7 +152,7 @@ public class JugarPersonaje extends JPanel {
 		labelConstitucion.setBounds(595, 253, 140, 38);
 		add(labelConstitucion);
 		
-		JSpinner spinnerConstitucion = new JSpinner();
+		spinnerConstitucion = new JSpinner();
 		spinnerConstitucion.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerConstitucion.setBounds(758, 252, 74, 41);
 		add(spinnerConstitucion);
@@ -113,7 +164,7 @@ public class JugarPersonaje extends JPanel {
 		labelSabiduria.setBounds(595, 338, 123, 32);
 		add(labelSabiduria);
 		
-		JSpinner spinnerSabiduria = new JSpinner();
+		spinnerSabiduria = new JSpinner();
 		spinnerSabiduria.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerSabiduria.setBounds(758, 334, 74, 41);
 		add(spinnerSabiduria);
@@ -125,7 +176,7 @@ public class JugarPersonaje extends JPanel {
 		labelInteligencia.setBounds(595, 404, 123, 38);
 		add(labelInteligencia);
 		
-		JSpinner spinnerInteligencia = new JSpinner();
+		spinnerInteligencia = new JSpinner();
 		spinnerInteligencia.setFont(new Font("Verdana", Font.PLAIN, 20));
 		spinnerInteligencia.setBounds(758, 403, 74, 41);
 		add(spinnerInteligencia);
@@ -137,17 +188,32 @@ public class JugarPersonaje extends JPanel {
 		botonActualizar.setBounds(481, 501, 181, 65);
 		add(botonActualizar);
 
-		
-
+	}
 	
-
+	private void seleccionPersonajeCombo (ActionEvent e) {
 		
-
-		
-
-		
-
+		personaje = (Personaje) seleccionPersonaje.getSelectedItem();
+		control.cargarPartidas(personaje);
+	}
 	
+	private void seleccionPartidaCombo (ActionEvent e) {
+		
+		String idPartida = partidas.get(seleccionPartida.getSelectedIndex())[1];
+		control.obtenerCaracteristicas(personaje, idPartida);
 
 	}
+	
+	public void cargarSpinner(Juega juega) {
+		
+		spinnerInteligencia.setValue(juega.getInteligencia());
+		spinnerCarisma.setValue(juega.getCarisma());
+		spinnerFuerza.setValue(juega.getFuerza());
+		spinnerDestreza.setValue(juega.getDestreza());
+		spinnerConstitucion.setValue(juega.getConstitucion());
+		spinnerSabiduria.setValue(juega.getCarisma());
+		
+
+	}
+	
+	
 }
