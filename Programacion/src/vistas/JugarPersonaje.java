@@ -185,8 +185,15 @@ public class JugarPersonaje extends JPanel {
 		botonActualizar.setBackground(new Color(135, 206, 235));
 		botonActualizar.setForeground(new Color(37, 34, 81));
 		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonActualizar.setBounds(481, 501, 181, 65);
+		botonActualizar.setBounds(294, 483, 232, 65);
 		add(botonActualizar);
+		
+		JButton botonFinSession = new JButton("Finalizar Sesión");
+		botonFinSession.setForeground(new Color(37, 34, 81));
+		botonFinSession.setFont(new Font("Verdana", Font.BOLD, 25));
+		botonFinSession.setBackground(new Color(135, 206, 235));
+		botonFinSession.setBounds(595, 483, 306, 65);
+		add(botonFinSession);
 
 	}
 	
@@ -214,6 +221,4 @@ public class JugarPersonaje extends JPanel {
 		
 
 	}
-	
-	
 }
