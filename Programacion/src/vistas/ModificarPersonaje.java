@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 
 public class ModificarPersonaje extends JPanel {
 	/**
@@ -20,11 +22,10 @@ public class ModificarPersonaje extends JPanel {
 	 */
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textoNombre;
-	private JTextField textoExperiencia;
-	private JTextField textoClase;
-	private JTextField textoRaza;
-	
+	private JComboBox<String> comboNombrePersonaje;
+	private JComboBox<String> comboRaza;
+	private JComboBox<String> comboClase;
+	private JSpinner spinnerExperiencia;
 
 	public ModificarPersonaje() {
 
@@ -51,70 +52,112 @@ public class ModificarPersonaje extends JPanel {
 		labelModificarPersonaje.setBounds(428, 28, 460, 46);
 		add(labelModificarPersonaje);
 
-		textoNombre = new JTextField();
-		textoNombre.setLocation(530, 108);
-		textoNombre.setSize(277, 46);
-		textoNombre.setForeground(new Color(0, 0, 0));
-		textoNombre.setFont(new Font("Verdana", Font.PLAIN, 20));
-		add(textoNombre, BorderLayout.EAST);
-		textoNombre.setColumns(10);
-
 		// Nombre del personaje
 		JLabel labelNombrePersonaje = new JLabel("Nombre Personaje:");
-		labelNombrePersonaje.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelNombrePersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNombrePersonaje.setForeground(new Color(255, 255, 255));
 		add(labelNombrePersonaje, BorderLayout.NORTH);
-		labelNombrePersonaje.setBounds(225, 95, 192, 75);
+		labelNombrePersonaje.setBounds(74, 115, 324, 75);
 
 		// Raza personaje
 		JLabel labelRaza = new JLabel("Raza:");
-		labelRaza.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelRaza.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelRaza.setForeground(new Color(255, 255, 255));
 		add(labelRaza, BorderLayout.NORTH);
-		labelRaza.setBounds(225, 180, 192, 75);
-
-		textoRaza = new JTextField();
-		textoRaza.setSize(277, 46);
-		textoRaza.setLocation(530, 193);
-		textoRaza.setFont(new Font("Verdana", Font.PLAIN, 20));
-		add(textoRaza, BorderLayout.EAST);
-		textoRaza.setColumns(10);
+		labelRaza.setBounds(753, 115, 192, 75);
 
 		// Clase
 		JLabel labelClase = new JLabel("Clase:");
-		labelClase.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelClase.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelClase.setForeground(new Color(255, 255, 255));
 		add(labelClase, BorderLayout.NORTH);
-		labelClase.setBounds(225, 265, 192, 75);
-
-		textoClase = new JTextField();
-		textoClase.setSize(277, 46);
-		textoClase.setLocation(530, 275);
-		textoClase.setFont(new Font("Verdana", Font.PLAIN, 20));
-		add(textoClase, BorderLayout.EAST);
-		textoClase.setColumns(10);
+		labelClase.setBounds(753, 257, 192, 75);
 
 		// Nivel de experiencia
 		JLabel labelNivelExperiencia = new JLabel("Nivel de Experiencia:");
-		labelNivelExperiencia.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelNivelExperiencia.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNivelExperiencia.setForeground(new Color(255, 255, 255));
 		add(labelNivelExperiencia, BorderLayout.NORTH);
-		labelNivelExperiencia.setBounds(225, 344, 221, 75);
-
-		textoExperiencia = new JTextField();
-		textoExperiencia.setSize(277, 46);
-		textoExperiencia.setLocation(530, 357);
-		textoExperiencia.setFont(new Font("Verdana", Font.PLAIN, 20));
-		add(textoExperiencia, BorderLayout.EAST);
-		textoExperiencia.setColumns(10);
+		labelNivelExperiencia.setBounds(74, 257, 353, 75);
 
 		// Boton Actualizar
 		JButton botonActualizar = new JButton("Actualizar");
 		botonActualizar.setForeground(new Color(37, 34, 81));
 		botonActualizar.setBackground(new Color(135, 206, 235));
-		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 17));
+		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonActualizar.setBounds(567, 454, 198, 38);
 		add(botonActualizar);
+		
+		comboNombrePersonaje = new JComboBox<>();
+		comboNombrePersonaje.setFont(new Font("Verdana", Font.PLAIN, 20));
+		comboNombrePersonaje.setBounds(401, 135, 277, 46);
+		add(comboNombrePersonaje);
+		
+		comboRaza = new JComboBox<>();
+		comboRaza.setFont(new Font("Verdana", Font.PLAIN, 20));
+		comboRaza.setBounds(865, 136, 277, 44);
+		comboRaza.addItem(" --Seleccione la Raza--");
+        comboRaza.addItem("Draconido");
+        comboRaza.addItem("Elfo");
+        comboRaza.addItem("Enano");
+        comboRaza.addItem("Hobbit");
+        comboRaza.addItem("Humano");
+        comboRaza.addItem("Mediano");
+        comboRaza.addItem("Semiorco");
+        add(comboRaza);
+		
+		comboClase = new JComboBox<>();
+		comboClase.setFont(new Font("Verdana", Font.PLAIN, 20));
+		comboClase.setBounds(865, 277, 277, 46);
+		comboClase.addItem(" --Seleccione la Clase--");
+		comboClase.addItem("Contrabandista");
+		comboClase.addItem("Guardian");
+		comboClase.addItem("Guerrero");
+		comboClase.addItem("Heroe");
+		comboClase.addItem("Mago");
+		comboClase.addItem("Paladin");
+		comboClase.addItem("Picaro");
+		add(comboClase);
+		
+		spinnerExperiencia = new JSpinner();
+		spinnerExperiencia.setFont(new Font("Verdana", Font.PLAIN, 20));
+		spinnerExperiencia.setBounds(401, 281, 132, 38);
+		add(spinnerExperiencia);
 
 	}
+
+	public JComboBox<String> getComboNombrePersonaje() {
+		return comboNombrePersonaje;
+	}
+
+	public void setComboNombrePersonaje(JComboBox<String> comboNombrePersonaje) {
+		this.comboNombrePersonaje = comboNombrePersonaje;
+	}
+
+	public JComboBox<String> getComboRaza() {
+		return comboRaza;
+	}
+
+	public void setComboRaza(JComboBox<String> comboRaza) {
+		this.comboRaza = comboRaza;
+	}
+
+	public JComboBox<String> getComboClase() {
+		return comboClase;
+	}
+
+	public void setComboClase(JComboBox<String> comboClase) {
+		this.comboClase = comboClase;
+	}
+
+	public JSpinner getSpinnerExperiencia() {
+		return spinnerExperiencia;
+	}
+
+	public void setSpinnerExperiencia(JSpinner spinnerExperiencia) {
+		this.spinnerExperiencia = spinnerExperiencia;
+	}
+	
+	
 }
+

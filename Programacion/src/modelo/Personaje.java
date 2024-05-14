@@ -40,6 +40,11 @@ public class Personaje {
 		this.raza = raza;
 	}
 
+
+	public Personaje() {
+		
+	}
+
 	@Override
 	public String toString() {
 		return "Personaje: " + nombre + ". [Experiencia: " + nivelExperiencia +"]";

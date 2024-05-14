@@ -29,7 +29,7 @@ public class ConexionBBDD {
 	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = %d";
 	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
 	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro, alias) VALUES ('%s', '%s');";
-
+	
 	public Connection conectar() {
 
 //		if (conn != null) {
@@ -41,7 +41,7 @@ public class ConexionBBDD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			return DriverManager.getConnection(url, "root", "1590");
+			return DriverManager.getConnection(url, "root", "Villafranca1");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -341,6 +341,67 @@ public class ConexionBBDD {
 
 		return caracteristicas;
 		
+	}
+	
+	
+	public Personaje guardarPersonaje(Personaje personaje) {
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("INSERT INTO Personaje(id_personaje, nombre"
+			+ ",raza, nivel_experiencia, clase, id_miembro) values("+ personaje.getIdPersonaje()+","
+					+ ""+ personaje.getNombre() +","+personaje.getRaza() +","
+							+ ""+personaje.getNivelExperiencia()+","
+									+ ""+personaje.getClase()+","
+											+ ""+personaje.getId_miembro()+")");
+			Personaje personajeSaved = null;		
+			while (rs.next()) {
+				String nombre = rs.getString("nombre");
+				String raza = rs.getString("raza");
+				String clase = rs.getString("clase");
+				int nivelExperiencia = rs.getInt("nivel_experiencia");
+
+				personajeSaved = new Personaje(nombre, nivelExperiencia, raza, clase);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+			return personajeSaved;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Personaje actualizarPersonaje(Personaje personaje) {
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("UPDATE Personaje SET "
+					+ "id_personaje = "+personaje.getIdPersonaje()+", "
+					+ "nombre = "+ personaje.getNombre()+""
+					+ ",raza = "+personaje.getRaza()+", "
+					+ "nivel_experiencia = "+personaje.getNivelExperiencia()+", "
+					+ "clase = "+personaje.getClase()+", "
+					+ "id_miembro = "+personaje.getId_miembro()+" "
+					+ "WHERE id_personaje = "+personaje.getIdPersonaje()+"");
+			Personaje personajeUpdated = null;		
+			while (rs.next()) {
+				String nombre = rs.getString("nombre");
+				String raza = rs.getString("raza");
+				String clase = rs.getString("clase");
+				int nivelExperiencia = rs.getInt("nivel_experiencia");
+
+				personajeUpdated = new Personaje(nombre, nivelExperiencia, raza, clase);
+			}
+			rs.close();
+			stmt.close();
+			cerrar();
+			return personajeUpdated;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

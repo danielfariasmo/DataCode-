@@ -1,17 +1,19 @@
-/**
- * 
- */
+
 package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import control.ControlNuevoPersonaje;
 
 public class NuevoPersonaje extends JPanel {
 	/**
@@ -21,6 +23,9 @@ public class NuevoPersonaje extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField textoNombre;
+	private JComboBox<String> comboRaza;
+	private JComboBox<String> comboExperiencia;
+	private JComboBox<String> comboClase;
 
 	public NuevoPersonaje() {
 		setToolTipText("");
@@ -85,6 +90,7 @@ public class NuevoPersonaje extends JPanel {
 		botonAceptar.setBackground(new Color(135, 206, 235));
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonAceptar.setBounds(577, 427, 221, 56);
+		botonAceptar.addActionListener(new ControlNuevoPersonaje(this));
 		add(botonAceptar);
 		
 		JLabel labelNuevoPersonaje = new JLabel("NUEVO PERSONAJE");
@@ -93,7 +99,7 @@ public class NuevoPersonaje extends JPanel {
 		labelNuevoPersonaje.setBounds(518, 23, 467, 46);
 		add(labelNuevoPersonaje);
 		
-		JComboBox<String> comboRaza = new JComboBox<>();
+		comboRaza = new JComboBox<>();
         comboRaza.setFont(new Font("Verdana", Font.PLAIN, 20));
         comboRaza.setBounds(888, 132, 327, 64);
 
@@ -107,20 +113,20 @@ public class NuevoPersonaje extends JPanel {
         comboRaza.addItem("Semiorco");
         add(comboRaza);
 		
-		JComboBox<String> comoboExperiencia = new JComboBox<>();
-		comoboExperiencia.setFont(new Font("Verdana", Font.PLAIN, 20));
-		comoboExperiencia.setBounds(372, 260, 335, 64);
+        comboExperiencia = new JComboBox<>();
+        comboExperiencia.setFont(new Font("Verdana", Font.PLAIN, 20));
+        comboExperiencia.setBounds(372, 260, 335, 64);
 		
-		comoboExperiencia.addItem(" --Seleccione la Experiencia--");
-		comoboExperiencia.addItem("1");
-		comoboExperiencia.addItem("2");
-		comoboExperiencia.addItem("3");
-		comoboExperiencia.addItem("4");
-		comoboExperiencia.addItem("5");
-		comoboExperiencia.addItem("0");
-        add(comoboExperiencia);
+        comboExperiencia.addItem(" --Seleccione la Experiencia--");
+        comboExperiencia.addItem("1");
+        comboExperiencia.addItem("2");
+        comboExperiencia.addItem("3");
+        comboExperiencia.addItem("4");
+        comboExperiencia.addItem("5");
+        comboExperiencia.addItem("0");
+        add(comboExperiencia);
 		
-		JComboBox<String> comboClase = new JComboBox<>();
+		comboClase = new JComboBox<>();
 		comboClase.setFont(new Font("Verdana", Font.PLAIN, 20));
 		comboClase.setBounds(888, 260, 327, 64);
 		
@@ -134,4 +140,38 @@ public class NuevoPersonaje extends JPanel {
 		comboClase.addItem("Picaro");
 		add(comboClase);
 	}
+
+	public JTextField getTextoNombre() {
+		return textoNombre;
+	}
+
+	public void setTextoNombre(JTextField textoNombre) {
+		this.textoNombre = textoNombre;
+	}
+
+	public JComboBox<String> getComboRaza() {
+		return comboRaza;
+	}
+
+	public void setComboRaza(JComboBox<String> comboRaza) {
+		this.comboRaza = comboRaza;
+	}
+
+	public JComboBox<String> getComboExperiencia() {
+		return comboExperiencia;
+	}
+
+	public void setComboExperiencia(JComboBox<String> comoboExperiencia) {
+		this.comboExperiencia = comoboExperiencia;
+	}
+
+	public JComboBox<String> getComboClase() {
+		return comboClase;
+	}
+
+	public void setComboClase(JComboBox<String> comboClase) {
+		this.comboClase = comboClase;
+	}
+	
+	
 }
