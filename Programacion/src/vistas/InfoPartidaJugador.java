@@ -62,8 +62,8 @@ public class InfoPartidaJugador extends JPanel {
 		add(labelTitulo);
 
 		// Tabla Personajes
-		tablaPersonajes = new JTable(new DefaultTableModel(new Object[][] { },
-				new String[] { "Nombre", "Raza", "Clase", "Nivel" }));
+		tablaPersonajes = new JTable(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Raza", "Clase", "Nivel" }));
 		// Tabla Personajes
 		tablaPersonajes.setFont(new Font("Verdana", Font.PLAIN, 15));
 		tablaPersonajes.setForeground(new Color(255, 255, 255));
@@ -175,27 +175,34 @@ public class InfoPartidaJugador extends JPanel {
 		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
 		dcbm.addAll(misPersonajes);
 		boxPersonaje.setModel(dcbm);
-		
+
 		partidaClase = partida;
 
 	}
-	
-	private void itemSeleccionado (ActionEvent e) {
-		
+
+	private void itemSeleccionado(ActionEvent e) {
+
 		Personaje personaje = (Personaje) boxPersonaje.getSelectedItem();
 		System.out.println(personaje);
-		
+
 		if (personaje != null) {
-			
+
 			String descripcion = JOptionPane.showInputDialog("Indica la descripción de tu personaje: ");
-			
-			System.out.println(descripcion);
-			
-			JOptionPane.showMessageDialog(this, "Te has unido a la partida: " + partidaClase.getNombre());
-			control.agregarPartida(partidaClase, personaje, descripcion);
+
+			if (descripcion != null) {
+				if (!descripcion.trim().isEmpty()) {
+					System.out.println(descripcion);
+					JOptionPane.showMessageDialog(this, "Te has unido a la partida: " + partidaClase.getNombre());
+					control.agregarPartida(partidaClase, personaje, descripcion);
+
+				} else {
+					JOptionPane.showMessageDialog(this, "No has rellenado los campos correctamente");
+				}
+			} 
+
 		} else {
 			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje");
 		}
-		
+
 	}
 }

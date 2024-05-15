@@ -51,7 +51,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje, MostrarPersonaje mostrarPersonaje,
 			TextoMenuPrincipal textoMenuPrincipal, PartidaActual partidaActual,
 			Miembro miembro) {
-		this.controlJugarPersonaje = new ControlJugarPersonaje(miembro);
+		this.controlJugarPersonaje = new ControlJugarPersonaje(miembro, this);
 		this.menuPrincipal = menuPrincipal;
 		this.nuevoPersonaje = nuevoPersonaje;
 		this.consultarPartida = new ConsultarPartida(this);
@@ -152,7 +152,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		cambioPanelPartidaActual();
 	}
 	
-	private void cambioPanelPartidaActual() {
+	public void cambioPanelPartidaActual() {
 		
 		conexionbbdd = new ConexionBBDD();
 		
@@ -162,4 +162,5 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		menuPrincipal.cambiarPanel(partidaActual);
 		partidaActual.cargarPartida(partidas);
 	}
+	
 }

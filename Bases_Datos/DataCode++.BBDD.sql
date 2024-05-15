@@ -245,3 +245,5 @@ SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia FROM
 SELECT p.nombre, p.finalizada, per.nombre AS nombrePer, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_miembro = 02;
 
 SELECT p.nombre, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje = 03;
+
+UPDATE Juega SET fuerza = 40, destreza = 58, constitucion = 71, inteligencia = 31, sabiduria = 26, carisma = 27 WHERE id_personaje = 4 AND id_partida = 20;

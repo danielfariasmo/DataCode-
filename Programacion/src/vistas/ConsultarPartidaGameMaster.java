@@ -12,16 +12,15 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.ControlMenuPrincipalUsuario;
+import control.ControlMenuPrincipalGM;
 import modelo.Partida;
 
-public class ConsultarPartida extends JPanel {
+public class ConsultarPartidaGameMaster extends JPanel {
 	/**
 	 * @author Daniel F.
 	 * @author Ignacio M.
@@ -35,9 +34,9 @@ public class ConsultarPartida extends JPanel {
 	private JLabel labelSlogan;
 	private JButton botonInfoPartida;
 	private ArrayList<Partida> partidasEnTabla;
-	private ControlMenuPrincipalUsuario controlMenuPrincipal;
+	private ControlMenuPrincipalGM controlMenuPrincipal;
 
-	public ConsultarPartida(ControlMenuPrincipalUsuario controlMenuPrincipal) {
+	public ConsultarPartidaGameMaster(ControlMenuPrincipalGM controlMenuPrincipal) {
 		this.controlMenuPrincipal = controlMenuPrincipal;
 		configuracionInicial();
 		inicializarComponentes();
@@ -131,15 +130,11 @@ public class ConsultarPartida extends JPanel {
 
 	public void itemSeleccionado(ActionEvent e) {
 
-		if(tablaPartida.getSelectedRow() >= 0) {
-			Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
-			System.out.println(partidaSeleccionada);
+		// TODO
+		Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
+		System.out.println(partidaSeleccionada);
 
-			controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
-		} else {
-			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida.");
-		}
-		
+		//controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
 	}
 
 	public JTable getTablaPartida() {

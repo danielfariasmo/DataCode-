@@ -148,14 +148,12 @@ public class Login extends JFrame {
 		MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(miembro);
 		EditarPartida editarPartida = new EditarPartida();
 		CrearPartida crearPartida = new CrearPartida();
-		ConsultarPartida consultarPartida = new ConsultarPartida();
 		MiembroClub miembroClub = new MiembroClub();
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
-		ControlMenuPrincipalGM listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster, consultarPartida,
+		ControlMenuPrincipalGM listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster,
 				crearPartida, editarPartida, miembroClub, textoMenuPrincipal);
 
-		// Se muestra el menu principal.
 		menuPrincipalGameMaster.setListener(listener);
 
 		return menuPrincipalGameMaster;

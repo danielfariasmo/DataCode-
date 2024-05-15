@@ -29,19 +29,15 @@ public class ConexionBBDD {
 	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = %d";
 	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
 	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro, alias) VALUES ('%s', '%s');";
-	
-	public Connection conectar() {
 
-//		if (conn != null) {
-//			return conn;
-//		}
+	public Connection conectar() {
 
 		try {
 			// Indicamos la clase a la que vamos a acceder
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			return DriverManager.getConnection(url, "root", "Villafranca1");
+			return DriverManager.getConnection(url, "root", "1590");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -146,7 +142,6 @@ public class ConexionBBDD {
 		Miembro miembro = null;
 		ResultSet resultSet;
 
-		// Ejecuto la consulta
 		try {
 
 			int claveNum = Integer.parseInt(clave);
@@ -158,6 +153,8 @@ public class ConexionBBDD {
 						resultSet.getString(NOMBRE_ESTUDIO), resultSet.getString(NOMBRE_USUARIO),
 						String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
 			}
+		} catch (NumberFormatException e) {
+			System.out.println("Error convirtiendo a entero la clave."); 
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -200,7 +197,6 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			// TODO: error en consulta
 			ResultSet rs = stmt
 					.executeQuery("SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia "
 							+ "FROM Juega j " + "JOIN Personaje per ON j.id_personaje = per.id_personaje "
@@ -288,16 +284,14 @@ public class ConexionBBDD {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			// TODO: error en consulta
-			ResultSet rs = stmt.executeQuery(
-					"SELECT p.nombre, p.id_partida  "
+			ResultSet rs = stmt.executeQuery("SELECT p.nombre, p.id_partida  "
 					+ "FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje "
 					+ "JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje =" + idPersonaje);
 			while (rs.next()) {
 				String nombrePartida = rs.getString("nombre");
 				String idPartida = String.valueOf(rs.getInt("id_partida"));
-				
 
-				String[] registro = new String[] { nombrePartida, idPartida};
+				String[] registro = new String[] { nombrePartida, idPartida };
 
 				obtenerPatida.add(registro);
 			}
@@ -310,16 +304,17 @@ public class ConexionBBDD {
 
 		return obtenerPatida;
 	}
-	
+
 	public Juega consultarCaracteristicas(int idPersonaje, int idPartida) {
-		
-		Juega caracteristicas= null;
-		
+
+		Juega caracteristicas = null;
+
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			// TODO: error en consulta
-			ResultSet rs = stmt.executeQuery("SELECT * FROM juega WHERE id_personaje = " + idPersonaje + " AND id_partida = " + idPartida);
+			ResultSet rs = stmt.executeQuery(
+					"SELECT * FROM juega WHERE id_personaje = " + idPersonaje + " AND id_partida = " + idPartida);
 			while (rs.next()) {
 				String descripcion = rs.getString("descripcion");
 				int fuerza = rs.getInt("fuerza");
@@ -329,7 +324,8 @@ public class ConexionBBDD {
 				int sabiduria = rs.getInt("sabiduria");
 				int carisma = rs.getInt("carisma");
 
-				caracteristicas = new Juega (idPersonaje, idPartida, descripcion, fuerza, destreza, constitucion, inteligencia, sabiduria, carisma);
+				caracteristicas = new Juega(idPersonaje, idPartida, descripcion, fuerza, destreza, constitucion,
+						inteligencia, sabiduria, carisma);
 
 			}
 			rs.close();
@@ -340,21 +336,38 @@ public class ConexionBBDD {
 		}
 
 		return caracteristicas;
-		
+
 	}
-	
-	
+
+	public void actualizarCaracteristicasPersonaje(Juega juega) {
+
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			String sentencia = ("UPDATE Juega SET fuerza = " + juega.getFuerza() + ", destreza = " + juega.getDestreza()
+			+ ", constitucion = " + juega.getConstitucion() + ", inteligencia = " + juega.getInteligencia()
+			+ ", sabiduria = " + juega.getSabiduria() + ", carisma = " + juega.getCarisma()
+			+ " WHERE id_personaje = " + juega.getIdPersonaje() + " AND id_partida = " + juega.getId_partida());
+			
+			stmt.executeUpdate(sentencia);
+
+			stmt.close();
+			cerrar();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public Personaje guardarPersonaje(Personaje personaje) {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("INSERT INTO Personaje(id_personaje, nombre"
-			+ ",raza, nivel_experiencia, clase, id_miembro) values("+ personaje.getIdPersonaje()+","
-					+ ""+ personaje.getNombre() +","+personaje.getRaza() +","
-							+ ""+personaje.getNivelExperiencia()+","
-									+ ""+personaje.getClase()+","
-											+ ""+personaje.getId_miembro()+")");
-			Personaje personajeSaved = null;		
+					+ ",raza, nivel_experiencia, clase, id_miembro) values(" + personaje.getIdPersonaje() + "," + ""
+					+ personaje.getNombre() + "," + personaje.getRaza() + "," + "" + personaje.getNivelExperiencia()
+					+ "," + "" + personaje.getClase() + "," + "" + personaje.getId_miembro() + ")");
+			Personaje personajeSaved = null;
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
 				String raza = rs.getString("raza");
@@ -367,25 +380,22 @@ public class ConexionBBDD {
 			stmt.close();
 			cerrar();
 			return personajeSaved;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public Personaje actualizarPersonaje(Personaje personaje) {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("UPDATE Personaje SET "
-					+ "id_personaje = "+personaje.getIdPersonaje()+", "
-					+ "nombre = "+ personaje.getNombre()+""
-					+ ",raza = "+personaje.getRaza()+", "
-					+ "nivel_experiencia = "+personaje.getNivelExperiencia()+", "
-					+ "clase = "+personaje.getClase()+", "
-					+ "id_miembro = "+personaje.getId_miembro()+" "
-					+ "WHERE id_personaje = "+personaje.getIdPersonaje()+"");
-			Personaje personajeUpdated = null;		
+			ResultSet rs = stmt.executeQuery("UPDATE Personaje SET " + "id_personaje = " + personaje.getIdPersonaje()
+					+ ", " + "nombre = " + personaje.getNombre() + "" + ",raza = " + personaje.getRaza() + ", "
+					+ "nivel_experiencia = " + personaje.getNivelExperiencia() + ", " + "clase = "
+					+ personaje.getClase() + ", " + "id_miembro = " + personaje.getId_miembro() + " "
+					+ "WHERE id_personaje = " + personaje.getIdPersonaje() + "");
+			Personaje personajeUpdated = null;
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
 				String raza = rs.getString("raza");
@@ -398,7 +408,7 @@ public class ConexionBBDD {
 			stmt.close();
 			cerrar();
 			return personajeUpdated;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

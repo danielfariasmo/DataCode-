@@ -19,12 +19,12 @@ public class ControlLogin implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String usuario = login.getTextoUsuarioLogin();
-		String contraseña = login.getClaveContrasenhaLogin();
+		String contrasenha = login.getClaveContrasenhaLogin();
 		
 		conexionbbdd = new ConexionBBDD();
 
-		System.out.println("USUARIO: "+ usuario + " / PASS: "+ contraseña);
-		Miembro miembro = conexionbbdd.obtenerMiembro(usuario, contraseña);
+		System.out.println("USUARIO: "+ usuario + " / PASS: "+ contrasenha);
+		Miembro miembro = conexionbbdd.obtenerMiembro(usuario, contrasenha);
 
 		if (miembro != null) {
 			login.mostrarDialogoExito(miembro);

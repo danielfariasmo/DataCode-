@@ -10,6 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
@@ -31,6 +32,10 @@ public class JugarPersonaje extends JPanel {
 	private JSpinner spinnerDestreza;
 	private JSpinner spinnerConstitucion;
 	private JSpinner spinnerSabiduria;
+	private JButton botonActualizar;
+	private JButton botonFinSession;
+	private String idPartida;
+	private Juega juega;
 
 	/**
 	 * @author Daniel F.
@@ -183,18 +188,28 @@ public class JugarPersonaje extends JPanel {
 		spinnerInteligencia.setBounds(758, 403, 74, 41);
 		add(spinnerInteligencia);
 		
-		JButton botonActualizar = new JButton("Actualizar");
+		botonActualizar = new JButton("Actualizar");
 		botonActualizar.setBackground(new Color(135, 206, 235));
 		botonActualizar.setForeground(new Color(37, 34, 81));
 		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonActualizar.setBounds(294, 483, 232, 65);
+		botonActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				actualizarPersonaje(evt);
+			}
+		});
 		add(botonActualizar);
 		
-		JButton botonFinSession = new JButton("Finalizar Sesión");
+		botonFinSession = new JButton("Finalizar Sesión");
 		botonFinSession.setForeground(new Color(37, 34, 81));
 		botonFinSession.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonFinSession.setBackground(new Color(135, 206, 235));
 		botonFinSession.setBounds(595, 483, 306, 65);
+		botonFinSession.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				finalizarSesion(evt);
+			}
+		});
 		add(botonFinSession);
 
 	}
@@ -207,13 +222,14 @@ public class JugarPersonaje extends JPanel {
 	
 	private void seleccionPartidaCombo (ActionEvent e) {
 		
-		String idPartida = partidas.get(seleccionPartida.getSelectedIndex())[1];
+		idPartida = partidas.get(seleccionPartida.getSelectedIndex())[1];
 		control.obtenerCaracteristicas(personaje, idPartida);
 
 	}
 	
 	public void cargarSpinner(Juega juega) {
 		
+		this.juega = juega;
 		spinnerInteligencia.setValue(juega.getInteligencia());
 		spinnerCarisma.setValue(juega.getCarisma());
 		spinnerFuerza.setValue(juega.getFuerza());
@@ -221,6 +237,32 @@ public class JugarPersonaje extends JPanel {
 		spinnerConstitucion.setValue(juega.getConstitucion());
 		spinnerSabiduria.setValue(juega.getCarisma());
 		
-
+	}
+	
+	public void actualizarPersonaje(ActionEvent ev) {
+		
+		System.out.println("Funciona evento actualizar");
+		if(personaje != null && idPartida != null && juega != null) {
+			control.actualizarPersonajeCaracteristicas(juega);
+			String nombrePartida = " ";
+			
+			for (String[] recorrer : partidas) {
+				if(recorrer[1].equals(String.valueOf(juega.getId_partida()))) {
+					nombrePartida = recorrer[0];
+					break;
+				}
+			}
+			
+			JOptionPane.showMessageDialog(this, "Se ha actualizado el personaje " + personaje.getNombre() + ", en la partida " + nombrePartida);
+		} else {
+			JOptionPane.showMessageDialog(this, "Debes rellenar los datos correctamente");
+		}
+		
+	}
+	
+	public void finalizarSesion(ActionEvent ev) {
+		
+		JOptionPane.showMessageDialog(this, "Se ha finalizado la sesión.");
+		control.finalizarSesionCambio();
 	}
 }

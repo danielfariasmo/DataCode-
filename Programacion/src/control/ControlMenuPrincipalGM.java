@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
 import modelo.ConexionBBDD;
 import modelo.Miembro;
 import modelo.Partida;
-import vistas.ConsultarPartida;
+import vistas.ConsultarPartidaGameMaster;
 import vistas.CrearPartida;
 import vistas.EditarPartida;
 import vistas.MenuPrincipalGameMaster;
@@ -28,18 +28,18 @@ public class ControlMenuPrincipalGM implements ActionListener{
 	 */
 
 	private MenuPrincipalGameMaster menuPrincipalGameMaster;
-	private ConsultarPartida consultarPartida;
+	private ConsultarPartidaGameMaster consultarPartida;
 	private CrearPartida crearPartida;
 	private EditarPartida editarPartida;
 	private MiembroClub miembroClub;
 	private TextoMenuPrincipal textoMenuPrincipal;
 	private ConexionBBDD conexionbbdd;
 
-	public ControlMenuPrincipalGM(MenuPrincipalGameMaster menuPrincipalGameMaster, ConsultarPartida consultarPartida,
+	public ControlMenuPrincipalGM(MenuPrincipalGameMaster menuPrincipalGameMaster,
 			CrearPartida crearPartida, EditarPartida editarPartida, MiembroClub miembroClub,
 			TextoMenuPrincipal textoMenuPrincipal) {
 		this.menuPrincipalGameMaster = menuPrincipalGameMaster;
-		this.consultarPartida = consultarPartida;
+		this.consultarPartida = new ConsultarPartidaGameMaster(this);
 		this.crearPartida = crearPartida;
 		this.editarPartida = editarPartida;
 		this.miembroClub = miembroClub;
