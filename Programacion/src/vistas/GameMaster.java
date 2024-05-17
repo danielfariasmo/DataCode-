@@ -52,14 +52,14 @@ public class GameMaster extends JFrame {
 
 		// Texto en el centro de la ventana
 		JLabel textoCentral = new JLabel("Ups.. ¡No eres GameMaster!");
-		textoCentral.setFont(new Font("Verdana", Font.BOLD, 30));
+		textoCentral.setFont(new Font("Verdana", Font.BOLD, 40));
 		textoCentral.setForeground(Color.WHITE);
-		textoCentral.setBounds(717, 63, 487, 50);
+		textoCentral.setBounds(644, 63, 642, 50);
 		getContentPane().add(textoCentral);
 
 		// Botón para registrarse
 		botonRegistrarse = new JButton("Registrarse");
-		botonRegistrarse.setFont(new Font("Verdana", Font.BOLD, 20));
+		botonRegistrarse.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonRegistrarse.setForeground(new Color(37, 34, 81));
 		botonRegistrarse.setBackground(new Color(135, 206, 235));
 		botonRegistrarse.setBounds(848, 420, 223, 50);

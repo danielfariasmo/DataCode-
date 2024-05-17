@@ -81,7 +81,7 @@ public class InfoPartidaGameMaster extends JPanel {
 		JButton botonEditarPersonajes = new JButton("Subir Nivel");
 		botonEditarPersonajes.setBackground(new Color(135, 206, 235));
 		botonEditarPersonajes.setForeground(new Color(37, 34, 81));
-		botonEditarPersonajes.setFont(new Font("Verdana", Font.BOLD, 20));
+		botonEditarPersonajes.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonEditarPersonajes.setBounds(485, 489, 208, 38);
 		add(botonEditarPersonajes);
 		
@@ -94,23 +94,23 @@ public class InfoPartidaGameMaster extends JPanel {
 		
 		// Etiqueta superior id partida
 		JLabel labelIdPartida = new JLabel("ID Partida");
-		labelIdPartida.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelIdPartida.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelIdPartida.setForeground(new Color(255, 255, 255));
 		labelIdPartida.setBounds(169, 141, 191, 14);
 		add(labelIdPartida);
 
 		// Etiqueta superior numero de personajes
 		JLabel labelNumeroPersonajes = new JLabel("Número de Personajes");
-		labelNumeroPersonajes.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelNumeroPersonajes.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelNumeroPersonajes.setForeground(new Color(255, 255, 255));
 		labelNumeroPersonajes.setBounds(169, 166, 288, 26);
 		add(labelNumeroPersonajes);
 
 		// Etiqueta superior
 		JLabel labelMaxJugadores = new JLabel("Máximo de jugadores");
-		labelMaxJugadores.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelMaxJugadores.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelMaxJugadores.setForeground(new Color(255, 255, 255));
-		labelMaxJugadores.setBounds(169, 195, 213, 26);
+		labelMaxJugadores.setBounds(169, 195, 251, 26);
 		add(labelMaxJugadores);
 
 		// Etiqueta superior id partida
@@ -122,28 +122,28 @@ public class InfoPartidaGameMaster extends JPanel {
 
 		// Etiqueta superior numero de personajes
 		JLabel labelInfoNumPersonajes = new JLabel("New label");
-		labelInfoNumPersonajes.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelInfoNumPersonajes.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelInfoNumPersonajes.setForeground(new Color(255, 255, 255));
-		labelInfoNumPersonajes.setBounds(485, 172, 101, 14);
+		labelInfoNumPersonajes.setBounds(485, 166, 125, 26);
 		add(labelInfoNumPersonajes);
 
 		// Etiqueta superior
 		JLabel labelInfoMaxJugadores = new JLabel("New label");
-		labelInfoMaxJugadores.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelInfoMaxJugadores.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelInfoMaxJugadores.setForeground(new Color(255, 255, 255));
-		labelInfoMaxJugadores.setBounds(485, 201, 101, 14);
+		labelInfoMaxJugadores.setBounds(485, 195, 125, 32);
 		add(labelInfoMaxJugadores);
 		
 		JLabel labelGameMaster = new JLabel("GameMaster");
-		labelGameMaster.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelGameMaster.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelGameMaster.setForeground(new Color(255, 255, 255));
 		labelGameMaster.setBounds(169, 227, 216, 24);
 		add(labelGameMaster);
 		
 		JLabel labelInfoGameMaster = new JLabel("New label");
-		labelInfoGameMaster.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelInfoGameMaster.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelInfoGameMaster.setForeground(new Color(255, 255, 255));
-		labelInfoGameMaster.setBounds(485, 226, 101, 26);
+		labelInfoGameMaster.setBounds(485, 226, 125, 26);
 		add(labelInfoGameMaster);
 	}
 }

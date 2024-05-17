@@ -116,10 +116,10 @@ public class ConsultarPartidaGameMaster extends JPanel {
 		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
 
 		botonInfoPartida = new JButton("Información de la partida");
-		botonInfoPartida.setFont(new Font("Verdana", Font.BOLD, 14));
+		botonInfoPartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonInfoPartida.setBackground(new Color(135, 206, 235));
 		botonInfoPartida.setForeground(new Color(37, 34, 81));
-		botonInfoPartida.setBounds(509, 363, 262, 43);
+		botonInfoPartida.setBounds(413, 364, 453, 43);
 		botonInfoPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				itemSeleccionado(evt);

@@ -61,7 +61,7 @@ public class NuevoPersonaje extends JPanel {
 		labelNombrePersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNombrePersonaje.setForeground(new Color(255, 255, 255));
 		add(labelNombrePersonaje, BorderLayout.NORTH);
-		labelNombrePersonaje.setBounds(60, 127, 296, 75);
+		labelNombrePersonaje.setBounds(37, 127, 319, 75);
 
 		// Raza
 		JLabel labelRaza = new JLabel("Raza:");
@@ -82,14 +82,14 @@ public class NuevoPersonaje extends JPanel {
 		labelNivelExperiencia.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNivelExperiencia.setForeground(new Color(255, 255, 255));
 		add(labelNivelExperiencia, BorderLayout.NORTH);
-		labelNivelExperiencia.setBounds(60, 253, 296, 75);
+		labelNivelExperiencia.setBounds(37, 253, 319, 75);
 
 		// Boton Aceptar
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setForeground(new Color(37, 34, 81));
 		botonAceptar.setBackground(new Color(135, 206, 235));
 		botonAceptar.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonAceptar.setBounds(577, 427, 221, 56);
+		botonAceptar.setBounds(615, 427, 221, 56);
 		botonAceptar.addActionListener(new ControlNuevoPersonaje(this));
 		add(botonAceptar);
 		

@@ -67,21 +67,21 @@ public class Login extends JFrame {
 
 		botonLogin = new JButton("Entrar");
 		botonLogin.setBackground(new Color(135, 206, 235));
-		botonLogin.setFont(new Font("Verdana", Font.BOLD, 18));
+		botonLogin.setFont(new Font("Verdana", Font.BOLD, 25));
 		panelLogin.setLayout(null);
 		botonLogin.setBounds(852, 382, 186, 40);
 
 		JLabel labelUsuario = new JLabel("Usuario:");
 		labelUsuario.setForeground(new Color(255, 255, 255));
-		labelUsuario.setBounds(701, 126, 105, 26);
-		labelUsuario.setFont(new Font("Verdana", Font.BOLD, 20));
+		labelUsuario.setBounds(701, 126, 165, 26);
+		labelUsuario.setFont(new Font("Verdana", Font.BOLD, 25));
 		panelLogin.add(labelUsuario);
 		panelLogin.add(textoUsuarioLogin);
 
 		JLabel lblContr = new JLabel("Contraseña:");
 		lblContr.setForeground(new Color(255, 255, 255));
-		lblContr.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblContr.setBounds(701, 270, 151, 20);
+		lblContr.setFont(new Font("Verdana", Font.BOLD, 25));
+		lblContr.setBounds(701, 264, 202, 32);
 		panelLogin.add(lblContr);
 		panelLogin.add(claveContrasenhaLogin);
 		panelLogin.add(botonLogin);

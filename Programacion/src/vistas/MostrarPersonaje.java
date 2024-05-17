@@ -66,8 +66,8 @@ public class MostrarPersonaje extends JPanel {
 		JButton botonEliminar = new JButton("Eliminar");
 		botonEliminar.setForeground(new Color(37, 34, 81));
 		botonEliminar.setBackground(new Color(135, 206, 235));
-		botonEliminar.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonEliminar.setBounds(743, 371, 155, 37);
+		botonEliminar.setFont(new Font("Verdana", Font.BOLD, 25));
+		botonEliminar.setBounds(748, 371, 208, 37);
 		add(botonEliminar);
 
 		JButton botonAñadirPersonaje = new JButton("Añadir Personaje");
@@ -77,8 +77,8 @@ public class MostrarPersonaje extends JPanel {
 		});
 		botonAñadirPersonaje.setForeground(new Color(37, 34, 81));
 		botonAñadirPersonaje.setBackground(new Color(135, 206, 235));
-		botonAñadirPersonaje.setFont(new Font("Verdana", Font.BOLD, 14));
-		botonAñadirPersonaje.setBounds(433, 371, 177, 37);
+		botonAñadirPersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
+		botonAñadirPersonaje.setBounds(274, 371, 334, 37);
 		add(botonAñadirPersonaje);
 	}
 }
