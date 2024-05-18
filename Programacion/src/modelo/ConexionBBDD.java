@@ -22,14 +22,49 @@ import java.sql.ResultSet;
  * @author Ignacio M.
  * @author Daniel G.
  */
+
+/**
+ * Esta clase proporciona métodos para conectarse a una base de datos y realizar
+ * operaciones CRUD en las tablas miembro, gamemaster, personaje, partida, y
+ * juega.
+ * 
+ * La clase incluye métodos para agregar, consultar, actualizar y eliminar
+ * registros en estas tablas, así como métodos para obtener datos específicos de
+ * las partidas, personajes y miembros.
+ * 
+ * Además, la clase gestiona la creación y edición de partidas, la actualización
+ * de características de personajes, el registro de experiencia, y la búsqueda
+ * de Game Masters por su ID.
+ * 
+ * Los métodos de esta clase están diseñados para interactuar con objetos de las
+ * clases Partida, Personaje, GameMaster y Juega para proporcionar una interfaz
+ * de alto nivel para la manipulación de datos.
+ * 
+ * Esta clase se utiliza para administrar la persistencia de datos en una
+ * aplicación de gestión de partidas de rol (RPG) en línea, donde los usuarios
+ * pueden crear personajes, unirse a partidas como personajes específicos, y
+ * participar en juegos dirigidos por Game Masters.
+ * 
+ * @see Miembro
+ * @see GameMaster
+ * @see Personaje
+ * @see Partida
+ * @see Juega
+ */
 public class ConexionBBDD {
 
+	// Variables para usar en clase.
 	private String url = "jdbc:mysql://localhost:3306/proyectointegrador";
 	private Connection conn = null;
 	private static final String FIND_USER_QUERY = "SELECT * FROM miembro WHERE nombre_usuario = '%s' AND clave_usuario = %d";
 	private static final String FIND_MASTER_QUERY = "SELECT * FROM gamemaster WHERE id_miembro = '%s'";
 	private static final String INSERT_MASTER = "INSERT INTO GameMaster (id_miembro, alias) VALUES ('%s', '%s');";
 
+	/**
+	 * Método para conectar a la base de datos.
+	 * 
+	 * @return Una conexión activa a la base de datos.
+	 */
 	public Connection conectar() {
 
 		try {
@@ -47,6 +82,9 @@ public class ConexionBBDD {
 		return conn;
 	}
 
+	/**
+	 * Método para cerrar la conexión a la base de datos.
+	 */
 	public void cerrar() {
 		if (conn != null) {
 			try {
@@ -57,6 +95,11 @@ public class ConexionBBDD {
 		}
 	}
 
+	/**
+	 * Método para obtener una lista de miembros de la base de datos.
+	 * 
+	 * @return Una lista de objeto Miembro.
+	 */
 	public ArrayList<Miembro> obtenerMiembros() {
 		ArrayList<Miembro> miembros = new ArrayList<>();
 		try {
@@ -82,6 +125,14 @@ public class ConexionBBDD {
 
 	}
 
+	/**
+	 * Método para obtener una lista de personajes asociados a un miembro
+	 * específico.
+	 * 
+	 * @param idMiembro El ID del miembro.
+	 * 
+	 * @return Una lista de objetos Personaje.
+	 */
 	public ArrayList<Personaje> obtenerPersonaje(String idMiembro) {
 		ArrayList<Personaje> personajes = new ArrayList<>();
 		try {
@@ -108,6 +159,11 @@ public class ConexionBBDD {
 
 	}
 
+	/**
+	 * Método para obtener una lista de todas las partidas.
+	 * 
+	 * @return Una lista de objetos Partida.
+	 */
 	public ArrayList<Partida> consultarPartida() {
 		ArrayList<Partida> partidas = new ArrayList<>();
 		try {
@@ -137,6 +193,15 @@ public class ConexionBBDD {
 		return partidas;
 	}
 
+	/**
+	 * Método para obtener un miembro específico usando su nombre de usuario y
+	 * clave.
+	 * 
+	 * @param usuario El nombre de usuario.
+	 * @param clave   La clave de usuario.
+	 * 
+	 * @return Un objeto Miembro si existe, de lo contrario null.
+	 */
 	public Miembro obtenerMiembro(String usuario, String clave) {
 
 		Miembro miembro = null;
@@ -163,6 +228,13 @@ public class ConexionBBDD {
 		return miembro;
 	}
 
+	/**
+	 * Método para verificar si un miembro es un Game Master.
+	 * 
+	 * @param id_miembro El ID del miembro.
+	 * 
+	 * @return true si el miembro es Game Master, de lo contrario false.
+	 */
 	public boolean isGameMaster(String id_miembro) {
 
 		boolean isMaster = false;
@@ -180,6 +252,12 @@ public class ConexionBBDD {
 		return isMaster;
 	}
 
+	/**
+	 * Método para convertir un miembro en Game Master.
+	 * 
+	 * @param id_miembro El ID del miembro.
+	 * @param alias      El alias del Game Master.
+	 */
 	public void convertIntoGameMaster(String id_miembro, String alias) {
 
 		try {
@@ -192,6 +270,13 @@ public class ConexionBBDD {
 		cerrar();
 	}
 
+	/**
+	 * Método para obtener todos los personajes en una partida específica.
+	 * 
+	 * @param id_partida El ID de la partida.
+	 * 
+	 * @return Una lista de objeto Personaje.
+	 */
 	public ArrayList<Personaje> cargarTodosPersonajes(String id_partida) {
 		ArrayList<Personaje> personajes = new ArrayList<>();
 		try {
@@ -221,6 +306,12 @@ public class ConexionBBDD {
 		return personajes;
 	}
 
+	/**
+	 * Agrega una nueva partida al registro Juega en la base de datos.
+	 * 
+	 * @param partidaActual Objeto Juega que contiene los datos de la partida a
+	 *                      agregar.
+	 */
 	public void agregarPartida(Juega partidaActual) {
 
 		try {
@@ -242,6 +333,13 @@ public class ConexionBBDD {
 		}
 	}
 
+	/**
+	 * Obtiene una lista de partidas actuales para un miembro específico.
+	 * 
+	 * @param id_miembro ID del miembro cuyas partidas se desean obtener.
+	 * 
+	 * @return Una lista de arrays de Strings, cada uno representando una partida.
+	 */
 	public ArrayList<String[]> obtenerPartidasActuales(String id_miembro) {
 
 		ArrayList<String[]> obtenerPatida = new ArrayList<String[]>();
@@ -278,13 +376,20 @@ public class ConexionBBDD {
 		return obtenerPatida;
 	}
 
+	/**
+	 * Obtiene las características de una partida específica para un personaje.
+	 * 
+	 * @param idPersonaje ID del personaje cuyas características se desean obtener.
+	 * 
+	 * @return Una lista de arrays de Strings, cada uno representando una
+	 *         característica de la partida.
+	 */
 	public ArrayList<String[]> obtenerCaracteristicasPartida(String idPersonaje) {
 
 		ArrayList<String[]> obtenerPatida = new ArrayList<String[]>();
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			// TODO: error en consulta
 			ResultSet rs = stmt.executeQuery("SELECT p.nombre, p.id_partida  "
 					+ "FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje "
 					+ "JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje =" + idPersonaje);
@@ -306,6 +411,15 @@ public class ConexionBBDD {
 		return obtenerPatida;
 	}
 
+	/**
+	 * Consulta las características de una partida específica.
+	 * 
+	 * @param idPersonaje ID del personaje.
+	 * @param idPartida   ID de la partida.
+	 * 
+	 * @return Un objeto Juega con las características de la partida, o null si no
+	 *         se encuentra.
+	 */
 	public Juega consultarCaracteristicas(int idPersonaje, int idPartida) {
 
 		Juega caracteristicas = null;
@@ -313,7 +427,6 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			// TODO: error en consulta
 			ResultSet rs = stmt.executeQuery(
 					"SELECT * FROM juega WHERE id_personaje = " + idPersonaje + " AND id_partida = " + idPartida);
 			while (rs.next()) {
@@ -340,6 +453,11 @@ public class ConexionBBDD {
 
 	}
 
+	/**
+	 * Actualiza las características de un personaje en una partida específica.
+	 * 
+	 * @param juega Objeto Juega con las nuevas características del personaje.
+	 */
 	public void actualizarCaracteristicasPersonaje(Juega juega) {
 
 		try {
@@ -360,6 +478,12 @@ public class ConexionBBDD {
 		}
 	}
 
+	/**
+	 * Actualiza el nivel de experiencia de un personaje.
+	 * 
+	 * @param idPersonaje      ID del personaje.
+	 * @param nuevaExperiencia Nuevo nivel de experiencia.
+	 */
 	public void actualizarExperiencia(String idPersonaje, int nuevaExperiencia) {
 
 		try {
@@ -379,6 +503,13 @@ public class ConexionBBDD {
 		}
 	}
 
+	/**
+	 * Obtiene una lista de partidas para un Game Master específico.
+	 * 
+	 * @param idGameMaster ID del Game Master.
+	 * 
+	 * @return Una lista de objetos Partida.
+	 */
 	public ArrayList<Partida> consultarPartidaGameMaster(int idGameMaster) {
 		ArrayList<Partida> partidas = new ArrayList<>();
 		try {
@@ -408,6 +539,15 @@ public class ConexionBBDD {
 		return partidas;
 	}
 
+	/**
+	 * 
+	 * Busca un Game Master por su ID.
+	 * 
+	 * @param idGameMaster ID del Game Master.
+	 * 
+	 * @return Un objeto GameMaster con la información encontrada, o null si no se
+	 *         encuentra.
+	 */
 	public GameMaster buscarID(int idGameMaster) {
 
 		GameMaster gameMaster = null;
@@ -432,6 +572,14 @@ public class ConexionBBDD {
 		return gameMaster;
 	}
 
+	/**
+	 * 
+	 * Busca un Game Master por su ID.
+	 * 
+	 * @param idGameMaster ID del Game Master.
+	 * @return Un objeto GameMaster con la información encontrada, o null si no se
+	 *         encuentra.
+	 */
 	public int crearPartida(Partida partida) {
 
 		int retorno = -1;
@@ -457,6 +605,13 @@ public class ConexionBBDD {
 
 	}
 
+	/**
+	 * 
+	 * Edita una partida existente en la base de datos.
+	 * 
+	 * @param partida Objeto Partida con los nuevos datos de la partida.
+	 * @return El número de filas afectadas por la actualización.
+	 */
 	public int editarPartida(Partida partida) {
 		int retorno = -1;
 
@@ -480,32 +635,46 @@ public class ConexionBBDD {
 		return retorno;
 	}
 
+	/**
+	 * 
+	 * Guarda un nuevo personaje en la base de datos.
+	 * 
+	 * @param personaje Objeto Personaje con los datos del nuevo personaje.
+	 */
 	public void guardarPersonaje(Personaje personaje) {
-		
-		String sentencia = "INSERT INTO Personaje(nombre ,raza, nivel_experiencia, clase, id_miembro) VALUES ('"+ personaje.getNombre() + "', '" + personaje.getRaza() + "', " + personaje.getNivelExperiencia()
-		+ ", '" + personaje.getClase() + "', " + personaje.getId_miembro() + ");";
+
+		String sentencia = "INSERT INTO Personaje(nombre ,raza, nivel_experiencia, clase, id_miembro) VALUES ('"
+				+ personaje.getNombre() + "', '" + personaje.getRaza() + "', " + personaje.getNivelExperiencia() + ", '"
+				+ personaje.getClase() + "', " + personaje.getId_miembro() + ");";
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			System.out.println(sentencia);
 			stmt.executeUpdate(sentencia);
-		
+
 			stmt.close();
 			cerrar();
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * 
+	 * Actualiza los datos de un personaje existente en la base de datos.
+	 * 
+	 * @param personaje Objeto Personaje con los nuevos datos del personaje.
+	 */
 	public void actualizarPersonaje(Personaje personaje) {
-		
+
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE Personaje SET nombre = '" + personaje.getNombre() + "', raza = '" + personaje.getRaza() + "', nivel_experiencia = " + personaje.getNivelExperiencia() + ", clase = '"
+			stmt.executeUpdate("UPDATE Personaje SET nombre = '" + personaje.getNombre() + "', raza = '"
+					+ personaje.getRaza() + "', nivel_experiencia = " + personaje.getNivelExperiencia() + ", clase = '"
 					+ personaje.getClase() + "' WHERE id_personaje = " + personaje.getIdPersonaje() + ";");
-			
+
 			stmt.close();
 			cerrar();
 		} catch (SQLException e) {
@@ -513,13 +682,19 @@ public class ConexionBBDD {
 		}
 	}
 
-	public void elminarPersonaje (String id_personaje) {
-		
+	/**
+	 * 
+	 * Elimina un personaje de la base de datos.
+	 * 
+	 * @param id_personaje ID del personaje a eliminar.
+	 */
+	public void elminarPersonaje(String id_personaje) {
+
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("DELETE FROM Personaje WHERE id_personaje = " + id_personaje);
-			
+
 			stmt.close();
 			cerrar();
 		} catch (SQLException e) {

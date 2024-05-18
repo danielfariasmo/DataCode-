@@ -21,12 +21,26 @@ import javax.swing.table.DefaultTableModel;
 import control.ControlMenuPrincipalUsuario;
 import modelo.Partida;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+
+/**
+ * La clase ConsultarPartida representa la interfaz gráfica para consultar y
+ * visualizar las partidas disponibles para un jugador en el sistema.
+ * 
+ * Permite mostrar una tabla con información básica de las partidas, como
+ * nombre, fecha de creación, duración, ambientación y estado de finalización.
+ * También ofrece un botón para obtener información detallada de la partida
+ * seleccionada.
+ * 
+ * Esta clase extiende de JPanel y se utiliza en la interfaz del menú principal
+ * del usuario.
+ */
 public class ConsultarPartida extends JPanel {
-	/**
-	 * @author Daniel F.
-	 * @author Ignacio M.
-	 * @author Daniel G.
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JTable tablaPartida;
 	private JLabel labelConsultarPartida;
@@ -37,23 +51,33 @@ public class ConsultarPartida extends JPanel {
 	private ArrayList<Partida> partidasEnTabla;
 	private ControlMenuPrincipalUsuario controlMenuPrincipal;
 
+	/**
+     * Constructor de la clase ConsultarPartida.
+     * 
+     * @param controlMenuPrincipal El controlador del menú principal del usuario.
+     */
 	public ConsultarPartida(ControlMenuPrincipalUsuario controlMenuPrincipal) {
 		this.controlMenuPrincipal = controlMenuPrincipal;
 		configuracionInicial();
 		inicializarComponentes();
-
 	}
 
+	 /**
+     * Configuración inicial de la interfaz gráfica.
+     */
 	public void configuracionInicial() {
-
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
 		setSize(1300, 660);
-
 	}
 
+	 /**
+     * Carga las partidas recibidas en la tabla de la interfaz.
+     * 
+     * @param partidas La lista de partidas a mostrar.
+     */
 	public void cargarPartida(ArrayList<Partida> partidas) {
 
 		partidasEnTabla = partidas;
@@ -71,9 +95,11 @@ public class ConsultarPartida extends JPanel {
 
 			modelo.addRow(registro.toArray());
 		}
-
 	}
 
+	/**
+     * Inicializa todos los componentes de la interfaz gráfica.
+     */
 	public void inicializarComponentes() {
 
 		// Titulo de Pagina
@@ -117,6 +143,7 @@ public class ConsultarPartida extends JPanel {
 		panelContenedor.add(labelSlogan);
 		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
 
+		// Botón de Información de la Partida
 		botonInfoPartida = new JButton("Información de la partida");
 		botonInfoPartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonInfoPartida.setBackground(new Color(135, 206, 235));
@@ -130,19 +157,24 @@ public class ConsultarPartida extends JPanel {
 		add(botonInfoPartida);
 	}
 
+	/**
+     * Método invocado al hacer clic en el botón de Información de la Partida.
+     * 
+     * @param e El evento de acción.
+     */
 	public void itemSeleccionado(ActionEvent e) {
 
-		if(tablaPartida.getSelectedRow() >= 0) {
+		if (tablaPartida.getSelectedRow() >= 0) {
 			Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
-			System.out.println(partidaSeleccionada);
 
 			controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
 		} else {
 			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida.");
 		}
-		
+
 	}
 
+	//Getter. 
 	public JTable getTablaPartida() {
 		return tablaPartida;
 	}

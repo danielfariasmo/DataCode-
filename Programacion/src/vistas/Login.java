@@ -22,6 +22,17 @@ import control.ControlMenuPrincipalGM;
 import control.ControlMenuPrincipalUsuario;
 import modelo.Miembro;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+
+/**
+ * Clase que representa la ventana de inicio de sesión.
+ * 
+ * Permite a los usuarios iniciar sesión como jugador o como GameMaster.
+ */
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -32,13 +43,31 @@ public class Login extends JFrame {
 	private JButton botonLogin;
 	private MenuPrincipalUsuario menuPrincipalUsuario;
 	private MenuPrincipalGameMaster menuPrincipalGameMaster;
+	private JLabel labelUsuario;
+	private JLabel lblContr;
+	private JLabel labelLogin;
+	private JLabel labelFacebook;
+	private JLabel labelInstagram;
+	private JLabel labelPinterest;
+	private JLabel labelAzul;
+	private JPanel panelContenedor;
+	private JLabel labelLogo;
 
+	/**
+	 * Constructor de la clase Login.
+	 * 
+	 * Configura la apariencia inicial de la ventana de inicio de sesión y
+	 * inicializa sus componentes.
+	 */
 	public Login() {
 		configuracionInicial();
 		inicializarComponentes();
 		System.out.println("Componentes creados");
 	}
 
+	/**
+	 * Configura la apariencia inicial de la ventana de inicio de sesión.
+	 */
 	public void configuracionInicial() {
 		setType(Type.POPUP);
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -53,10 +82,16 @@ public class Login extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
+	/**
+	 * Inicializa los componentes de la ventana de inicio de sesión.
+	 */
 	public void inicializarComponentes() {
+		
+		// Creación del panel de inicio de sesión
 		panelLogin = new JPanel();
 		panelLogin.setBackground(new Color(255, 255, 255));
 
+		// Campos de texto para el usuario y contraseña
 		textoUsuarioLogin = new JTextField();
 		textoUsuarioLogin.setFont(new Font("Verdana", Font.PLAIN, 18));
 		textoUsuarioLogin.setBounds(701, 175, 499, 40);
@@ -65,20 +100,22 @@ public class Login extends JFrame {
 		claveContrasenhaLogin.setFont(new Font("Verdana", Font.PLAIN, 20));
 		claveContrasenhaLogin.setBounds(701, 313, 499, 40);
 
+		// Botón para iniciar sesión
 		botonLogin = new JButton("Entrar");
 		botonLogin.setBackground(new Color(135, 206, 235));
 		botonLogin.setFont(new Font("Verdana", Font.BOLD, 25));
 		panelLogin.setLayout(null);
 		botonLogin.setBounds(852, 382, 186, 40);
 
-		JLabel labelUsuario = new JLabel("Usuario:");
+		// Botón para iniciar sesión
+		labelUsuario = new JLabel("Usuario:");
 		labelUsuario.setForeground(new Color(255, 255, 255));
 		labelUsuario.setBounds(701, 126, 165, 26);
 		labelUsuario.setFont(new Font("Verdana", Font.BOLD, 25));
 		panelLogin.add(labelUsuario);
 		panelLogin.add(textoUsuarioLogin);
 
-		JLabel lblContr = new JLabel("Contraseña:");
+		lblContr = new JLabel("Contraseña:");
 		lblContr.setForeground(new Color(255, 255, 255));
 		lblContr.setFont(new Font("Verdana", Font.BOLD, 25));
 		lblContr.setBounds(701, 264, 202, 32);
@@ -88,45 +125,53 @@ public class Login extends JFrame {
 		botonLogin.addActionListener(new ControlLogin(this));
 		getContentPane().add(panelLogin, "login");
 
-		JLabel labelLogin = new JLabel("Login");
+		// Etiqueta de título
+		labelLogin = new JLabel("Login");
 		labelLogin.setForeground(new Color(255, 255, 255));
 		labelLogin.setBounds(882, 26, 141, 78);
 		labelLogin.setFont(new Font("Verdana", Font.BOLD, 40));
 		panelLogin.add(labelLogin);
 		panelLogin.setComponentZOrder(labelLogin, 0);
 
-		JLabel labelFacebook = new JLabel(" ");
+		// Íconos de redes sociales
+		labelFacebook = new JLabel(" ");
 		labelFacebook.setIcon(new ImageIcon("img\\facebook3.png"));
 		labelFacebook.setBounds(801, 468, 51, 40);
 		panelLogin.add(labelFacebook);
 
-		JLabel labelInstagram = new JLabel(" ");
+		labelInstagram = new JLabel(" ");
 		labelInstagram.setIcon(new ImageIcon("img\\Instagram.png"));
 		labelInstagram.setBounds(927, 468, 51, 40);
 		panelLogin.add(labelInstagram);
 
-		JLabel labelPinterest = new JLabel(" ");
+		labelPinterest = new JLabel(" ");
 		labelPinterest.setIcon(new ImageIcon("img\\Pinterest.png"));
 		labelPinterest.setBounds(1033, 468, 51, 40);
 		panelLogin.add(labelPinterest);
 
-		JLabel labelAzul = new JLabel("");
+		labelAzul = new JLabel("");
 		labelAzul.setOpaque(true);
 		labelAzul.setForeground(new Color(37, 34, 81));
 		labelAzul.setBackground(new Color(37, 34, 81));
 		labelAzul.setBounds(620, 0, 666, 623);
 		panelLogin.add(labelAzul);
 
-		JPanel panelContenedor = new JPanel();
+		panelContenedor = new JPanel();
 		panelContenedor.setBackground(new Color(255, 255, 255));
 		panelContenedor.setBounds(10, 57, 600, 506);
 		panelLogin.add(panelContenedor);
 
-		JLabel labelLogo = new JLabel("");
+		labelLogo = new JLabel("");
 		labelLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
 		panelContenedor.add(labelLogo);
 	}
 
+	/**
+	 * Inicializa y muestra el menú principal de usuario.
+	 * 
+	 * @param miembro Objeto Miembro que representa al usuario que ha iniciado sesión.
+	 * @return La instancia del menú principal de usuario creada.
+	 */
 	private MenuPrincipalUsuario inicializarMenuPrincipalUsuario(Miembro miembro) {
 		MenuPrincipalUsuario menuPrincipalUsuario = new MenuPrincipalUsuario(miembro);
 		NuevoPersonaje nuevoPersonaje = new NuevoPersonaje(miembro);
@@ -143,6 +188,12 @@ public class Login extends JFrame {
 		return menuPrincipalUsuario;
 	}
 
+	/**
+	 * Inicializa y muestra el menú principal de GameMaster.
+	 * 
+	 * @param miembro Objeto Miembro que representa al usuario que ha iniciado sesión.
+	 * @return La instancia del menú principal de GameMaster creada.
+	 */
 	private MenuPrincipalGameMaster inicializarMenuPrincipalGameMaster(Miembro miembro) {
 		MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(miembro);
 		MiembroClub miembroClub = new MiembroClub();
@@ -156,16 +207,11 @@ public class Login extends JFrame {
 		return menuPrincipalGameMaster;
 	}
 
-	// Getter para el texto del usuario
-	public String getTextoUsuarioLogin() {
-		return textoUsuarioLogin.getText();
-	}
-
-	// Getter para la contraseña
-	public String getClaveContrasenhaLogin() {
-		return new String(claveContrasenhaLogin.getPassword());
-	}
-
+	/**
+	 * Muestra el diálogo de éxito después de iniciar sesión.
+	 * 
+	 * @param miembro Objeto Miembro que representa al usuario que ha iniciado sesión.
+	 */
 	public void mostrarDialogoExito(Miembro miembro) {
 		System.out.println("EXITO LOGIN");
 		JPanel panelDialogo = new JPanel();
@@ -206,23 +252,45 @@ public class Login extends JFrame {
 		}
 	}
 
+	/**
+	 * Muestra el menú principal de usuario.
+	 * 
+	 * @param miembro Objeto Miembro que representa al usuario que ha iniciado sesión.
+	 */
 	public void mostrarMenuPrincipalUsuario(Miembro miembro) {
 		this.setVisible(false);
 		menuPrincipalUsuario = inicializarMenuPrincipalUsuario(miembro);
 		menuPrincipalUsuario.setVisible(true);
 	}
 
+	/**
+	 * Muestra el menú principal de GameMaster.
+	 * 
+	 * @param miembro Objeto Miembro que representa al usuario que ha iniciado sesión.
+	 */
 	public void mostrarMenuPrincipalGameMaster(Miembro miembro) {
 		this.setVisible(false);
 		menuPrincipalGameMaster = inicializarMenuPrincipalGameMaster(miembro);
 		menuPrincipalGameMaster.setVisible(true);
 	}
 
+	/**
+	 * Muestra un diálogo de error cuando las credenciales de inicio de sesión son incorrectas.
+	 */
 	public void mostrarDialogoError() {
 		JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
 	}
 
+	// Getters.
 	public static boolean getRolGameMaster() {
 		return rolGameMaster;
+	}
+	
+	public String getTextoUsuarioLogin() {
+		return textoUsuarioLogin.getText();
+	}
+
+	public String getClaveContrasenhaLogin() {
+		return new String(claveContrasenhaLogin.getPassword());
 	}
 }

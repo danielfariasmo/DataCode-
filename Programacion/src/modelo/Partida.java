@@ -6,6 +6,21 @@ package modelo;
  * @author Ignacio M.
  * @author Daniel G.
  */
+
+/**
+ * La clase Partida representa una partida en un juego de rol (RPG).
+ * 
+ * Cada partida tiene un identificador único, un nombre, una fecha y hora de
+ * inicio, un número de sesión, una ambientación, un estado de finalización, una
+ * duración de sesión y está asociada a un Game Master específico.
+ * 
+ * Los constructores de la clase permiten crear una partida con diferentes
+ * combinaciones de atributos. Además, se proporciona un constructor por
+ * defecto.
+ * 
+ * El método toString() de esta clase permite obtener una representación en
+ * forma de cadena del nombre de la partida.
+ */
 public class Partida {
 
 	private String idPartida;
@@ -17,6 +32,19 @@ public class Partida {
 	private String duracionSesion;
 	private String idGameMaster;
 
+	/**
+	 * Constructor completo para la clase Partida.
+	 * 
+	 * @param idPartida      El identificador único de la partida.
+	 * @param nombre         El nombre de la partida.
+	 * @param diaHora        La fecha y hora de inicio de la partida.
+	 * @param numeroSesion   El número de sesión de la partida.
+	 * @param ambientacion   La ambientación de la partida.
+	 * @param finalizada     El estado de finalización de la partida.
+	 * @param duracionSesion La duración de sesión de la partida.
+	 * @param idGameMaster   El identificador del Game Master que controla esta
+	 *                       partida.
+	 */
 	public Partida(String idPartida, String nombre, String diaHora, String numeroSesion, String ambientacion,
 			String finalizada, String duracionSesion, String idGameMaster) {
 		this.idPartida = idPartida;
@@ -28,8 +56,18 @@ public class Partida {
 		this.duracionSesion = duracionSesion;
 		this.idGameMaster = idGameMaster;
 	}
-	
-	public Partida (String nombre, String diaHora, String finalizada, String duracionSesion, String ambientacion) {
+
+	/**
+	 * Constructor alternativo para la clase Partida, proporcionando solo los
+	 * atributos básicos.
+	 * 
+	 * @param nombre         El nombre de la partida.
+	 * @param diaHora        La fecha y hora de inicio de la partida.
+	 * @param finalizada     El estado de finalización de la partida.
+	 * @param duracionSesion La duración de sesión de la partida.
+	 * @param ambientacion   La ambientación de la partida.
+	 */
+	public Partida(String nombre, String diaHora, String finalizada, String duracionSesion, String ambientacion) {
 		this.nombre = nombre;
 		this.diaHora = diaHora;
 		this.ambientacion = ambientacion;
@@ -37,11 +75,17 @@ public class Partida {
 		this.duracionSesion = duracionSesion;
 	}
 
+	/**
+	 * Genera una representación en forma de cadena del nombre de la partida.
+	 * 
+	 * @return Una cadena que representa el nombre de la partida.
+	 */
 	@Override
 	public String toString() {
 		return nombre;
 	}
 
+	// Getter y Setter
 	public String getIdPartida() {
 		return idPartida;
 	}
