@@ -7,8 +7,12 @@ package modelo;
  * @author Daniel G.
  */
 
+/**
+ * Clase que representa un miembro en el sistema. Contiene información sobre los
+ * usuarios del sistema.
+ */
 public class Miembro {
-	
+
 	public static final String ID_MIEMBRO = "id_miembro";
 	public static final String NOMBRE_APELLIDOS = "nombre_apellidos";
 	public static final String NUMERO_EXPEDIENTE = "numero_expediente";
@@ -24,6 +28,16 @@ public class Miembro {
 	private String claveUsuario;
 	private String alias;
 
+	/**
+	 * Constructor de la clase Miembro.
+	 * 
+	 * @param idMiembro        El ID del miembro.
+	 * @param nombreApellidos  El nombre y apellidos del miembro.
+	 * @param numeroExpediente El número de expediente del miembro.
+	 * @param nombreEstudio    El nombre del estudio del miembro.
+	 * @param nombreUsuario    El nombre de usuario del miembro.
+	 * @param claveUsuario     La clave de usuario del miembro.
+	 */
 	public Miembro(String idMiembro, String nombreApellidos, int numeroExpediente, String nombreEstudio,
 			String nombreUsuario, String claveUsuario) {
 		this.idMiembro = idMiembro;
@@ -33,8 +47,8 @@ public class Miembro {
 		this.nombreUsuario = nombreUsuario;
 		this.claveUsuario = claveUsuario;
 	}
-	
-	// EJEMPLO LLAMAR CONSTRUCTOR
+
+	// Ejemplo de uso del constructor alternativo
 	public Miembro(String idMiembro, String nombreApellidos, int numeroExpediente) {
 		this.idMiembro = idMiembro;
 		this.nombreApellidos = nombreApellidos;
@@ -45,19 +59,25 @@ public class Miembro {
 	public String toString() {
 		return nombreApellidos + ". [Expediente: " + numeroExpediente + "]";
 	}
-	
-	// EJEMPLO PARA IMPRIMIR.
+
+	// Ejemplo de método para impresión
 	public String paraPartidas() {
 		return "info miembro para partidas";
 	}
-	
+
+	/**
+	 * Verifica si el miembro es un Game Master.
+	 * 
+	 * @return true si el miembro es Game Master, false de lo contrario.
+	 */
 	public boolean esMaster() {
-		
+
 		ConexionBBDD conn = new ConexionBBDD();
-	
+
 		return conn.isGameMaster(idMiembro);
 	}
 
+	// Métodos getters y setters
 	public String getIdMiembro() {
 		return idMiembro;
 	}
@@ -114,5 +134,4 @@ public class Miembro {
 		this.alias = alias;
 	}
 
-	
 }

@@ -27,12 +27,16 @@ import javax.swing.text.DateFormatter;
 import control.ControlMenuPrincipalGM;
 import modelo.Partida;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+
+/**
+ * Clase que representa la interfaz gráfica para la edición de una partida.
+ */
 public class EditarPartida extends JPanel {
-	/**
-	 * @author Daniel F.
-	 * @author Ignacio M.
-	 * @author Daniel G.
-	 */
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textAmbiente;
@@ -47,12 +51,20 @@ public class EditarPartida extends JPanel {
 	private ButtonGroup group;
 	private ControlMenuPrincipalGM control;
 
+	/**
+	 * Constructor de la clase EditarPartida.
+	 * 
+	 * @param control El controlador que manejará las acciones de esta vista.
+	 */
 	public EditarPartida(ControlMenuPrincipalGM control) {
 		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configuración inicial del panel.
+	 */
 	public void configuracionInicial() {
 
 		// Barra Superior.
@@ -62,8 +74,12 @@ public class EditarPartida extends JPanel {
 		setSize(1300, 660);
 	}
 
+	/**
+	 * Inicialización de los componentes del panel.
+	 */
 	public void inicializarComponentes() {
 
+		// Etiquetas para los campos de entrada
 		JLabel labelNombrePartida = new JLabel("Nombre de la partida:");
 		labelNombrePartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNombrePartida.setForeground(Color.WHITE);
@@ -100,7 +116,7 @@ public class EditarPartida extends JPanel {
 		labelEstado.setBounds(260, 454, 429, 30);
 		add(labelEstado);
 
-		// Botón para registrarse
+		// Botón para editar la partida
 		botonCrearPartida = new JButton("Editar Partida");
 		botonCrearPartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonCrearPartida.setForeground(new Color(37, 34, 81));
@@ -113,7 +129,7 @@ public class EditarPartida extends JPanel {
 		});
 		add(botonCrearPartida);
 
-		// Botones de seleccion
+		// Radio buttons para seleccionar si la partida está en curso o terminada
 		radioSi = new JRadioButton("Si");
 		radioNo = new JRadioButton("No");
 		group = new ButtonGroup();
@@ -132,6 +148,7 @@ public class EditarPartida extends JPanel {
 		radioNo.setBounds(889, 456, 70, 30);
 		add(radioNo);
 
+		// Campos de texto para los datos de la partida
 		textAmbiente = new JTextField();
 		textAmbiente.setBounds(728, 192, 258, 40);
 		add(textAmbiente);
@@ -147,6 +164,7 @@ public class EditarPartida extends JPanel {
 		add(textNumeroSesion);
 		textNumeroSesion.setColumns(10);
 
+		// ComboBox para seleccionar la partida a editar
 		misPartidas = new JComboBox<Partida>();
 		misPartidas.setBounds(724, 92, 258, 37);
 		misPartidas.addActionListener(new ActionListener() {
@@ -156,6 +174,7 @@ public class EditarPartida extends JPanel {
 		});
 		add(misPartidas);
 
+		// Campo formateado para la fecha y hora
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		DateFormatter formatter = new DateFormatter(format);
 		format.setLenient(false);
@@ -168,6 +187,11 @@ public class EditarPartida extends JPanel {
 		add(ftf);
 	}
 
+	/**
+	 * Inserta las partidas en el comboBox.
+	 * 
+	 * @param array Lista de partidas a insertar.
+	 */
 	public void insertarPartida(ArrayList<Partida> array) {
 		DefaultComboBoxModel<Partida> dcbm = new DefaultComboBoxModel<Partida>();
 		dcbm.addAll(array);
@@ -176,10 +200,17 @@ public class EditarPartida extends JPanel {
 		partidas = array;
 	}
 
+	/**
+	 * Selecciona una partida del comboBox y llena los campos con sus datos.
+	 * 
+	 * @param e El evento de acción.
+	 */
 	private void seleccionPartidaCombo(ActionEvent e) {
 
+		// Obtener la partida seleccionada
 		Partida partida = partidas.get(misPartidas.getSelectedIndex());
 
+		// Llenar los campos con los datos de la partida seleccionada
 		textAmbiente.setText(partida.getAmbientacion());
 		ftf.setText(partida.getDiaHora());
 		textDuracion.setText(partida.getDuracionSesion());
@@ -193,6 +224,12 @@ public class EditarPartida extends JPanel {
 
 	}
 
+	/**
+	 * Muestra un mensaje en un cuadro de diálogo.
+	 * 
+	 * @param exitoso Indica si la operación fue exitosa.
+	 * @param mensaje El mensaje a mostrar.
+	 */
 	public void mensaje(boolean exitoso, String mensaje) {
 
 		if (exitoso) {
@@ -203,6 +240,9 @@ public class EditarPartida extends JPanel {
 
 	}
 
+	/**
+	 * Limpia los campos del formulario.
+	 */
 	public void limpiarCampos() {
 
 		textAmbiente.setText(null);
@@ -212,22 +252,28 @@ public class EditarPartida extends JPanel {
 		group.clearSelection();
 
 	}
-	
+
+	/**
+	 * Edita la partida seleccionada con los nuevos datos.
+	 */
 	public void editarPartida() {
-		
+
+		// Obtener la partida seleccionada
 		Partida partida = partidas.get(misPartidas.getSelectedIndex());
 
+		// Actualizar los datos de la partida con los valores de los campos
 		partida.setAmbientacion(textAmbiente.getText());
 		partida.setDuracionSesion(textDuracion.getText());
 		partida.setNumeroSesion(textNumeroSesion.getText());
 		partida.setDiaHora(ftf.getText());
-		
-		if(radioSi.isSelected()) {
+
+		// Actualizar el estado de la partida
+		if (radioSi.isSelected()) {
 			partida.setFinalizada("Si");
 		} else {
 			partida.setFinalizada("No");
 		}
-		
+
 		control.actualizarPartida(partida);
 	}
 

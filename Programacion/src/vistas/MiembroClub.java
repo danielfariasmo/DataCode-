@@ -16,21 +16,32 @@ import javax.swing.JPanel;
 
 import modelo.Miembro;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+/**
+ * Clase que representa la interfaz gráfica para mostrar los miembros de un
+ * club.
+ */
 public class MiembroClub extends JPanel {
-	/**
-	 * @author Daniel F.
-	 * @author Ignacio M.
-	 * @author Daniel G.
-	 */
+
 	JComboBox<Miembro> mostrarMiembros;
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructor de la clase MiembroClub.
+	 */
 	public MiembroClub() {
 		configuracionIncial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configuración inicial del panel.
+	 */
 	public void configuracionIncial() {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -38,6 +49,11 @@ public class MiembroClub extends JPanel {
 		setLayout(null);
 	}
 
+	/**
+	 * Inserta una lista de miembros en el JComboBox.
+	 * 
+	 * @param array Lista de miembros a insertar.
+	 */
 	public void insertarMiembros(ArrayList<Miembro> array) {
 		DefaultComboBoxModel<Miembro> dcbm = new DefaultComboBoxModel<Miembro>();
 		dcbm.addAll(array);
@@ -45,9 +61,12 @@ public class MiembroClub extends JPanel {
 
 	}
 
+	/**
+	 * Inicializa los componentes del panel.
+	 */
 	public void inicializarComponentes() {
 
-		// Listado de miembros:
+		// ComboBox para mostrar miembros
 		mostrarMiembros = new JComboBox<Miembro>();
 		mostrarMiembros.setToolTipText("");
 		mostrarMiembros.setBackground(new Color(255, 255, 255));
@@ -56,24 +75,24 @@ public class MiembroClub extends JPanel {
 		mostrarMiembros.setBounds(715, 189, 486, 106);
 		add(mostrarMiembros);
 
-		// Contenedor de imagen
+		// Panel para contener el eslogan
 		JPanel contenedorSlogan = new JPanel();
 		contenedorSlogan.setBounds(805, 368, 328, 80);
 		add(contenedorSlogan);
 
-		// Imagen
+		// Etiqueta para el eslogan
 		JLabel labelSlogan = new JLabel("");
 		contenedorSlogan.add(labelSlogan);
 		labelSlogan.setIcon(new ImageIcon("img/SloganDC1.png"));
 
-		// Titulo
+		// Etiqueta para el título
 		JLabel labelTitulo = new JLabel("Miembros");
 		labelTitulo.setFont(new Font("Verdana", Font.BOLD, 40));
 		labelTitulo.setForeground(new Color(255, 255, 255));
 		labelTitulo.setBounds(858, 79, 275, 89);
 		add(labelTitulo);
 
-		// Contenedor de informacion adicional
+		// Panel para información adicional
 		JPanel contenedorInformacion = new JPanel();
 		contenedorInformacion.setBackground(new Color(37, 34, 81));
 		contenedorInformacion.setBounds(629, 0, 671, 600);
@@ -81,12 +100,14 @@ public class MiembroClub extends JPanel {
 		setLayout(null);
 		contenedorInformacion.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-		// Titulo informacion extra
+		// Etiqueta para el título de información adicional
 		JLabel labelTituloInformacion = new JLabel("Jugadores de Rol Famosos");
 		labelTituloInformacion.setForeground(new Color(37, 34, 81));
 		labelTituloInformacion.setFont(new Font("Verdana", Font.BOLD, 30));
 		labelTituloInformacion.setBounds(50, 10, 479, 59);
 		add(labelTituloInformacion);
+
+		// Información de famosos jugadores de rol
 
 		// VIN DIESEL
 		JLabel labelVinDiesel = new JLabel("Vin Diesel");
@@ -100,7 +121,7 @@ public class MiembroClub extends JPanel {
 		labelImagenVin.setBounds(50, 93, 173, 160);
 		add(labelImagenVin);
 
-		// DAWYNE JOHNSE
+		// DAWYNE JONHSON
 		JLabel labelLaRoca = new JLabel("Dawyne Johnse");
 		labelLaRoca.setForeground(new Color(37, 34, 81));
 		labelLaRoca.setFont(new Font("Verdana", Font.BOLD, 20));
