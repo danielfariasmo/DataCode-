@@ -88,7 +88,7 @@ public class ControlModificarPersonaje implements ActionListener {
 
 			// Se actualiza el personaje en la base de datos.
 			conexionbbdd.actualizarPersonaje(personaje);
-			modificarPersonaje.mensaje(true, "Se ha elminiado el personaje " + personaje.getNombre());
+			modificarPersonaje.mensaje(true, "Se ha actualizado el personaje " + personaje.getNombre());
 		} catch (Exception e) {
 			modificarPersonaje.mensaje(false, "No se han rellenado los campos correctamente");
 		}

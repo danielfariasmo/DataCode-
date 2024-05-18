@@ -40,7 +40,7 @@ public class ControlNuevoPersonaje implements ActionListener {
 
 		// Se crea un nuevo objeto de tipo Personaje.
 		Personaje personaje = new Personaje();
-
+		
 		try {
 
 			// Se establecen los atributos del personaje con los valores de los elementos de
@@ -57,7 +57,7 @@ public class ControlNuevoPersonaje implements ActionListener {
 			// Se verifica que los campos obligatorios no estén vacíos antes de guardar el
 			// personaje.
 			if (!personaje.getNombre().trim().isEmpty() && !personaje.getRaza().isEmpty()
-					&& personaje.getRaza().isEmpty()) {
+				    && !personaje.getClase().isEmpty()) {
 				conexionBBDD.guardarPersonaje(personaje);
 				nuevoPersonaje.mensaje(true, "Se ha creado tu personaje " + personaje.getNombre());
 			} else {
