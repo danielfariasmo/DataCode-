@@ -25,12 +25,18 @@ import control.ControlMenuPrincipalGM;
 import modelo.Miembro;
 
 /**
- * 
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+/**
+ * La clase MenuPrincipalGameMaster representa la interfaz gráfica del menú
+ * principal para el Game Master.
  */
 public class MenuPrincipalGameMaster extends JFrame {
 
 	/**
-	 * 
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panelPrincipal;
@@ -45,14 +51,22 @@ public class MenuPrincipalGameMaster extends JFrame {
 
 	private Miembro miembro;
 
+	/**
+	 * Constructor de la clase MenuPrincipalGameMaster.
+	 * 
+	 * @param miembro El miembro asociado al Game Master.
+	 */
 	public MenuPrincipalGameMaster(Miembro miembro) {
 		this.miembro = miembro;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configura la apariencia inicial de la ventana del menú principal.
+	 */
 	public void configuracionInicial() {
-
+		// Creación del panel principal y del scroll panel
 		panelPrincipal = new JPanel();
 		scrollPrincipal = new JScrollPane();
 
@@ -68,6 +82,7 @@ public class MenuPrincipalGameMaster extends JFrame {
 		setSize(1300, 660);
 		setLocationRelativeTo(null);
 
+		// Configuración del layout del contenido de la ventana
 		cambiarPanel(panelPrincipal);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(scrollPrincipal,
@@ -80,6 +95,10 @@ public class MenuPrincipalGameMaster extends JFrame {
 
 	}
 
+	/**
+	 * Inicializa y configura los componentes de la interfaz gráfica del menú
+	 * principal.
+	 */
 	public void inicializarComponentes() {
 
 		// Logo
@@ -174,14 +193,28 @@ public class MenuPrincipalGameMaster extends JFrame {
 		setJMenuBar(barraMenu);
 	}
 
+	/**
+	 * Hace visible la ventana del menú principal.
+	 */
 	public void hacerVisible() {
 		setVisible(true);
 	}
 
+	/**
+	 * Cambia el panel principal del menú por el panel especificado.
+	 * 
+	 * @param panel El nuevo panel a mostrar en el menú.
+	 */
 	public void cambiarPanel(JPanel panel) {
 		scrollPrincipal.setViewportView(panel);
 	}
 
+	/**
+	 * Establece el listener para los elementos de la interfaz gráfica del menú.
+	 * 
+	 * @param listener El objeto que actuará como listener para los elementos del
+	 *                 menú.
+	 */
 	public void setListener(ControlMenuPrincipalGM listener) {
 		crearPartida.addActionListener(listener);
 		consultarPartida.addActionListener(listener);

@@ -18,30 +18,48 @@ import control.ControlMenuPrincipalGM;
 import modelo.Partida;
 import modelo.Personaje;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+/**
+ * Panel que muestra información detallada de una partida para el GameMaster.
+ * Permite visualizar los personajes asociados a la partida y subir la
+ * experiencia de un personaje. Extiende JPanel y utiliza ActionListener para
+ * manejar eventos de acción en la interfaz.
+ */
 public class InfoPartidaGameMaster extends JPanel {
-	/**
-	 * @author Daniel F.
-	 * @author Ignacio M.
-	 * @author Daniel G.
-	 */
+	// Serial version UID para la serialización
 	private static final long serialVersionUID = 1L;
+	// Componentes de la interfaz
 	private JLabel labelTitulo;
 	private JLabel labelIdentificadorPartida;
 	private JLabel labelInfoMaxJugadores;
 	private JLabel labelInfoGameMaster;
 	private JTable tablaPersonajes;
 	private Partida partidaClase;
+	// Controlador asociado a esta vista
 	private ControlMenuPrincipalGM controlGM;
+	// Lista de personajes asociados a la partida
 	private ArrayList<Personaje> personajes;
 
+	/**
+	 * Constructor que inicializa el panel de información de la partida.
+	 *
+	 * @param controlGM el controlador asociado
+	 */
 	public InfoPartidaGameMaster(ControlMenuPrincipalGM controlGM) {
 		this.controlGM = controlGM;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configuración inicial del panel.
+	 */
 	public void configuracionInicial() {
-
+		// Configuración de la apariencia del panel
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
@@ -50,6 +68,9 @@ public class InfoPartidaGameMaster extends JPanel {
 		setForeground(new Color(255, 255, 255));
 	}
 
+	/**
+	 * Inicialización de los componentes de la interfaz.
+	 */
 	public void inicializarComponentes() {
 
 		// Titulo de la partida
@@ -63,6 +84,7 @@ public class InfoPartidaGameMaster extends JPanel {
 		tablaPersonajes = new JTable(
 				new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Raza", "Clase", "Nivel" }));
 		// Tabla Personajes
+		// Configuración de la tabla de personajes
 		tablaPersonajes.setFont(new Font("Verdana", Font.PLAIN, 15));
 		tablaPersonajes.setForeground(new Color(255, 255, 255));
 		tablaPersonajes.setBackground(new Color(37, 34, 81));
@@ -136,17 +158,25 @@ public class InfoPartidaGameMaster extends JPanel {
 
 	}
 
+	/**
+	 * Carga la información de la partida y los personajes asociados.
+	 *
+	 * @param partida         la partida a mostrar
+	 * @param todosPersonajes la lista de personajes asociados a la partida
+	 */
 	public void cargarInfoPartida(Partida partida, ArrayList<Personaje> todosPersonajes) {
 
+		// Asigna la lista de personajes asociados a la partida
 		this.personajes = todosPersonajes;
+		// Asignación de los valores de la partida a los componentes de la interfaz
 		labelTitulo.setText(partida.getNombre());
 		labelIdentificadorPartida.setText(partida.getIdPartida());
 		labelInfoMaxJugadores.setText(partida.getDuracionSesion() + " horas.");
 		labelInfoGameMaster.setText(partida.getIdGameMaster());
-
+		// Configura el modelo de la tabla de personajes con los personajes asociados
 		DefaultTableModel modelo = (DefaultTableModel) tablaPersonajes.getModel();
 		modelo.setNumRows(0);
-
+		// Itera sobre la lista de personajes para agregarlos a la tabla
 		for (Personaje personaje : todosPersonajes) {
 			ArrayList<String> registro = new ArrayList<String>();
 			registro.add(personaje.getNombre());
@@ -156,30 +186,43 @@ public class InfoPartidaGameMaster extends JPanel {
 
 			modelo.addRow(registro.toArray());
 		}
-
+		// Guarda una referencia a la partida actual
 		partidaClase = partida;
 
 	}
 
+	/**
+	 * Maneja el evento de selección de un personaje en la tabla.
+	 *
+	 * @param e el evento de acción generado
+	 */
 	public void itemSeleccionado(ActionEvent e) {
-
+		// Verifica si se ha seleccionado un personaje en la tabla
 		if (tablaPersonajes.getSelectedRow() < 0) {
+			// Muestra un mensaje de error si no se ha seleccionado ningún personaje
 			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje.", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+			// Obtiene el personaje seleccionado
 			Personaje personajeSeleccionada = personajes.get(tablaPersonajes.getSelectedRow());
+			// Solicita al usuario que ingrese el nuevo nivel de experiencia
 			String nivel = JOptionPane.showInputDialog("Modifica la experiencia:");
-
+			// Verifica si se ha ingresado un valor válido para el nivel de experiencia
 			if (nivel != null && !nivel.trim().isEmpty()) {
 				try {
 					int numero = Integer.parseInt(nivel.trim());
+					// Verifica si el nuevo nivel es negativo
 					if (numero < 0) {
 						JOptionPane.showMessageDialog(this, "Experiencia no puede ser negativa.");
 					} else {
+						// Actualiza la experiencia del personaje en la base de datos
 						controlGM.actualizarExperiencia(personajeSeleccionada.getIdPersonaje(), numero);
+						// Muestra un mensaje de éxito
 						JOptionPane.showMessageDialog(this, "Modificación exitosa.");
+						// Actualiza la información de la partida en la interfaz
 						controlGM.cambiarInfoPartidaJugador(partidaClase);
 					}
 				} catch (Exception e2) {
+					// Muestra un mensaje de error si se ingresó un valor no válido
 					JOptionPane.showMessageDialog(this, "No has rellenado los campos correctamente.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}

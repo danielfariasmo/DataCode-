@@ -19,19 +19,38 @@ import control.ControlGameMasterAlias;
  * @author Ignacio M.
  * @author Daniel G.
  */
+
+/**
+ * Ventana para que un usuario pueda registrarse como GameMaster mediante un alias.
+ * Permite al usuario ingresar un alias y registrarse como GameMaster.
+ */
 public class GameMasterAlias extends JFrame {
 
 	private JTextField textoAlias;
 	private JButton botonRegistrarse;
 	private ControlGameMasterAlias controlGameMasterAlias;
 	private static final long serialVersionUID = 1L;
+	private JLabel textoCentral;
+	private JLabel etiquetaLogo;
+	private JLabel labelRegistrate;
+	private JPanel panel;
+	private JLabel labelAlias;
+	private JLabel labelMensaje;
 
+	 /**
+     * Constructor de la clase GameMasterAlias.
+     * 
+     * @param controlGameMasterAlias Controlador para manejar las acciones relacionadas con el alias del GameMaster.
+     */
 	public GameMasterAlias(ControlGameMasterAlias controlGameMasterAlias) {
 		this.controlGameMasterAlias = controlGameMasterAlias;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+     * Configura las propiedades iniciales de la ventana.
+     */
 	public void configuracionInicial() {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -48,10 +67,13 @@ public class GameMasterAlias extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+     * Inicializa todos los componentes visuales de la ventana.
+     */
 	public void inicializarComponentes() {
 
 		// Texto en el centro de la ventana
-		JLabel textoCentral = new JLabel("Ups.. ¡No eres GameMaster!");
+		textoCentral = new JLabel("Ups.. ¡No eres GameMaster!");
 		textoCentral.setFont(new Font("Verdana", Font.BOLD, 40));
 		textoCentral.setForeground(Color.WHITE);
 		textoCentral.setBounds(644, 63, 642, 50);
@@ -67,14 +89,14 @@ public class GameMasterAlias extends JFrame {
 		getContentPane().add(botonRegistrarse);
 
 		// Label alias
-		JLabel labelAlias = new JLabel("Escribe tu \"Alias\" :");
+		labelAlias = new JLabel("Escribe tu \"Alias\" :");
 		labelAlias.setBounds(821, 230, 303, 50);
 		getContentPane().add(labelAlias);
 		labelAlias.setFont(new Font("Verdana", Font.PLAIN, 30));
 		labelAlias.setForeground(Color.WHITE);
 
 		// Label mostrar mensaje al usuario
-		JLabel labelMensaje = new JLabel("");
+		labelMensaje = new JLabel("");
 		labelMensaje.setBounds(351, 350, 350, 50);
 		getContentPane().add(labelMensaje);
 		labelMensaje.setFont(new Font("Verdana", Font.BOLD, 25));
@@ -86,25 +108,29 @@ public class GameMasterAlias extends JFrame {
 		getContentPane().add(textoAlias);
 		textoAlias.setFont(new Font("Verdana", Font.PLAIN, 20));
 		textoAlias.setPreferredSize(new Dimension(200, 40));
-
-		JLabel etiquetaLogo = new JLabel(" ");
+		
+		// Logo
+		etiquetaLogo = new JLabel(" ");
 		etiquetaLogo.setBounds(45, 12, 600, 612);
 		etiquetaLogo.setIcon(new ImageIcon("img/DataCode.Logo.png"));
 		getContentPane().add(etiquetaLogo);
 
-		JLabel labelRegistrate = new JLabel("REGISTRATE");
+		// Label Registrarse
+		labelRegistrate = new JLabel("REGISTRATE");
 		labelRegistrate.setForeground(new Color(255, 255, 255));
 		labelRegistrate.setFont(new Font("Verdana", Font.BOLD, 30));
 		labelRegistrate.setBounds(848, 137, 223, 43);
 		getContentPane().add(labelRegistrate);
 
-		JPanel panel = new JPanel();
+		// Panel extra
+		panel = new JPanel();
 		panel.setBackground(new Color(37, 34, 81));
 		panel.setBounds(637, 0, 649, 624);
 		getContentPane().add(panel);
 
 	}
 
+	// Getter.
 	public String getTextoAlias() {
 		return textoAlias.getText();
 	}
