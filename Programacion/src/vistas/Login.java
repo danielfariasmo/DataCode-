@@ -62,7 +62,6 @@ public class Login extends JFrame {
 	public Login() {
 		configuracionInicial();
 		inicializarComponentes();
-		System.out.println("Componentes creados");
 	}
 
 	/**

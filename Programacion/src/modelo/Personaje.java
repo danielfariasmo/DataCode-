@@ -81,6 +81,13 @@ public class Personaje {
 		this.clase = clase;
 		this.raza = raza;
 	}
+	
+	/**
+	 * Contructor alternativo vacío.
+	 */
+	public Personaje () {
+		
+	}
 
 	/**
 	 * Genera una representación en forma de cadena del personaje.
