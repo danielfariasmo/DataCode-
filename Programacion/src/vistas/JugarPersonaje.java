@@ -119,12 +119,13 @@ public class JugarPersonaje extends JPanel {
 		labelPersonaje = new JLabel("Personaje");
 		labelPersonaje.setForeground(new Color(255, 255, 255));
 		labelPersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
-		labelPersonaje.setBounds(341, 70, 152, 50);
+		labelPersonaje.setBounds(247, 70, 152, 50);
 		add(labelPersonaje);
 
 		// JComboBox para seleccionar el personaje
 		seleccionPartida = new JComboBox<String>();
-		seleccionPartida.setBounds(595, 130, 306, 50);
+		seleccionPartida.setFont(new Font("Verdana", Font.PLAIN, 20));
+		seleccionPartida.setBounds(645, 131, 481, 50);
 		seleccionPartida.addItem("--Seleccione la Partida--");
 		seleccionPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,12 +138,13 @@ public class JugarPersonaje extends JPanel {
 		labelPartida = new JLabel("Partida");
 		labelPartida.setForeground(new Color(255, 255, 255));
 		labelPartida.setFont(new Font("Verdana", Font.BOLD, 25));
-		labelPartida.setBounds(701, 70, 109, 50);
+		labelPartida.setBounds(810, 70, 152, 50);
 		add(labelPartida);
 
 		// Etiqueta para seleccionar partida
 		seleccionPersonaje = new JComboBox<Personaje>();
-		seleccionPersonaje.setBounds(294, 130, 232, 50);
+		seleccionPersonaje.setFont(new Font("Verdana", Font.PLAIN, 20));
+		seleccionPersonaje.setBounds(90, 131, 481, 50);
 		seleccionPersonaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -155,72 +157,72 @@ public class JugarPersonaje extends JPanel {
 		labelCarisma = new JLabel("Carisma");
 		labelCarisma.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelCarisma.setForeground(new Color(255, 255, 255));
-		labelCarisma.setBounds(294, 256, 114, 32);
+		labelCarisma.setBounds(221, 256, 114, 32);
 		add(labelCarisma);
 
 		spinnerCarisma = new JSpinner();
 		spinnerCarisma.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerCarisma.setBounds(419, 252, 74, 41);
+		spinnerCarisma.setBounds(380, 252, 74, 41);
 		add(spinnerCarisma);
 
 		// Fuerza
 		labelFuerza = new JLabel("Fuerza");
 		labelFuerza.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelFuerza.setForeground(new Color(255, 255, 255));
-		labelFuerza.setBounds(294, 339, 88, 30);
+		labelFuerza.setBounds(221, 334, 88, 30);
 		add(labelFuerza);
 
 		spinnerFuerza = new JSpinner();
 		spinnerFuerza.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerFuerza.setBounds(419, 334, 74, 41);
+		spinnerFuerza.setBounds(380, 329, 74, 41);
 		add(spinnerFuerza);
 
 		// Destreza
 		labelDestreza = new JLabel("Destreza");
 		labelDestreza.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelDestreza.setForeground(new Color(255, 255, 255));
-		labelDestreza.setBounds(294, 409, 123, 28);
+		labelDestreza.setBounds(221, 409, 123, 28);
 		add(labelDestreza);
 
 		spinnerDestreza = new JSpinner();
 		spinnerDestreza.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerDestreza.setBounds(419, 403, 74, 41);
+		spinnerDestreza.setBounds(380, 403, 74, 41);
 		add(spinnerDestreza);
 
 		// Constitución
 		labelConstitucion = new JLabel("Constitución");
 		labelConstitucion.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelConstitucion.setForeground(new Color(255, 255, 255));
-		labelConstitucion.setBounds(595, 253, 140, 38);
+		labelConstitucion.setBounds(736, 253, 140, 38);
 		add(labelConstitucion);
 
 		spinnerConstitucion = new JSpinner();
 		spinnerConstitucion.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerConstitucion.setBounds(758, 252, 74, 41);
+		spinnerConstitucion.setBounds(951, 252, 74, 41);
 		add(spinnerConstitucion);
 
 		// Sabiduria
 		labelSabiduria = new JLabel("Sabiduria");
 		labelSabiduria.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelSabiduria.setForeground(new Color(255, 255, 255));
-		labelSabiduria.setBounds(595, 338, 123, 32);
+		labelSabiduria.setBounds(736, 333, 123, 32);
 		add(labelSabiduria);
 
 		spinnerSabiduria = new JSpinner();
 		spinnerSabiduria.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerSabiduria.setBounds(758, 334, 74, 41);
+		spinnerSabiduria.setBounds(951, 329, 74, 41);
 		add(spinnerSabiduria);
 
 		// Inteligencia
 		labelInteligencia = new JLabel("Inteligencia");
 		labelInteligencia.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelInteligencia.setForeground(new Color(255, 255, 255));
-		labelInteligencia.setBounds(595, 404, 123, 38);
+		labelInteligencia.setBounds(736, 404, 123, 38);
 		add(labelInteligencia);
 
 		spinnerInteligencia = new JSpinner();
 		spinnerInteligencia.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerInteligencia.setBounds(758, 403, 74, 41);
+		spinnerInteligencia.setBounds(951, 403, 74, 41);
 		add(spinnerInteligencia);
 
 		// Botón para actualizar las características del personaje
@@ -228,7 +230,7 @@ public class JugarPersonaje extends JPanel {
 		botonActualizar.setBackground(new Color(135, 206, 235));
 		botonActualizar.setForeground(new Color(37, 34, 81));
 		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonActualizar.setBounds(294, 483, 232, 65);
+		botonActualizar.setBounds(265, 483, 306, 65);
 		botonActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				actualizarPersonaje(evt);
@@ -241,7 +243,7 @@ public class JugarPersonaje extends JPanel {
 		botonFinSession.setForeground(new Color(37, 34, 81));
 		botonFinSession.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonFinSession.setBackground(new Color(135, 206, 235));
-		botonFinSession.setBounds(595, 483, 306, 65);
+		botonFinSession.setBounds(645, 483, 306, 65);
 		botonFinSession.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				finalizarSesion(evt);

@@ -83,37 +83,37 @@ public class EditarPartida extends JPanel {
 		JLabel labelNombrePartida = new JLabel("Nombre de la partida:");
 		labelNombrePartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNombrePartida.setForeground(Color.WHITE);
-		labelNombrePartida.setBounds(260, 92, 352, 40);
+		labelNombrePartida.setBounds(260, 61, 352, 40);
 		add(labelNombrePartida);
 
 		JLabel labelAmbientacion = new JLabel("Ambientación:");
 		labelAmbientacion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelAmbientacion.setForeground(Color.WHITE);
-		labelAmbientacion.setBounds(260, 199, 400, 30);
+		labelAmbientacion.setBounds(260, 141, 400, 30);
 		add(labelAmbientacion);
 
 		JLabel labelDiaHora = new JLabel("Día y hora de la semana:");
 		labelDiaHora.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelDiaHora.setForeground(Color.WHITE);
-		labelDiaHora.setBounds(260, 296, 400, 38);
+		labelDiaHora.setBounds(260, 221, 400, 38);
 		add(labelDiaHora);
 
 		JLabel labelDuracionSesion = new JLabel("Duración de la sesión (horas):");
 		labelDuracionSesion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelDuracionSesion.setForeground(Color.WHITE);
-		labelDuracionSesion.setBounds(260, 345, 471, 46);
+		labelDuracionSesion.setBounds(260, 301, 471, 46);
 		add(labelDuracionSesion);
 
 		JLabel labelNumeroSesion = new JLabel("Número de la sesión:");
 		labelNumeroSesion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNumeroSesion.setForeground(Color.WHITE);
-		labelNumeroSesion.setBounds(260, 395, 400, 48);
+		labelNumeroSesion.setBounds(260, 381, 400, 48);
 		add(labelNumeroSesion);
 
 		JLabel labelEstado = new JLabel("¿Está en curso o terminada?:");
 		labelEstado.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelEstado.setForeground(Color.WHITE);
-		labelEstado.setBounds(260, 454, 429, 30);
+		labelEstado.setBounds(260, 461, 429, 30);
 		add(labelEstado);
 
 		// Botón para editar la partida
@@ -121,7 +121,7 @@ public class EditarPartida extends JPanel {
 		botonCrearPartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonCrearPartida.setForeground(new Color(37, 34, 81));
 		botonCrearPartida.setBackground(new Color(135, 206, 235));
-		botonCrearPartida.setBounds(452, 508, 400, 50);
+		botonCrearPartida.setBounds(452, 502, 400, 50);
 		botonCrearPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editarPartida();
@@ -136,37 +136,41 @@ public class EditarPartida extends JPanel {
 		group.add(radioSi);
 		group.add(radioNo);
 
-		radioSi.setFont(new Font("Verdana", Font.PLAIN, 20));
+		radioSi.setFont(new Font("Verdana", Font.BOLD, 25));
 		radioSi.setForeground(Color.WHITE);
 		radioSi.setBackground(new Color(37, 34, 81));
-		radioSi.setBounds(754, 456, 70, 30);
+		radioSi.setBounds(754, 461, 70, 30);
 		add(radioSi);
 
-		radioNo.setFont(new Font("Verdana", Font.PLAIN, 20));
+		radioNo.setFont(new Font("Verdana", Font.BOLD, 25));
 		radioNo.setForeground(Color.WHITE);
 		radioNo.setBackground(new Color(37, 34, 81));
-		radioNo.setBounds(889, 456, 70, 30);
+		radioNo.setBounds(893, 461, 70, 30);
 		add(radioNo);
 
 		// Campos de texto para los datos de la partida
 		textAmbiente = new JTextField();
-		textAmbiente.setBounds(728, 192, 258, 40);
+		textAmbiente.setFont(new Font("Verdana", Font.PLAIN, 20));
+		textAmbiente.setBounds(724, 141, 258, 40);
 		add(textAmbiente);
 		textAmbiente.setColumns(10);
 
 		textDuracion = new JTextField();
-		textDuracion.setBounds(728, 345, 258, 40);
+		textDuracion.setFont(new Font("Verdana", Font.PLAIN, 20));
+		textDuracion.setBounds(724, 301, 258, 40);
 		add(textDuracion);
 		textDuracion.setColumns(10);
 
 		textNumeroSesion = new JTextField();
-		textNumeroSesion.setBounds(728, 395, 258, 40);
+		textNumeroSesion.setFont(new Font("Verdana", Font.PLAIN, 20));
+		textNumeroSesion.setBounds(724, 381, 258, 40);
 		add(textNumeroSesion);
 		textNumeroSesion.setColumns(10);
 
 		// ComboBox para seleccionar la partida a editar
 		misPartidas = new JComboBox<Partida>();
-		misPartidas.setBounds(724, 92, 258, 37);
+		misPartidas.setFont(new Font("Verdana", Font.PLAIN, 20));
+		misPartidas.setBounds(724, 61, 258, 37);
 		misPartidas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				seleccionPartidaCombo(e);
@@ -182,8 +186,9 @@ public class EditarPartida extends JPanel {
 		formatter.setOverwriteMode(true);
 
 		ftf = new JFormattedTextField(formatter);
+		ftf.setFont(new Font("Verdana", Font.PLAIN, 20));
 		ftf.setValue(new Date());
-		ftf.setBounds(719, 281, 258, 41);
+		ftf.setBounds(724, 221, 258, 41);
 		add(ftf);
 	}
 

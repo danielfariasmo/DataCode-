@@ -78,28 +78,28 @@ public class CrearPartida extends JPanel {
 		JLabel labelAmbientacion = new JLabel("Ambientación:");
 		labelAmbientacion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelAmbientacion.setForeground(Color.WHITE);
-		labelAmbientacion.setBounds(189, 193, 400, 30);
+		labelAmbientacion.setBounds(189, 171, 400, 30);
 		add(labelAmbientacion);
 
 		// Etiqueta para el día y hora de la semana
 		JLabel labelDiaHora = new JLabel("Día y hora de la semana:");
 		labelDiaHora.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelDiaHora.setForeground(Color.WHITE);
-		labelDiaHora.setBounds(189, 278, 400, 30);
+		labelDiaHora.setBounds(189, 251, 400, 30);
 		add(labelDiaHora);
 
 		// Etiqueta para la duración de la sesión
 		JLabel labelDuracionSesion = new JLabel("Duración de la sesión (horas):");
 		labelDuracionSesion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelDuracionSesion.setForeground(Color.WHITE);
-		labelDuracionSesion.setBounds(187, 350, 484, 30);
+		labelDuracionSesion.setBounds(189, 331, 484, 30);
 		add(labelDuracionSesion);
 
 		// Etiqueta para el número de la sesión
 		JLabel labelNumeroSesion = new JLabel("Número de la sesión:");
 		labelNumeroSesion.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNumeroSesion.setForeground(Color.WHITE);
-		labelNumeroSesion.setBounds(187, 402, 400, 30);
+		labelNumeroSesion.setBounds(189, 411, 400, 30);
 		add(labelNumeroSesion);
 
 		// Campo de texto para el nombre de la partida
@@ -111,19 +111,19 @@ public class CrearPartida extends JPanel {
 		// Campo de texto para la ambientación de la partida
 		textoAmbientacion = new JTextField();
 		textoAmbientacion.setFont(new Font("Verdana", Font.BOLD, 20));
-		textoAmbientacion.setBounds(639, 190, 400, 41);
+		textoAmbientacion.setBounds(639, 168, 400, 41);
 		add(textoAmbientacion);
 
 		// Campo de texto para la duración de la sesión
 		textoDuracionSesion = new JTextField();
 		textoDuracionSesion.setFont(new Font("Verdana", Font.BOLD, 20));
-		textoDuracionSesion.setBounds(639, 347, 400, 41);
+		textoDuracionSesion.setBounds(639, 328, 400, 41);
 		add(textoDuracionSesion);
 
 		// Campo de texto para el número de la sesión
 		textoNumeroSesion = new JTextField();
 		textoNumeroSesion.setFont(new Font("Verdana", Font.BOLD, 20));
-		textoNumeroSesion.setBounds(639, 399, 400, 41);
+		textoNumeroSesion.setBounds(639, 408, 400, 41);
 		add(textoNumeroSesion);
 
 		// Botón para crear la partida
@@ -131,7 +131,7 @@ public class CrearPartida extends JPanel {
 		botonCrearPartida.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonCrearPartida.setForeground(new Color(37, 34, 81));
 		botonCrearPartida.setBackground(new Color(135, 206, 235));
-		botonCrearPartida.setBounds(639, 490, 400, 50);
+		botonCrearPartida.setBounds(639, 488, 400, 50);
 		add(botonCrearPartida);
 
 		// Formateador de fecha y hora
@@ -142,8 +142,9 @@ public class CrearPartida extends JPanel {
 		formatter.setOverwriteMode(true);
 
 		fechaHora = new JFormattedTextField(formatter);
+		fechaHora.setFont(new Font("Verdana", Font.PLAIN, 20));
 		fechaHora.setValue(new Date());
-		fechaHora.setBounds(639, 267, 400, 41);
+		fechaHora.setBounds(639, 248, 400, 41);
 		add(fechaHora);
 
 		// Acción del botón para crear la partida

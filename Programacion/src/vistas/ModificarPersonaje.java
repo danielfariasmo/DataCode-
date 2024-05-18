@@ -84,7 +84,7 @@ public class ModificarPersonaje extends JPanel {
 		labelNombrePersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelNombrePersonaje.setForeground(new Color(255, 255, 255));
 		add(labelNombrePersonaje, BorderLayout.NORTH);
-		labelNombrePersonaje.setBounds(74, 115, 324, 75);
+		labelNombrePersonaje.setBounds(74, 115, 353, 75);
 
 		// Etiqueta para la raza del personaje
 		JLabel labelRaza = new JLabel("Raza:");
@@ -123,13 +123,13 @@ public class ModificarPersonaje extends JPanel {
 		// ComboBox para seleccionar el nombre del personaje
 		comboNombrePersonaje = new JComboBox<>();
 		comboNombrePersonaje.setFont(new Font("Verdana", Font.PLAIN, 20));
-		comboNombrePersonaje.setBounds(401, 135, 277, 46);
+		comboNombrePersonaje.setBounds(401, 136, 277, 46);
 		add(comboNombrePersonaje);
 
 		// ComboBox para seleccionar la raza del personaje
 		comboRaza = new JComboBox<>();
 		comboRaza.setFont(new Font("Verdana", Font.PLAIN, 20));
-		comboRaza.setBounds(865, 136, 277, 44);
+		comboRaza.setBounds(865, 136, 277, 46);
 		comboRaza.addItem(" --Seleccione la Raza--");
 		comboRaza.addItem("Draconido");
 		comboRaza.addItem("Elfo");
@@ -143,7 +143,7 @@ public class ModificarPersonaje extends JPanel {
 		// ComboBox para seleccionar la clase del personaje
 		comboClase = new JComboBox<>();
 		comboClase.setFont(new Font("Verdana", Font.PLAIN, 20));
-		comboClase.setBounds(865, 277, 277, 46);
+		comboClase.setBounds(865, 273, 277, 46);
 		comboClase.addItem(" --Seleccione la Clase--");
 		comboClase.addItem("Contrabandista");
 		comboClase.addItem("Guardian");
@@ -157,7 +157,7 @@ public class ModificarPersonaje extends JPanel {
 		// Spinner para seleccionar el nivel de experiencia del personaje
 		spinnerExperiencia = new JSpinner();
 		spinnerExperiencia.setFont(new Font("Verdana", Font.PLAIN, 20));
-		spinnerExperiencia.setBounds(401, 281, 132, 38);
+		spinnerExperiencia.setBounds(401, 273, 277, 46);
 		add(spinnerExperiencia);
 
 		// Cargar los personajes en el ComboBox
