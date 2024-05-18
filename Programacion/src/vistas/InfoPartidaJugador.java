@@ -20,31 +20,51 @@ import control.ControlMenuPrincipalUsuario;
 import modelo.Partida;
 import modelo.Personaje;
 
+/**
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+/**
+ * Panel para mostrar la información de una partida para un jugador.
+ */
 public class InfoPartidaJugador extends JPanel {
-	/**
-	 * @author Daniel F.
-	 * @author Ignacio M.
-	 * @author Daniel G.
-	 */
+	// Declaración de variables de instancia
 	private static final long serialVersionUID = 1L;
+	// ComboBox para seleccionar un personaje
 	private JComboBox<Personaje> boxPersonaje;
+	// Etiqueta para mostrar el título de la partida
 	private JLabel labelTitulo;
+	// Etiqueta para mostrar el identificador de la partida
 	private JLabel labelIdentificadorPartida;
+	// Etiqueta para mostrar la duración máxima de la partida
 	private JLabel labelInfoMaxJugadores;
+	// Etiqueta para mostrar el GameMaster de la partida
 	private JLabel labelInfoGameMaster;
+	// Tabla para mostrar los personajes disponibles en la partida
 	private JTable tablaPersonajes;
+	// Referencia a la partida actual
 	private Partida partidaClase;
+	// Controlador asociado a esta vista
 	private ControlMenuPrincipalUsuario control;
 
+	/**
+	 * Constructor de la clase.
+	 * 
+	 * @param control El controlador asociado a esta vista.
+	 */
 	public InfoPartidaJugador(ControlMenuPrincipalUsuario control) {
 		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configuración inicial del panel.
+	 */
 	public void configuracionInicial() {
 
-		// Barra Superior.
+		// Establecer el estilo de la barra superior
 		setFont(new Font("Verdana", Font.BOLD, 20));
 		setBackground(new Color(37, 34, 81));
 		setLayout(null);
@@ -52,6 +72,9 @@ public class InfoPartidaJugador extends JPanel {
 		setForeground(new Color(255, 255, 255));
 	}
 
+	/**
+	 * Inicializa los componentes de la interfaz.
+	 */
 	public void inicializarComponentes() {
 
 		// Titulo de la partida
@@ -140,7 +163,7 @@ public class InfoPartidaJugador extends JPanel {
 		boxPersonaje.setFont(new Font("Verdana", Font.PLAIN, 20));
 		boxPersonaje.setBounds(157, 436, 444, 84);
 		add(boxPersonaje);
-
+		// Label de TituloPersonaje
 		JLabel tituloPersonaje = new JLabel("Personajes");
 		tituloPersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
 		tituloPersonaje.setForeground(new Color(255, 255, 255));
@@ -148,21 +171,34 @@ public class InfoPartidaJugador extends JPanel {
 		add(tituloPersonaje);
 	}
 
+	/**
+	 * Obtiene el ComboBox de personajes.
+	 * 
+	 * @return El ComboBox de personajes.
+	 */
 	public JComboBox<Personaje> getBoxPersonaje() {
 		return boxPersonaje;
 	}
 
+	/**
+	 * Carga la información de la partida en la interfaz.
+	 * 
+	 * @param partida         La partida cuya información se cargará.
+	 * @param misPersonajes   Lista de personajes del jugador en la partida.
+	 * @param todosPersonajes Lista de todos los personajes disponibles en la
+	 *                        partida.
+	 */
 	public void cargarInfoPartida(Partida partida, ArrayList<Personaje> misPersonajes,
 			ArrayList<Personaje> todosPersonajes) {
-
+		// Asignación de los valores de la partida a los componentes de la interfaz
 		labelTitulo.setText(partida.getNombre());
 		labelIdentificadorPartida.setText(partida.getIdPartida());
 		labelInfoMaxJugadores.setText(partida.getDuracionSesion() + " horas.");
 		labelInfoGameMaster.setText(partida.getIdGameMaster());
-
+		// Limpiar la tabla de personajes
 		DefaultTableModel modelo = (DefaultTableModel) tablaPersonajes.getModel();
 		modelo.setNumRows(0);
-
+		// Agregar los personajes a la tabla
 		for (Personaje personaje : todosPersonajes) {
 			ArrayList<String> registro = new ArrayList<String>();
 			registro.add(personaje.getNombre());
@@ -172,36 +208,45 @@ public class InfoPartidaJugador extends JPanel {
 
 			modelo.addRow(registro.toArray());
 		}
-
+		// Actualizar el ComboBox de personajes con los personajes del jugador
 		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
 		dcbm.addAll(misPersonajes);
 		boxPersonaje.setModel(dcbm);
-
+		// Guarda una referencia a la partida actual
 		partidaClase = partida;
 
 	}
 
+	/**
+	 * Maneja la acción de selección de un elemento en el ComboBox de personajes.
+	 * 
+	 * @param e El evento de acción.
+	 */
 	private void itemSeleccionado(ActionEvent e) {
-
+		// Obtiene el personaje seleccionado en el ComboBox
 		Personaje personaje = (Personaje) boxPersonaje.getSelectedItem();
 		System.out.println(personaje);
-
+		// Verifica si se ha seleccionado un personaje
 		if (personaje != null) {
-
+			// Solicita al usuario que ingrese una descripción para el personaje
 			String descripcion = JOptionPane.showInputDialog("Indica la descripción de tu personaje: ");
-
+			// Verifica si se ha ingresado una descripción válida
 			if (descripcion != null) {
 				if (!descripcion.trim().isEmpty()) {
+					// Muestra un mensaje de confirmación de unión a la partida y llama al método
+					// para agregar la partida
 					System.out.println(descripcion);
 					JOptionPane.showMessageDialog(this, "Te has unido a la partida: " + partidaClase.getNombre());
 					control.agregarPartida(partidaClase, personaje, descripcion);
 
 				} else {
+					// Muestra un mensaje de error si la descripción está vacía
 					JOptionPane.showMessageDialog(this, "No has rellenado los campos correctamente");
 				}
-			} 
+			}
 
 		} else {
+			// Muestra un mensaje de error si no se ha seleccionado ningún personaje
 			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje");
 		}
 

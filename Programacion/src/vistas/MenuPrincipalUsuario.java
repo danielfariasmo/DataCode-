@@ -15,36 +15,60 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 
 /**
- * 
+ * @author Daniel F.
+ * @author Ignacio M.
+ * @author Daniel G.
+ */
+/**
+ * Ventana del menú principal para usuarios.
  */
 public class MenuPrincipalUsuario extends JFrame {
 	/**
-	 * 
+	 * Serial version UID para la serialización.
 	 */
 	private static final long serialVersionUID = 1L;
-
+	// Componentes de la interfaz de usuario
 	private JPanel panelPrincipal;
+	// Panel principal que contiene otros componentes
 	private JScrollPane scrollPrincipal;
+	// Panel con barra de desplazamiento para desplazar otros componentes
 	private JMenuItem nuevoPersonaje;
+	// Elemento del menú para crear un nuevo personaje
 	private JMenuItem mostrarPersonajes;
+	// Elemento del menú para mostrar todos los personajes
 	private JMenuItem modificarPersonaje;
+	// Elemento del menú para modificar un personaje existente
 	private JMenuItem consultarPartida;
+	// Elemento del menú para consultar información sobre una partida
 	private JMenuItem mostrarMiembros;
+	// Elemento del menú para mostrar todos los miembros
 	private JMenuItem volverMenuPrincipal;
+	// Elemento del menú para volver al menú principal
 	private JMenuItem juegos;
+	// Elemento del menú para acceder a juegos
 	private JMenuItem partidaActual;
-
+	// Miembro asociado a esta instancia
 	private Miembro miembro;
 
+	/**
+	 * Constructor de la clase MenuPrincipalUsuario.
+	 * 
+	 * @param miembro Miembro asociado a esta instancia del menú principal.
+	 */
 	public MenuPrincipalUsuario(Miembro miembro) {
 		this.miembro = miembro;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
+	/**
+	 * Configura los elementos iniciales de la ventana del menú principal.
+	 */
 	public void configuracionInicial() {
-		panelPrincipal = new JPanel();
-		scrollPrincipal = new JScrollPane();
+		// Creación del panel principal y del panel con barra de desplazamiento
+		panelPrincipal = new JPanel();// Panel principal que contendrá otros componentes
+		scrollPrincipal = new JScrollPane();// Panel con barra de desplazamiento para desplazar otros componentes
+		// Agregamos el panel con barra de desplazamiento al contenido del JFrame
 		getContentPane().add(scrollPrincipal);
 
 		// Barra Superior.
@@ -64,6 +88,9 @@ public class MenuPrincipalUsuario extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Inicializa los componentes de la interfaz de usuario.
+	 */
 	public void inicializarComponentes() {
 
 		// Logo
@@ -201,14 +228,27 @@ public class MenuPrincipalUsuario extends JFrame {
 		setJMenuBar(barraMenu);
 	}
 
+	/**
+	 * Hace visible la ventana del menú principal.
+	 */
 	public void hacerVisible() {
 		setVisible(true);
 	}
 
+	/**
+	 * Cambia el panel mostrado en el scroll.
+	 * 
+	 * @param panel Nuevo panel a mostrar.
+	 */
 	public void cambiarPanel(JPanel panel) {
 		scrollPrincipal.setViewportView(panel);
 	}
 
+	/**
+	 * Establece los listeners para los eventos de la interfaz de usuario.
+	 * 
+	 * @param listener Controlador para el menú principal del usuario.
+	 */
 	public void setListener(ControlMenuPrincipalUsuario listener) {
 		nuevoPersonaje.addActionListener(listener);
 		mostrarPersonajes.addActionListener(listener);
