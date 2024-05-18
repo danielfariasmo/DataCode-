@@ -19,14 +19,14 @@ import control.ControlGameMasterAlias;
  * @author Ignacio M.
  * @author Daniel G.
  */
-public class GameMaster extends JFrame {
+public class GameMasterAlias extends JFrame {
 
 	private JTextField textoAlias;
 	private JButton botonRegistrarse;
 	private ControlGameMasterAlias controlGameMasterAlias;
 	private static final long serialVersionUID = 1L;
 
-	public GameMaster(ControlGameMasterAlias controlGameMasterAlias) {
+	public GameMasterAlias(ControlGameMasterAlias controlGameMasterAlias) {
 		this.controlGameMasterAlias = controlGameMasterAlias;
 		configuracionInicial();
 		inicializarComponentes();

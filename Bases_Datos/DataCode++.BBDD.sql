@@ -169,7 +169,7 @@ INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, 
 VALUES (19, 'La venganza del pirata', '2024-06-01 18:00:00', 1, 'Mar Caribe', 'No', 4, 99);
 
 INSERT INTO Partida (id_partida, nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster)
-VALUES (20, 'La guerra de los magos', '2024-06-02 18:00:00', 1, 'Reino de Fantasía', 'No', 4, 99);
+VALUES (20, 'La guerra de los magos', '2024-06-02 18:00:00', 1, 'Reino de Fantasía', 'No', 4, 100);
 
 -- INSERCION DE VALORES 
 -- Juega
@@ -247,3 +247,11 @@ SELECT p.nombre, p.finalizada, per.nombre AS nombrePer, j.fuerza, j.destreza, j.
 SELECT p.nombre, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j JOIN Personaje per ON j.id_personaje = per.id_personaje JOIN Partida p ON p.id_partida = j.id_partida WHERE per.id_personaje = 03;
 
 UPDATE Juega SET fuerza = 40, destreza = 58, constitucion = 71, inteligencia = 31, sabiduria = 26, carisma = 27 WHERE id_personaje = 4 AND id_partida = 20;
+
+UPDATE Partida SET id_gameMaster = 100 WHERE id_partida = 20;
+
+SELECT * FROM Partida WHERE nombre = 'La guerra de los magos';
+
+UPDATE Personaje SET experiencia = 3 WHERE id_personaje = 5;
+
+INSERT INTO Personaje(nombre ,raza, nivel_experiencia, clase, id_miembro) VALUES ('El papi', 'Humano', 5, 'Guerrero', 2);

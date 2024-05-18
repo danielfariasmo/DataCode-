@@ -129,15 +129,14 @@ public class Login extends JFrame {
 
 	private MenuPrincipalUsuario inicializarMenuPrincipalUsuario(Miembro miembro) {
 		MenuPrincipalUsuario menuPrincipalUsuario = new MenuPrincipalUsuario(miembro);
-		NuevoPersonaje nuevoPersonaje = new NuevoPersonaje();
+		NuevoPersonaje nuevoPersonaje = new NuevoPersonaje(miembro);
 		MiembroClub miembroClub = new MiembroClub();
-		ModificarPersonaje modificarPersonaje = new ModificarPersonaje();
-		MostrarPersonaje mostrarPersonaje = new MostrarPersonaje();
+		ModificarPersonaje modificarPersonaje = new ModificarPersonaje(miembro);
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 		PartidaActual partidaActual = new PartidaActual();
 
 		ControlMenuPrincipalUsuario listener = new ControlMenuPrincipalUsuario(menuPrincipalUsuario, nuevoPersonaje,
-				miembroClub, modificarPersonaje, mostrarPersonaje, textoMenuPrincipal, partidaActual, miembro);
+				miembroClub, modificarPersonaje, textoMenuPrincipal, partidaActual, miembro);
 
 		menuPrincipalUsuario.setListener(listener);
 
@@ -146,13 +145,11 @@ public class Login extends JFrame {
 
 	private MenuPrincipalGameMaster inicializarMenuPrincipalGameMaster(Miembro miembro) {
 		MenuPrincipalGameMaster menuPrincipalGameMaster = new MenuPrincipalGameMaster(miembro);
-		EditarPartida editarPartida = new EditarPartida();
-		CrearPartida crearPartida = new CrearPartida();
 		MiembroClub miembroClub = new MiembroClub();
 		TextoMenuPrincipal textoMenuPrincipal = new TextoMenuPrincipal();
 
 		ControlMenuPrincipalGM listener = new ControlMenuPrincipalGM(menuPrincipalGameMaster,
-				crearPartida, editarPartida, miembroClub, textoMenuPrincipal);
+				miembroClub, textoMenuPrincipal, miembro);
 
 		menuPrincipalGameMaster.setListener(listener);
 

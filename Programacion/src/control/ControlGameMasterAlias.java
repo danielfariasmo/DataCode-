@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import modelo.ConexionBBDD;
 import modelo.Miembro;
-import vistas.GameMaster;
+import vistas.GameMasterAlias;
 import vistas.Login;
 
 /**
@@ -18,12 +18,12 @@ import vistas.Login;
  */
 public class ControlGameMasterAlias implements ActionListener {
 
-	private GameMaster aliasMaster;
+	private GameMasterAlias aliasMaster;
 	private Miembro miembro;
 	private ConexionBBDD conexionbbdd;
 
 	public ControlGameMasterAlias(Miembro miembro) {
-		this.aliasMaster = new GameMaster(this);
+		this.aliasMaster = new GameMasterAlias(this);
 		this.miembro = miembro;
 		this.aliasMaster.setVisible(true);
 		this.conexionbbdd = new ConexionBBDD();

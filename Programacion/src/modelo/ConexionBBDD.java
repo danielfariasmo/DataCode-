@@ -37,7 +37,7 @@ public class ConexionBBDD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			return DriverManager.getConnection(url, "root", "Villafranca1");
+			return DriverManager.getConnection(url, "root", "1590");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -154,7 +154,7 @@ public class ConexionBBDD {
 						String.valueOf(resultSet.getInt(CLAVE_USUARIO)));
 			}
 		} catch (NumberFormatException e) {
-			System.out.println("Error convirtiendo a entero la clave."); 
+			System.out.println("Error convirtiendo a entero la clave.");
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -197,8 +197,8 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia "
+			ResultSet rs = stmt.executeQuery(
+					"SELECT j.id_partida, per.nombre, per.raza, per.clase, per.nivel_experiencia, per.id_personaje "
 							+ "FROM Juega j " + "JOIN Personaje per ON j.id_personaje = per.id_personaje "
 							+ "WHERE j.id_partida = " + id_partida);
 			while (rs.next()) {
@@ -206,8 +206,10 @@ public class ConexionBBDD {
 				String raza = rs.getString("raza");
 				String clase = rs.getString("clase");
 				int nivelExperiencia = rs.getInt("nivel_experiencia");
+				String idPersonaje = rs.getString("id_personaje");
 
 				Personaje personaje = new Personaje(nombre, nivelExperiencia, raza, clase);
+				personaje.setIdPersonaje(idPersonaje);
 				personajes.add(personaje);
 			}
 			rs.close();
@@ -246,7 +248,6 @@ public class ConexionBBDD {
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			// TODO: error en consulta
 			ResultSet rs = stmt.executeQuery(
 					"SELECT p.nombre, p.finalizada, per.nombre AS nombre_personaje, j.fuerza, j.destreza, j.constitucion, j.inteligencia, j.sabiduria, j.carisma  FROM Juega j "
 							+ "JOIN Personaje per ON j.id_personaje = per.id_personaje "
@@ -345,10 +346,10 @@ public class ConexionBBDD {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
 			String sentencia = ("UPDATE Juega SET fuerza = " + juega.getFuerza() + ", destreza = " + juega.getDestreza()
-			+ ", constitucion = " + juega.getConstitucion() + ", inteligencia = " + juega.getInteligencia()
-			+ ", sabiduria = " + juega.getSabiduria() + ", carisma = " + juega.getCarisma()
-			+ " WHERE id_personaje = " + juega.getIdPersonaje() + " AND id_partida = " + juega.getId_partida());
-			
+					+ ", constitucion = " + juega.getConstitucion() + ", inteligencia = " + juega.getInteligencia()
+					+ ", sabiduria = " + juega.getSabiduria() + ", carisma = " + juega.getCarisma()
+					+ " WHERE id_personaje = " + juega.getIdPersonaje() + " AND id_partida = " + juega.getId_partida());
+
 			stmt.executeUpdate(sentencia);
 
 			stmt.close();
@@ -359,59 +360,170 @@ public class ConexionBBDD {
 		}
 	}
 
-	public Personaje guardarPersonaje(Personaje personaje) {
+	public void actualizarExperiencia(String idPersonaje, int nuevaExperiencia) {
+
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("INSERT INTO Personaje(id_personaje, nombre"
-					+ ",raza, nivel_experiencia, clase, id_miembro) values(" + personaje.getIdPersonaje() + "," + ""
-					+ personaje.getNombre() + "," + personaje.getRaza() + "," + "" + personaje.getNivelExperiencia()
-					+ "," + "" + personaje.getClase() + "," + "" + personaje.getId_miembro() + ")");
-			Personaje personajeSaved = null;
-			while (rs.next()) {
-				String nombre = rs.getString("nombre");
-				String raza = rs.getString("raza");
-				String clase = rs.getString("clase");
-				int nivelExperiencia = rs.getInt("nivel_experiencia");
+			String sentencia = ("UPDATE Personaje SET nivel_experiencia = " + nuevaExperiencia
+					+ " WHERE id_personaje = " + idPersonaje);
+			System.out.println(sentencia);
 
-				personajeSaved = new Personaje(nombre, nivelExperiencia, raza, clase);
+			stmt.executeUpdate(sentencia);
+
+			stmt.close();
+			cerrar();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<Partida> consultarPartidaGameMaster(int idGameMaster) {
+		ArrayList<Partida> partidas = new ArrayList<>();
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Partida WHERE id_gameMaster = " + idGameMaster);
+			while (rs.next()) {
+				String idPartida = String.valueOf(rs.getInt("id_partida"));
+				String nombre = rs.getString("nombre");
+				String dia_hora = rs.getString("dia_hora");
+				String numeroSesion = String.valueOf(rs.getInt("numero_sesion"));
+				String duracion_sesion = rs.getString("duracion_sesion");
+				String ambientacion = rs.getString("ambientacion");
+				String finalizada = rs.getString("finalizada");
+				String idGameMasterPartida = rs.getString("id_gameMaster");
+
+				Partida partida = new Partida(idPartida, nombre, dia_hora, numeroSesion, ambientacion, finalizada,
+						duracion_sesion, idGameMasterPartida);
+				partidas.add(partida);
 			}
 			rs.close();
 			stmt.close();
 			cerrar();
-			return personajeSaved;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return partidas;
 	}
 
-	public Personaje actualizarPersonaje(Personaje personaje) {
+	public GameMaster buscarID(int idGameMaster) {
+
+		GameMaster gameMaster = null;
+
 		try {
 			Connection conn = conectar();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("UPDATE Personaje SET " + "id_personaje = " + personaje.getIdPersonaje()
-					+ ", " + "nombre = " + personaje.getNombre() + "" + ",raza = " + personaje.getRaza() + ", "
-					+ "nivel_experiencia = " + personaje.getNivelExperiencia() + ", " + "clase = "
-					+ personaje.getClase() + ", " + "id_miembro = " + personaje.getId_miembro() + " "
-					+ "WHERE id_personaje = " + personaje.getIdPersonaje() + "");
-			Personaje personajeUpdated = null;
+			ResultSet rs = stmt.executeQuery("SELECT * FROM GameMaster WHERE id_miembro = " + idGameMaster);
 			while (rs.next()) {
-				String nombre = rs.getString("nombre");
-				String raza = rs.getString("raza");
-				String clase = rs.getString("clase");
-				int nivelExperiencia = rs.getInt("nivel_experiencia");
+				int idGameMasterS = rs.getInt("id_gameMaster");
+				String alias = rs.getString("alias");
+				int idMiembro = rs.getInt("id_miembro");
 
-				personajeUpdated = new Personaje(nombre, nivelExperiencia, raza, clase);
+				gameMaster = new GameMaster(idGameMasterS, alias, idMiembro);
 			}
 			rs.close();
 			stmt.close();
 			cerrar();
-			return personajeUpdated;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
+		}
+		return gameMaster;
+	}
+
+	public int crearPartida(Partida partida) {
+
+		int retorno = -1;
+
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			String sentencia = "INSERT INTO Partida (nombre, dia_hora, numero_sesion, ambientacion, finalizada, duracion_sesion, id_gameMaster) "
+					+ "VALUES ('" + partida.getNombre() + "', '" + partida.getDiaHora() + "', "
+					+ partida.getNumeroSesion() + ", '" + partida.getAmbientacion() + "', '" + partida.getFinalizada()
+					+ "', " + partida.getDuracionSesion() + ", " + partida.getIdGameMaster() + ");";
+			retorno = stmt.executeUpdate(sentencia);
+
+			System.out.println(retorno);
+			stmt.close();
+			cerrar();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return retorno;
+
+	}
+
+	public int editarPartida(Partida partida) {
+		int retorno = -1;
+
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			String sentencia = "UPDATE Partida SET dia_hora = '" + partida.getDiaHora() + "', numero_sesion = "
+					+ partida.getNumeroSesion() + ", ambientacion = '" + partida.getAmbientacion() + "', finalizada = '"
+					+ partida.getFinalizada() + "', duracion_sesion = " + partida.getDuracionSesion()
+					+ " WHERE id_partida = " + partida.getIdPartida() + ";";
+			retorno = stmt.executeUpdate(sentencia);
+
+			System.out.println(retorno);
+			stmt.close();
+			cerrar();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return retorno;
+	}
+
+	public void guardarPersonaje(Personaje personaje) {
+		
+		String sentencia = "INSERT INTO Personaje(nombre ,raza, nivel_experiencia, clase, id_miembro) VALUES ('"+ personaje.getNombre() + "', '" + personaje.getRaza() + "', " + personaje.getNivelExperiencia()
+		+ ", '" + personaje.getClase() + "', " + personaje.getId_miembro() + ");";
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			System.out.println(sentencia);
+			stmt.executeUpdate(sentencia);
+		
+			stmt.close();
+			cerrar();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
+	public void actualizarPersonaje(Personaje personaje) {
+		
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE Personaje SET nombre = '" + personaje.getNombre() + "', raza = '" + personaje.getRaza() + "', nivel_experiencia = " + personaje.getNivelExperiencia() + ", clase = '"
+					+ personaje.getClase() + "' WHERE id_personaje = " + personaje.getIdPersonaje() + ";");
+			
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void elminarPersonaje (String id_personaje) {
+		
+		try {
+			Connection conn = conectar();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("DELETE FROM Personaje WHERE id_personaje = " + id_personaje);
+			
+			stmt.close();
+			cerrar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -69,6 +69,7 @@ public class InfoPartidaJugador extends JPanel {
 		tablaPersonajes.setForeground(new Color(255, 255, 255));
 		tablaPersonajes.setBackground(new Color(37, 34, 81));
 		tablaPersonajes.setBounds(-15, 25, 939, 77);
+		tablaPersonajes.setEnabled(false);
 		add(tablaPersonajes);
 
 		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles

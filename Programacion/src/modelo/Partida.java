@@ -39,9 +39,7 @@ public class Partida {
 
 	@Override
 	public String toString() {
-		return "Partida [idPartida=" + idPartida + ", nombre=" + nombre + ", diaHora=" + diaHora + ", numeroSesion="
-				+ numeroSesion + ", ambientacion=" + ambientacion + ", finalizada=" + finalizada + ", duracionSesion="
-				+ duracionSesion + ", idGameMaster=" + idGameMaster + "]";
+		return nombre;
 	}
 
 	public String getIdPartida() {

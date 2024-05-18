@@ -4,16 +4,16 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import control.ControlNuevoPersonaje;
+import modelo.Miembro;
 
 public class NuevoPersonaje extends JPanel {
 	/**
@@ -26,10 +26,11 @@ public class NuevoPersonaje extends JPanel {
 	private JComboBox<String> comboRaza;
 	private JComboBox<String> comboExperiencia;
 	private JComboBox<String> comboClase;
+	private Miembro miembro;
 
-	public NuevoPersonaje() {
+	public NuevoPersonaje(Miembro miembro) {
 		setToolTipText("");
-
+		this.miembro = miembro;
 		configuracionInicial();
 		inicializarComponentes();
 
@@ -140,6 +141,16 @@ public class NuevoPersonaje extends JPanel {
 		comboClase.addItem("Picaro");
 		add(comboClase);
 	}
+	
+	public void mensaje(boolean exitoso, String mensaje) {
+
+		if (exitoso) {
+			JOptionPane.showMessageDialog(this, mensaje);
+		} else {
+			JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
 
 	public JTextField getTextoNombre() {
 		return textoNombre;
@@ -172,6 +183,11 @@ public class NuevoPersonaje extends JPanel {
 	public void setComboClase(JComboBox<String> comboClase) {
 		this.comboClase = comboClase;
 	}
+
+	public Miembro getMiembro() {
+		return miembro;
+	}
+	
 	
 	
 }

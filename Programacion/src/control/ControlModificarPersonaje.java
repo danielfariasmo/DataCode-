@@ -2,6 +2,7 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import modelo.ConexionBBDD;
 import modelo.Personaje;
@@ -11,7 +12,8 @@ public class ControlModificarPersonaje implements ActionListener{
 
 	private ModificarPersonaje modificarPersonaje;
 	
-	private ConexionBBDD conexionBBDD;
+	private ConexionBBDD conexionbbdd;
+
 	
 	public ControlModificarPersonaje(ModificarPersonaje modificarPersonaje) {
 		this.modificarPersonaje = modificarPersonaje;
@@ -26,9 +28,35 @@ public class ControlModificarPersonaje implements ActionListener{
 		personaje.setNivelExperiencia((int) modificarPersonaje.getSpinnerExperiencia().getValue());
 		personaje.setRaza(modificarPersonaje.getComboRaza().getSelectedItem().toString());
 	
-		conexionBBDD = new ConexionBBDD();
+		conexionbbdd = new ConexionBBDD();
 		
-		personaje = conexionBBDD.actualizarPersonaje(personaje);
+		conexionbbdd.actualizarPersonaje(personaje);
+		
+	}
+	
+	public void cargarPersonaje() {
+		conexionbbdd = new ConexionBBDD();
+		
+		ArrayList<Personaje> personajes = conexionbbdd.obtenerPersonaje(modificarPersonaje.getMiembro().getIdMiembro());
+		
+		modificarPersonaje.insertarPersonaje(personajes);
+	}
+	
+	public void actualizarPersonaje(Personaje personaje) {
+		
+		conexionbbdd = new ConexionBBDD();
+		
+		try {
+			personaje.setRaza(modificarPersonaje.getComboRaza().getSelectedItem().toString());
+			personaje.setClase(modificarPersonaje.getComboClase().getSelectedItem().toString());
+			personaje.setNivelExperiencia(Integer.valueOf(modificarPersonaje.getSpinnerExperiencia().getValue().toString()));
+			
+			conexionbbdd.actualizarPersonaje(personaje);
+			modificarPersonaje.mensaje(true, "Se ha elminiado el personaje " + personaje.getNombre());
+		} catch (Exception e) {
+			modificarPersonaje.mensaje(false, "No se han rellenado los campos correctamente");
+		}
+		
 		
 	}
 

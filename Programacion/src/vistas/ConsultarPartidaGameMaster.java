@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.ControlMenuPrincipalGM;
+import modelo.GameMaster;
 import modelo.Partida;
 
 public class ConsultarPartidaGameMaster extends JPanel {
@@ -34,10 +35,11 @@ public class ConsultarPartidaGameMaster extends JPanel {
 	private JLabel labelSlogan;
 	private JButton botonInfoPartida;
 	private ArrayList<Partida> partidasEnTabla;
-	private ControlMenuPrincipalGM controlMenuPrincipal;
+	private ControlMenuPrincipalGM control;
+	private GameMaster gameMaster;
 
-	public ConsultarPartidaGameMaster(ControlMenuPrincipalGM controlMenuPrincipal) {
-		this.controlMenuPrincipal = controlMenuPrincipal;
+	public ConsultarPartidaGameMaster(ControlMenuPrincipalGM control) {
+		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 
@@ -89,6 +91,7 @@ public class ConsultarPartidaGameMaster extends JPanel {
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
 		tablaPartida.setBounds(10, -13, 841, 452);
+		//tablaPartida.setEnabled(false);
 		add(tablaPartida);
 
 		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
@@ -130,11 +133,10 @@ public class ConsultarPartidaGameMaster extends JPanel {
 
 	public void itemSeleccionado(ActionEvent e) {
 
-		// TODO
 		Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
 		System.out.println(partidaSeleccionada);
 
-		//controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
+		control.cambiarInfoPartidaJugador(partidaSeleccionada);
 	}
 
 	public JTable getTablaPartida() {

@@ -48,7 +48,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 	private ControlJugarPersonaje controlJugarPersonaje;
 
 	public ControlMenuPrincipalUsuario(MenuPrincipalUsuario menuPrincipal, NuevoPersonaje nuevoPersonaje,
-			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje, MostrarPersonaje mostrarPersonaje,
+			MiembroClub miembroClub, ModificarPersonaje modificarPersonaje,
 			TextoMenuPrincipal textoMenuPrincipal, PartidaActual partidaActual,
 			Miembro miembro) {
 		this.controlJugarPersonaje = new ControlJugarPersonaje(miembro, this);
@@ -57,7 +57,7 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 		this.consultarPartida = new ConsultarPartida(this);
 		this.miembroClub = miembroClub;
 		this.modificarPersonaje = modificarPersonaje;
-		this.mostrarPersonaje = mostrarPersonaje;
+		this.mostrarPersonaje = new MostrarPersonaje(this);
 		this.textoMenuPrincipal = textoMenuPrincipal;
 		this.jugarPersonaje = controlJugarPersonaje.getJugarPersonaje();
 		this.partidaActual = partidaActual;
@@ -111,6 +111,19 @@ public class ControlMenuPrincipalUsuario implements ActionListener {
 
 	}
 
+	public void eliminarPersonaje(Personaje personaje) {
+		conexionbbdd = new ConexionBBDD();
+		
+		try {
+			conexionbbdd.elminarPersonaje(personaje.getIdPersonaje());
+			mostrarPersonaje.mensaje(true, "Se ha elminiado el personaje " + personaje.getNombre());
+			mostrarPersonajes();
+		} catch (Exception e) {
+			mostrarPersonaje.mensaje(false, "Debes seleecionar un personaje.");
+		}
+		
+	}
+	
 	private void mostrarPersonajes() {
 		menuPrincipal.cambiarPanel(mostrarPersonaje);
 		conexionbbdd = new ConexionBBDD();

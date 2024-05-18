@@ -102,6 +102,7 @@ public class ConsultarPartida extends JPanel {
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario
 		scrollPane = new JScrollPane(tablaPartida);
+		scrollPane.setEnabled(false);
 		scrollPane.setBounds(162, 157, 952, 153);
 		add(scrollPane);
 

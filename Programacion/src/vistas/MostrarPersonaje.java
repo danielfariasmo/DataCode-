@@ -5,17 +5,19 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import control.ControlMenuPrincipalUsuario;
 import modelo.Personaje;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MostrarPersonaje extends JPanel {
 	/**
@@ -24,10 +26,11 @@ public class MostrarPersonaje extends JPanel {
 	 * @author Daniel G.
 	 */
 	private static final long serialVersionUID = 1L;
-	JComboBox<Personaje> mostrarPersonaje;
-
-	public MostrarPersonaje() {
-
+	private JComboBox<Personaje> mostrarPersonaje;
+	private ControlMenuPrincipalUsuario control;
+	
+	public MostrarPersonaje(ControlMenuPrincipalUsuario control) {
+		this.control = control;
 		configuracionInicial();
 		inicializarComponentes();
 	}
@@ -67,18 +70,32 @@ public class MostrarPersonaje extends JPanel {
 		botonEliminar.setForeground(new Color(37, 34, 81));
 		botonEliminar.setBackground(new Color(135, 206, 235));
 		botonEliminar.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonEliminar.setBounds(748, 371, 208, 37);
-		add(botonEliminar);
-
-		JButton botonAñadirPersonaje = new JButton("Añadir Personaje");
-		botonAñadirPersonaje.addActionListener(new ActionListener() {
+		botonEliminar.setBounds(560, 370, 208, 37);
+		botonEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				elminarPersonaje();
 			}
 		});
-		botonAñadirPersonaje.setForeground(new Color(37, 34, 81));
-		botonAñadirPersonaje.setBackground(new Color(135, 206, 235));
-		botonAñadirPersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonAñadirPersonaje.setBounds(274, 371, 334, 37);
-		add(botonAñadirPersonaje);
+		add(botonEliminar);
 	}
+
+	public void elminarPersonaje() {
+
+		Personaje personaje = (Personaje) mostrarPersonaje.getSelectedItem();
+
+		control.eliminarPersonaje(personaje);
+
+	}
+	
+	public void mensaje(boolean exitoso, String mensaje) {
+
+		if (exitoso) {
+			JOptionPane.showMessageDialog(this, mensaje);
+		} else {
+			JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+	
+	
 }

@@ -6,12 +6,21 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+
+import control.ControlModificarPersonaje;
+import modelo.Miembro;
+import modelo.Personaje;
 
 public class ModificarPersonaje extends JPanel {
 	/**
@@ -21,13 +30,16 @@ public class ModificarPersonaje extends JPanel {
 	 */
 
 	private static final long serialVersionUID = 1L;
-	private JComboBox<String> comboNombrePersonaje;
+	private JComboBox<Personaje> comboNombrePersonaje;
 	private JComboBox<String> comboRaza;
 	private JComboBox<String> comboClase;
 	private JSpinner spinnerExperiencia;
+	private ControlModificarPersonaje control;
+	private Miembro miembro;
 
-	public ModificarPersonaje() {
-
+	public ModificarPersonaje(Miembro miembro) {
+		this.miembro = miembro;
+		this.control = new ControlModificarPersonaje(this);
 		configuracionInicial();
 		inicializarComponentes();
 
@@ -85,6 +97,11 @@ public class ModificarPersonaje extends JPanel {
 		botonActualizar.setBackground(new Color(135, 206, 235));
 		botonActualizar.setFont(new Font("Verdana", Font.BOLD, 25));
 		botonActualizar.setBounds(567, 454, 198, 38);
+		botonActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarPersonaje();
+			}
+		});
 		add(botonActualizar);
 		
 		comboNombrePersonaje = new JComboBox<>();
@@ -123,14 +140,47 @@ public class ModificarPersonaje extends JPanel {
 		spinnerExperiencia.setBounds(401, 281, 132, 38);
 		add(spinnerExperiencia);
 
+		control.cargarPersonaje();
 	}
 
-	public JComboBox<String> getComboNombrePersonaje() {
+	public void insertarPersonaje(ArrayList<Personaje> array) {
+		DefaultComboBoxModel<Personaje> dcbm = new DefaultComboBoxModel<Personaje>();
+		dcbm.addAll(array);
+		comboNombrePersonaje.setModel(dcbm);
+	}
+	
+	public void modificarPersonaje() {
+		
+		Personaje personaje = (Personaje) comboNombrePersonaje.getSelectedItem();
+		
+		control.actualizarPersonaje(personaje);
+		
+	}
+	
+	public void mensaje(boolean exitoso, String mensaje) {
+
+		if (exitoso) {
+			JOptionPane.showMessageDialog(this, mensaje);
+		} else {
+			JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public ControlModificarPersonaje getControl() {
+		return control;
+	}
+
+	public Miembro getMiembro() {
+		return miembro;
+	}
+
+	public JComboBox<Personaje> getComboNombrePersonaje() {
 		return comboNombrePersonaje;
-	}
-
-	public void setComboNombrePersonaje(JComboBox<String> comboNombrePersonaje) {
-		this.comboNombrePersonaje = comboNombrePersonaje;
 	}
 
 	public JComboBox<String> getComboRaza() {

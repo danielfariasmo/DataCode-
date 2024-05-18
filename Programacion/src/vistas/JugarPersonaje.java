@@ -88,8 +88,6 @@ public class JugarPersonaje extends JPanel {
 
 		seleccionPartida = new JComboBox<String>();
 		seleccionPartida.setBounds(595, 130, 306, 50);
-		
-		// TODO: validar como dejar opcion por defecto.
 		seleccionPartida.addItem("--Seleccione la Partida--");
 		seleccionPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
