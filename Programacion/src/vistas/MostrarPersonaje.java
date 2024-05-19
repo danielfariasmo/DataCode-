@@ -80,7 +80,7 @@ public class MostrarPersonaje extends JPanel {
 		mostrarPersonaje = new JComboBox<Personaje>();
 		mostrarPersonaje.setBackground(new Color(255, 255, 255));
 		mostrarPersonaje.setForeground(new Color(37, 34, 81));
-		mostrarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 17));
+		mostrarPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
 		mostrarPersonaje.setBounds(433, 195, 465, 66);
 		add(mostrarPersonaje);
 		// Etiqueta para indicar que se muestran personajes

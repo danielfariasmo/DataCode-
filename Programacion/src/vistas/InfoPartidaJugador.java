@@ -112,7 +112,7 @@ public class InfoPartidaJugador extends JPanel {
 		botonUnirmePartida.setBackground(new Color(135, 206, 235));
 		botonUnirmePartida.setForeground(new Color(37, 34, 81));
 		botonUnirmePartida.setFont(new Font("Verdana", Font.BOLD, 25));
-		botonUnirmePartida.setBounds(711, 453, 321, 43);
+		botonUnirmePartida.setBounds(742, 457, 321, 43);
 		botonUnirmePartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				itemSeleccionado(evt);
@@ -124,26 +124,26 @@ public class InfoPartidaJugador extends JPanel {
 		JLabel labelIdPartida = new JLabel("ID Partida");
 		labelIdPartida.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelIdPartida.setForeground(new Color(255, 255, 255));
-		labelIdPartida.setBounds(181, 139, 156, 22);
+		labelIdPartida.setBounds(181, 124, 156, 22);
 		add(labelIdPartida);
 
 		labelIdentificadorPartida = new JLabel("");
-		labelIdentificadorPartida.setFont(new Font("Verdana", Font.BOLD, 17));
+		labelIdentificadorPartida.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelIdentificadorPartida.setForeground(new Color(255, 255, 255));
-		labelIdentificadorPartida.setBounds(471, 139, 139, 14);
+		labelIdentificadorPartida.setBounds(472, 124, 139, 22);
 		add(labelIdentificadorPartida);
 
 		// Maximo Jugadores
-		JLabel labelMaximoJugadores = new JLabel("Máximo de Jugadores");
+		JLabel labelMaximoJugadores = new JLabel("Tiempo de sesión");
 		labelMaximoJugadores.setFont(new Font("Verdana", Font.BOLD, 20));
 		labelMaximoJugadores.setForeground(new Color(255, 255, 255));
-		labelMaximoJugadores.setBounds(181, 163, 244, 22);
+		labelMaximoJugadores.setBounds(181, 156, 244, 22);
 		add(labelMaximoJugadores);
 
 		labelInfoMaxJugadores = new JLabel("New label");
-		labelInfoMaxJugadores.setFont(new Font("Verdana", Font.BOLD, 20));
+		labelInfoMaxJugadores.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelInfoMaxJugadores.setForeground(new Color(255, 255, 255));
-		labelInfoMaxJugadores.setBounds(470, 164, 131, 25);
+		labelInfoMaxJugadores.setBounds(472, 155, 131, 25);
 		add(labelInfoMaxJugadores);
 
 		// Game Master
@@ -154,20 +154,20 @@ public class InfoPartidaJugador extends JPanel {
 		add(labelGameMaster);
 
 		labelInfoGameMaster = new JLabel("New label");
-		labelInfoGameMaster.setFont(new Font("Verdana", Font.BOLD, 20));
+		labelInfoGameMaster.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelInfoGameMaster.setForeground(new Color(255, 255, 255));
 		labelInfoGameMaster.setBounds(471, 183, 130, 34);
 		add(labelInfoGameMaster);
 
 		boxPersonaje = new JComboBox<Personaje>();
-		boxPersonaje.setFont(new Font("Verdana", Font.PLAIN, 20));
-		boxPersonaje.setBounds(157, 436, 444, 84);
+		boxPersonaje.setFont(new Font("Verdana", Font.PLAIN, 25));
+		boxPersonaje.setBounds(181, 436, 444, 84);
 		add(boxPersonaje);
 		// Label de TituloPersonaje
 		JLabel tituloPersonaje = new JLabel("Personajes");
 		tituloPersonaje.setFont(new Font("Verdana", Font.BOLD, 25));
 		tituloPersonaje.setForeground(new Color(255, 255, 255));
-		tituloPersonaje.setBounds(278, 383, 375, 44);
+		tituloPersonaje.setBounds(307, 382, 197, 44);
 		add(tituloPersonaje);
 	}
 
@@ -225,7 +225,6 @@ public class InfoPartidaJugador extends JPanel {
 	private void itemSeleccionado(ActionEvent e) {
 		// Obtiene el personaje seleccionado en el ComboBox
 		Personaje personaje = (Personaje) boxPersonaje.getSelectedItem();
-		System.out.println(personaje);
 		// Verifica si se ha seleccionado un personaje
 		if (personaje != null) {
 			// Solicita al usuario que ingrese una descripción para el personaje
@@ -240,14 +239,14 @@ public class InfoPartidaJugador extends JPanel {
 					control.agregarPartida(partidaClase, personaje, descripcion);
 
 				} else {
-					// Muestra un mensaje de error si la descripción está vacía
-					JOptionPane.showMessageDialog(this, "No has rellenado los campos correctamente");
+					JOptionPane.showMessageDialog(this, "No has rellenado los campos correctamente.", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
 		} else {
 			// Muestra un mensaje de error si no se ha seleccionado ningún personaje
-			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje");
+			JOptionPane.showMessageDialog(this, "Debes seleccionar un personaje.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

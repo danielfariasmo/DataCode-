@@ -60,6 +60,7 @@ public class ControlNuevoPersonaje implements ActionListener {
 				    && !personaje.getClase().isEmpty()) {
 				conexionBBDD.guardarPersonaje(personaje);
 				nuevoPersonaje.mensaje(true, "Se ha creado tu personaje " + personaje.getNombre());
+				nuevoPersonaje.limpiarCampos();
 			} else {
 				nuevoPersonaje.mensaje(false, "No se ha podido crear el personaje.");
 			}

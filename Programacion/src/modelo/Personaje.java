@@ -96,7 +96,7 @@ public class Personaje {
 	 */
 	@Override
 	public String toString() {
-		return "Personaje: " + nombre + ". [Experiencia: " + nivelExperiencia + "]";
+		return "Personaje: " + nombre;
 	}
 
 	// Getter y Setter

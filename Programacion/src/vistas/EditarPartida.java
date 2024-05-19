@@ -139,38 +139,38 @@ public class EditarPartida extends JPanel {
 		radioSi.setFont(new Font("Verdana", Font.BOLD, 25));
 		radioSi.setForeground(Color.WHITE);
 		radioSi.setBackground(new Color(37, 34, 81));
-		radioSi.setBounds(754, 461, 70, 30);
+		radioSi.setBounds(806, 461, 70, 30);
 		add(radioSi);
 
 		radioNo.setFont(new Font("Verdana", Font.BOLD, 25));
 		radioNo.setForeground(Color.WHITE);
 		radioNo.setBackground(new Color(37, 34, 81));
-		radioNo.setBounds(893, 461, 70, 30);
+		radioNo.setBounds(952, 461, 70, 30);
 		add(radioNo);
 
 		// Campos de texto para los datos de la partida
 		textAmbiente = new JTextField();
 		textAmbiente.setFont(new Font("Verdana", Font.PLAIN, 20));
-		textAmbiente.setBounds(724, 141, 258, 40);
+		textAmbiente.setBounds(724, 141, 338, 40);
 		add(textAmbiente);
 		textAmbiente.setColumns(10);
 
 		textDuracion = new JTextField();
 		textDuracion.setFont(new Font("Verdana", Font.PLAIN, 20));
-		textDuracion.setBounds(724, 301, 258, 40);
+		textDuracion.setBounds(724, 301, 338, 40);
 		add(textDuracion);
 		textDuracion.setColumns(10);
 
 		textNumeroSesion = new JTextField();
 		textNumeroSesion.setFont(new Font("Verdana", Font.PLAIN, 20));
-		textNumeroSesion.setBounds(724, 381, 258, 40);
+		textNumeroSesion.setBounds(724, 381, 338, 40);
 		add(textNumeroSesion);
 		textNumeroSesion.setColumns(10);
 
 		// ComboBox para seleccionar la partida a editar
 		misPartidas = new JComboBox<Partida>();
 		misPartidas.setFont(new Font("Verdana", Font.PLAIN, 20));
-		misPartidas.setBounds(724, 61, 258, 37);
+		misPartidas.setBounds(724, 61, 338, 37);
 		misPartidas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				seleccionPartidaCombo(e);
@@ -188,7 +188,7 @@ public class EditarPartida extends JPanel {
 		ftf = new JFormattedTextField(formatter);
 		ftf.setFont(new Font("Verdana", Font.PLAIN, 20));
 		ftf.setValue(new Date());
-		ftf.setBounds(724, 221, 258, 41);
+		ftf.setBounds(724, 221, 338, 41);
 		add(ftf);
 	}
 
@@ -262,24 +262,30 @@ public class EditarPartida extends JPanel {
 	 * Edita la partida seleccionada con los nuevos datos.
 	 */
 	public void editarPartida() {
+		
+		try {
+			// Obtener la partida seleccionada
+			Partida partida = partidas.get(misPartidas.getSelectedIndex());
 
-		// Obtener la partida seleccionada
-		Partida partida = partidas.get(misPartidas.getSelectedIndex());
+			// Actualizar los datos de la partida con los valores de los campos
+			partida.setAmbientacion(textAmbiente.getText());
+			partida.setDuracionSesion(textDuracion.getText());
+			partida.setNumeroSesion(textNumeroSesion.getText());
+			partida.setDiaHora(ftf.getText());
 
-		// Actualizar los datos de la partida con los valores de los campos
-		partida.setAmbientacion(textAmbiente.getText());
-		partida.setDuracionSesion(textDuracion.getText());
-		partida.setNumeroSesion(textNumeroSesion.getText());
-		partida.setDiaHora(ftf.getText());
+			// Actualizar el estado de la partida
+			if (radioSi.isSelected()) {
+				partida.setFinalizada("Si");
+			} else {
+				partida.setFinalizada("No");
+			}
 
-		// Actualizar el estado de la partida
-		if (radioSi.isSelected()) {
-			partida.setFinalizada("Si");
-		} else {
-			partida.setFinalizada("No");
+			control.actualizarPartida(partida);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
-		control.actualizarPartida(partida);
+		
 	}
 
 }

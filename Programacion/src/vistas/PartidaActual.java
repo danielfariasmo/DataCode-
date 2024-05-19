@@ -87,6 +87,7 @@ public class PartidaActual extends JPanel {
 		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {},
 				new String[] { "Nombre Partida", "Finalizada (Si/No)", "Nombre Personaje", "Fuerza", "Destreza",
 						"Constitución", "Inteligencia", "Sabiduria", "Carisma" }));
+		tablaPartida.setFont(new Font("Verdana", Font.PLAIN, 15));
 
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
@@ -94,15 +95,15 @@ public class PartidaActual extends JPanel {
 		add(tablaPartida);
 
 		// Ajustar tamaño preferido de las columnas para que los nombres sean visibles
-		tablaPartida.getColumnModel().getColumn(0).setPreferredWidth(430);
-		tablaPartida.getColumnModel().getColumn(1).setPreferredWidth(350);
-		tablaPartida.getColumnModel().getColumn(2).setPreferredWidth(200);
+		tablaPartida.getColumnModel().getColumn(0).setPreferredWidth(550);
+		tablaPartida.getColumnModel().getColumn(1).setPreferredWidth(300);
+		tablaPartida.getColumnModel().getColumn(2).setPreferredWidth(350);
 		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(200);
-		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(380);
-		tablaPartida.getColumnModel().getColumn(5).setPreferredWidth(430);
-		tablaPartida.getColumnModel().getColumn(6).setPreferredWidth(430);
-		tablaPartida.getColumnModel().getColumn(7).setPreferredWidth(430);
-		tablaPartida.getColumnModel().getColumn(8).setPreferredWidth(430);
+		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(230);
+		tablaPartida.getColumnModel().getColumn(5).setPreferredWidth(230);
+		tablaPartida.getColumnModel().getColumn(6).setPreferredWidth(230);
+		tablaPartida.getColumnModel().getColumn(7).setPreferredWidth(200);
+		tablaPartida.getColumnModel().getColumn(8).setPreferredWidth(200);
 
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario

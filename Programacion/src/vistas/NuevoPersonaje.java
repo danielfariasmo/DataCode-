@@ -179,6 +179,17 @@ public class NuevoPersonaje extends JPanel {
 			JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	/**
+	 * Limpia los campos del formulario.
+	 */
+	public void limpiarCampos() {
+		textoNombre.setText("");
+		comboClase.setSelectedIndex(0);
+	    comboExperiencia.setSelectedIndex(0);
+	    comboRaza.setSelectedIndex(0);
+		
+	}
 
 	// Getters and Setters.
 	public JTextField getTextoNombre() {

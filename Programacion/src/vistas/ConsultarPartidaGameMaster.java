@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -108,6 +109,7 @@ public class ConsultarPartidaGameMaster extends JPanel {
 		// Tabla Partida
 		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre",
 				"Día y hora de Creación", "Duración Sesión", "Ambientación", "Finalizada (Si/No)", }));
+		tablaPartida.setFont(new Font("Verdana", Font.PLAIN, 15));
 
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
@@ -119,8 +121,8 @@ public class ConsultarPartidaGameMaster extends JPanel {
 		tablaPartida.getColumnModel().getColumn(0).setPreferredWidth(430);
 		tablaPartida.getColumnModel().getColumn(1).setPreferredWidth(350);
 		tablaPartida.getColumnModel().getColumn(2).setPreferredWidth(200);
-		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(200);
-		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(380);
+		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(400);
+		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(200);
 
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario
@@ -159,11 +161,14 @@ public class ConsultarPartidaGameMaster extends JPanel {
      * @param e El evento de acción que desencadenó este método.
      */
 	public void itemSeleccionado(ActionEvent e) {
-		// Obtener la partida seleccionada
-		Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
+		
+		if (tablaPartida.getSelectedRow() >= 0) {
+			Partida partidaSeleccionada = partidasEnTabla.get(tablaPartida.getSelectedRow());
 
-		// Enviar la información de la partida al controlador
-		control.cambiarInfoPartidaJugador(partidaSeleccionada);
+			control.cambiarInfoPartidaJugador(partidaSeleccionada);
+		} else {
+			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida.", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

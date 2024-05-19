@@ -277,7 +277,7 @@ public class Login extends JFrame {
 	 * Muestra un diálogo de error cuando las credenciales de inicio de sesión son incorrectas.
 	 */
 	public void mostrarDialogoError() {
-		JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+		JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 
 	// Getters.

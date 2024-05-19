@@ -201,6 +201,16 @@ public class ModificarPersonaje extends JPanel {
 		}
 
 	}
+	
+	/**
+	 * Limpia los campos del formulario.
+	 */
+	public void limpiarCampos() {
+		comboNombrePersonaje.setSelectedIndex(-1);
+		comboClase.setSelectedIndex(0);
+		spinnerExperiencia.setValue(0);
+	    comboRaza.setSelectedIndex(0);
+	}
 
 	// Getters y setters
 	public static long getSerialversionuid() {

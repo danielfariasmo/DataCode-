@@ -256,6 +256,7 @@ public class ControlMenuPrincipalGM implements ActionListener {
 	 * @param partida la partida con la información actualizada
 	 */
 	public void actualizarPartida(Partida partida) {
+
 		// Verifica que los campos esenciales no estén vacíos
 		if (!partida.getAmbientacion().trim().isEmpty() && !partida.getDuracionSesion().trim().isEmpty()
 				&& !partida.getNumeroSesion().trim().isEmpty()) {

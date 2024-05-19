@@ -300,7 +300,6 @@ public class JugarPersonaje extends JPanel {
 	 */
 	public void actualizarPersonaje(ActionEvent ev) {
 
-		System.out.println("Funciona evento actualizar");
 		if (personaje != null && idPartida != null && juega != null) {
 			control.actualizarPersonajeCaracteristicas(juega);
 			String nombrePartida = " ";
@@ -315,7 +314,7 @@ public class JugarPersonaje extends JPanel {
 			JOptionPane.showMessageDialog(this,
 					"Se ha actualizado el personaje " + personaje.getNombre() + ", en la partida " + nombrePartida);
 		} else {
-			JOptionPane.showMessageDialog(this, "Debes rellenar los datos correctamente");
+			JOptionPane.showMessageDialog(this, "Debes rellenar los datos correctamente.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

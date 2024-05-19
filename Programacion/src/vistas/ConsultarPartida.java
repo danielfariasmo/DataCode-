@@ -52,19 +52,19 @@ public class ConsultarPartida extends JPanel {
 	private ControlMenuPrincipalUsuario controlMenuPrincipal;
 
 	/**
-     * Constructor de la clase ConsultarPartida.
-     * 
-     * @param controlMenuPrincipal El controlador del menú principal del usuario.
-     */
+	 * Constructor de la clase ConsultarPartida.
+	 * 
+	 * @param controlMenuPrincipal El controlador del menú principal del usuario.
+	 */
 	public ConsultarPartida(ControlMenuPrincipalUsuario controlMenuPrincipal) {
 		this.controlMenuPrincipal = controlMenuPrincipal;
 		configuracionInicial();
 		inicializarComponentes();
 	}
 
-	 /**
-     * Configuración inicial de la interfaz gráfica.
-     */
+	/**
+	 * Configuración inicial de la interfaz gráfica.
+	 */
 	public void configuracionInicial() {
 		// Barra Superior.
 		setFont(new Font("Verdana", Font.BOLD, 20));
@@ -73,11 +73,11 @@ public class ConsultarPartida extends JPanel {
 		setSize(1300, 660);
 	}
 
-	 /**
-     * Carga las partidas recibidas en la tabla de la interfaz.
-     * 
-     * @param partidas La lista de partidas a mostrar.
-     */
+	/**
+	 * Carga las partidas recibidas en la tabla de la interfaz.
+	 * 
+	 * @param partidas La lista de partidas a mostrar.
+	 */
 	public void cargarPartida(ArrayList<Partida> partidas) {
 
 		partidasEnTabla = partidas;
@@ -98,8 +98,8 @@ public class ConsultarPartida extends JPanel {
 	}
 
 	/**
-     * Inicializa todos los componentes de la interfaz gráfica.
-     */
+	 * Inicializa todos los componentes de la interfaz gráfica.
+	 */
 	public void inicializarComponentes() {
 
 		// Titulo de Pagina
@@ -112,6 +112,7 @@ public class ConsultarPartida extends JPanel {
 		// Tabla Partida
 		tablaPartida = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre",
 				"Día y hora de Creación", "Duración Sesión", "Ambientación", "Finalizada (Si/No)", }));
+		tablaPartida.setFont(new Font("Verdana", Font.PLAIN, 15));
 
 		tablaPartida.setForeground(new Color(255, 255, 255));
 		tablaPartida.setBackground(new Color(37, 34, 81));
@@ -122,8 +123,8 @@ public class ConsultarPartida extends JPanel {
 		tablaPartida.getColumnModel().getColumn(0).setPreferredWidth(430);
 		tablaPartida.getColumnModel().getColumn(1).setPreferredWidth(350);
 		tablaPartida.getColumnModel().getColumn(2).setPreferredWidth(200);
-		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(200);
-		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(380);
+		tablaPartida.getColumnModel().getColumn(3).setPreferredWidth(400);
+		tablaPartida.getColumnModel().getColumn(4).setPreferredWidth(200);
 
 		// Agregar la tabla a un JScrollPane para permitir desplazamiento si es
 		// necesario
@@ -158,10 +159,10 @@ public class ConsultarPartida extends JPanel {
 	}
 
 	/**
-     * Método invocado al hacer clic en el botón de Información de la Partida.
-     * 
-     * @param e El evento de acción.
-     */
+	 * Método invocado al hacer clic en el botón de Información de la Partida.
+	 * 
+	 * @param e El evento de acción.
+	 */
 	public void itemSeleccionado(ActionEvent e) {
 
 		if (tablaPartida.getSelectedRow() >= 0) {
@@ -169,12 +170,12 @@ public class ConsultarPartida extends JPanel {
 
 			controlMenuPrincipal.cambiarInfoPartidaJugador(partidaSeleccionada);
 		} else {
-			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida.");
+			JOptionPane.showMessageDialog(this, "Debes seleccionar una partida.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
 
-	//Getter. 
+	// Getter.
 	public JTable getTablaPartida() {
 		return tablaPartida;
 	}

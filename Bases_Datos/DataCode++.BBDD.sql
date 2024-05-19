@@ -255,3 +255,5 @@ SELECT * FROM Partida WHERE nombre = 'La guerra de los magos';
 UPDATE Personaje SET experiencia = 3 WHERE id_personaje = 5;
 
 INSERT INTO Personaje(nombre ,raza, nivel_experiencia, clase, id_miembro) VALUES ('El papi', 'Humano', 5, 'Guerrero', 2);
+
+SELECT * FROM miembro;

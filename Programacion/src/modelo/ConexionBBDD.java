@@ -72,7 +72,7 @@ public class ConexionBBDD {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Damos ubicacion en MySql
-			return DriverManager.getConnection(url, "root", "Villafranca1");
+			return DriverManager.getConnection(url, "root", "1590");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
