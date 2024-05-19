@@ -110,7 +110,7 @@ public class EditarPartida extends JPanel {
 		labelNumeroSesion.setBounds(260, 381, 400, 48);
 		add(labelNumeroSesion);
 
-		JLabel labelEstado = new JLabel("¿Está en curso o terminada?:");
+		JLabel labelEstado = new JLabel("¿Está terminada?:");
 		labelEstado.setFont(new Font("Verdana", Font.BOLD, 25));
 		labelEstado.setForeground(Color.WHITE);
 		labelEstado.setBounds(260, 461, 429, 30);
